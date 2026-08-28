@@ -9,7 +9,7 @@ public class NumberProcessorTest {
       
         assertEquals(2, processor.sumEvenNumbers(2)); 
     }
-}
+
     @Test
     public void testPathCoverage_NoLoop() {
         NumberProcessor processor = new NumberProcessor();
@@ -30,3 +30,4 @@ public class NumberProcessorTest {
         // Đường đi 3: n = 2 -> Vào for, có lúc vào nhánh if (khi i=2)
         assertEquals(2, processor.sumEvenNumbers(2)); 
     }
+} // Dấu ngoặc đóng của class PHẢI nằm ở vị trí cuối cùng này
