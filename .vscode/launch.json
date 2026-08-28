@@ -1,0 +1,19 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Run NumberProcessorTest",
+      "type": "java",
+      "request": "launch",
+      "mainClass": "org.junit.platform.console.ConsoleLauncher",
+      "args": [
+        "--class-path",
+        ".;lib/junit-platform-console-standalone-1.14.4.jar",
+        "--select-class",
+        "NumberProcessorTest"
+      ],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen"
+    }
+  ]
+}
