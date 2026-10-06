@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SaaSify - Nền Tảng Quản Lý Dự Án (v1.0 Baseline)</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+    body {
+      background-color: #0f172a;
+      color: #f8fafc;
+      line-height: 1.6;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 3rem;
+      background: rgba(15, 23, 42, 0.9);
+      border-bottom: 1px solid #1e293b;
+    }
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #38bdf8;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    nav a {
+      color: #94a3b8;
+      text-decoration: none;
+      margin-left: 2rem;
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+    .hero {
+      text-align: center;
+      padding: 5rem 2rem 4rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .badge {
+      display: inline-block;
+      padding: 0.35rem 1rem;
+      background: #1e293b;
+      color: #38bdf8;
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      border: 1px solid #334155;
+    }
+    h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      margin-bottom: 1.25rem;
+      line-height: 1.2;
+    }
+    .gradient-text {
+      background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    p.lead {
+      font-size: 1.2rem;
+      color: #94a3b8;
+      margin-bottom: 2rem;
+    }
+    .btn-group {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      /* BASELINE MARGIN */
+      margin-top: 10px;
+    }
+    .btn-primary {
+      /* BASELINE COLOR: Emerald Green */
+      background-color: #10b981;
+      color: #ffffff;
+      padding: 0.85rem 2rem;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
+    }
+    .btn-secondary {
+      background-color: #1e293b;
+      color: #f8fafc;
+      padding: 0.85rem 2rem;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+      border: 1px solid #334155;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      max-width: 1100px;
+      margin: 3rem auto;
+      padding: 0 2rem;
+    }
+    .card {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 2rem;
+    }
+    .card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.75rem;
+      color: #f8fafc;
+    }
+    .card p {
+      color: #94a3b8;
+      font-size: 0.95rem;
+    }
+    /* DYNAMIC WIDGETS (Demonstrating Anti-flakiness & Masking) */
+    .live-widget {
+      max-width: 1100px;
+      margin: 2rem auto;
+      padding: 1.5rem 2rem;
+      background: #0f172a;
+      border: 1px dashed #334155;
+      border-radius: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .timestamp {
+      color: #fbbf24;
+      font-family: monospace;
+      font-size: 0.9rem;
+    }
+    footer {
+      border-top: 1px solid #1e293b;
+      text-align: center;
+      padding: 2rem;
+      color: #64748b;
+      font-size: 0.85rem;
+      margin-top: 4rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">⚡ SaaSify</div>
+    <nav>
+      <a href="#features">Tính năng</a>
+      <a href="#pricing">Bảng giá</a>
+      <a href="#docs">Tài liệu</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="badge">🚀 Phiên bản 1.0 (BASELINE CHUẨN)</div>
+      <h1>Kiểm định chất lượng với <br><span class="gradient-text">Độ chính xác tuyệt đối</span></h1>
+      <p class="lead">Hệ thống Black-box UI Testing phát hiện sai khác điểm ảnh và biến dạng giao diện tự động.</p>
+      
+      <div class="btn-group">
+        <a class="btn-primary" href="#get-started">Bắt đầu miễn phí</a>
+        <a class="btn-secondary" href="#demo">Xem Video Demo</a>
+      </div>
+    </section>
+
+    <!-- Dynamic Live Status (Target for Masking) -->
+    <div class="live-widget">
+      <span>Trạng thái máy chủ: <strong style="color: #4ade80;">Online</strong></span>
+      <span class="timestamp" id="live-time">Timestamp: 2026-10-06 14:00:00</span>
+    </div>
+
+    <section class="features" id="features">
+      <div class="card">
+        <h3>🎯 Perceptual Diff</h3>
+        <p>So khớp màu sắc đa chiều trong không gian màu chuẩn, triệt tiêu nhiễu rung sai do làm mịn phông chữ.</p>
+      </div>
+      <div class="card">
+        <h3>📐 Phân tích SSIM</h3>
+        <p>Đánh giá chỉ số tương đồng cấu trúc hình khối độc lập với cường độ ánh sáng của trang web.</p>
+      </div>
+      <div class="card">
+        <h3>🛡️ Anti-Flakiness</h3>
+        <p>Tự động tiêm CSS khử hiệu ứng động, vô hiệu hóa con trỏ và đồng bộ nạp phông chữ trước khi chụp.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 SaaSify Inc. Dự án môn học Đánh giá và Kiểm định Chất lượng Phần mềm.</p>
+  </footer>
+
+  <script>
+    // Simulate real-time dynamic timestamp
+    const now = new Date();
+    document.getElementById('live-time').innerText = 'Timestamp: ' + now.toISOString();
+  </script>
+</body>
+</html>

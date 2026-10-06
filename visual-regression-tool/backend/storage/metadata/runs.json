@@ -1,0 +1,4037 @@
+{
+  "559ca405": {
+    "id": "559ca405",
+    "suite_id": "e29159b6",
+    "suite_name": "SaaSify Platform (Demo Suite)",
+    "target_url": "http://localhost:8000/demo/v2_regression/index.html",
+    "status": "COMPLETED",
+    "overall_status": "FAILED",
+    "started_at": "2026-10-06 14:33:58",
+    "completed_at": "2026-10-06 14:34:05",
+    "duration_seconds": 7.27,
+    "total_viewports": 3,
+    "passed_viewports": 0,
+    "failed_viewports": 3,
+    "results": [
+      {
+        "viewport": "desktop",
+        "viewport_width": 1920,
+        "viewport_height": 1080,
+        "status": "FAILED",
+        "diff_ratio": 1.7408,
+        "ssim_score": 0.9469,
+        "diff_pixels": 36097,
+        "total_pixels": 2073600,
+        "bounding_boxes": [
+          {
+            "x": 800,
+            "y": 160,
+            "width": 320,
+            "height": 49
+          },
+          {
+            "x": 755,
+            "y": 417,
+            "width": 201,
+            "height": 75
+          },
+          {
+            "x": 958,
+            "y": 417,
+            "width": 207,
+            "height": 22
+          },
+          {
+            "x": 991,
+            "y": 439,
+            "width": 141,
+            "height": 29
+          },
+          {
+            "x": 958,
+            "y": 467,
+            "width": 207,
+            "height": 22
+          },
+          {
+            "x": 403,
+            "y": 568,
+            "width": 1114,
+            "height": 93
+          },
+          {
+            "x": 436,
+            "y": 692,
+            "width": 336,
+            "height": 23
+          },
+          {
+            "x": 792,
+            "y": 692,
+            "width": 336,
+            "height": 23
+          },
+          {
+            "x": 1148,
+            "y": 692,
+            "width": 336,
+            "height": 23
+          },
+          {
+            "x": 472,
+            "y": 732,
+            "width": 185,
+            "height": 39
+          },
+          {
+            "x": 828,
+            "y": 732,
+            "width": 183,
+            "height": 37
+          },
+          {
+            "x": 1185,
+            "y": 732,
+            "width": 174,
+            "height": 37
+          },
+          {
+            "x": 469,
+            "y": 774,
+            "width": 268,
+            "height": 81
+          },
+          {
+            "x": 824,
+            "y": 775,
+            "width": 259,
+            "height": 80
+          },
+          {
+            "x": 1180,
+            "y": 775,
+            "width": 269,
+            "height": 80
+          },
+          {
+            "x": 436,
+            "y": 869,
+            "width": 336,
+            "height": 23
+          },
+          {
+            "x": 792,
+            "y": 869,
+            "width": 336,
+            "height": 23
+          },
+          {
+            "x": 1148,
+            "y": 869,
+            "width": 336,
+            "height": 23
+          },
+          {
+            "x": 708,
+            "y": 976,
+            "width": 504,
+            "height": 32
+          }
+        ],
+        "baseline_image_url": "/storage/baselines/e29159b6/baseline_desktop.png",
+        "current_image_url": "/storage/runs/559ca405/currents/current_desktop.png",
+        "diff_image_url": "/storage/runs/559ca405/diffs/diff_desktop.png",
+        "baseline_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\baselines\\e29159b6\\baseline_desktop.png",
+        "current_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\559ca405\\currents\\current_desktop.png",
+        "diff_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\559ca405\\diffs\\diff_desktop.png",
+        "error_message": null,
+        "duration_ms": 1582.44
+      },
+      {
+        "viewport": "tablet",
+        "viewport_width": 768,
+        "viewport_height": 1281,
+        "status": "FAILED",
+        "diff_ratio": 3.9006,
+        "ssim_score": 0.8954,
+        "diff_pixels": 38374,
+        "total_pixels": 983808,
+        "bounding_boxes": [
+          {
+            "x": 224,
+            "y": 160,
+            "width": 320,
+            "height": 49
+          },
+          {
+            "x": 179,
+            "y": 448,
+            "width": 201,
+            "height": 75
+          },
+          {
+            "x": 382,
+            "y": 448,
+            "width": 207,
+            "height": 22
+          },
+          {
+            "x": 415,
+            "y": 470,
+            "width": 141,
+            "height": 29
+          },
+          {
+            "x": 382,
+            "y": 498,
+            "width": 207,
+            "height": 22
+          },
+          {
+            "x": 0,
+            "y": 599,
+            "width": 768,
+            "height": 92
+          },
+          {
+            "x": 26,
+            "y": 722,
+            "width": 348,
+            "height": 23
+          },
+          {
+            "x": 394,
+            "y": 722,
+            "width": 348,
+            "height": 23
+          },
+          {
+            "x": 62,
+            "y": 762,
+            "width": 185,
+            "height": 39
+          },
+          {
+            "x": 430,
+            "y": 762,
+            "width": 183,
+            "height": 37
+          },
+          {
+            "x": 58,
+            "y": 804,
+            "width": 276,
+            "height": 82
+          },
+          {
+            "x": 426,
+            "y": 805,
+            "width": 259,
+            "height": 81
+          },
+          {
+            "x": 26,
+            "y": 899,
+            "width": 348,
+            "height": 23
+          },
+          {
+            "x": 394,
+            "y": 899,
+            "width": 348,
+            "height": 23
+          },
+          {
+            "x": 26,
+            "y": 937,
+            "width": 348,
+            "height": 23
+          },
+          {
+            "x": 63,
+            "y": 977,
+            "width": 174,
+            "height": 37
+          },
+          {
+            "x": 58,
+            "y": 1020,
+            "width": 269,
+            "height": 81
+          },
+          {
+            "x": 26,
+            "y": 1114,
+            "width": 348,
+            "height": 23
+          },
+          {
+            "x": 132,
+            "y": 1221,
+            "width": 504,
+            "height": 32
+          },
+          {
+            "x": 0,
+            "y": 1271,
+            "width": 768,
+            "height": 10
+          }
+        ],
+        "baseline_image_url": "/storage/baselines/e29159b6/baseline_tablet.png",
+        "current_image_url": "/storage/runs/559ca405/currents/current_tablet.png",
+        "diff_image_url": "/storage/runs/559ca405/diffs/diff_tablet.png",
+        "baseline_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\baselines\\e29159b6\\baseline_tablet.png",
+        "current_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\559ca405\\currents\\current_tablet.png",
+        "diff_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\559ca405\\diffs\\diff_tablet.png",
+        "error_message": null,
+        "duration_ms": 1220.18
+      },
+      {
+        "viewport": "mobile",
+        "viewport_width": 375,
+        "viewport_height": 1835,
+        "status": "FAILED",
+        "diff_ratio": 7.475,
+        "ssim_score": 0.8002,
+        "diff_pixels": 51437,
+        "total_pixels": 688125,
+        "bounding_boxes": [
+          {
+            "x": 27,
+            "y": 199,
+            "width": 321,
+            "height": 49
+          },
+          {
+            "x": 25,
+            "y": 690,
+            "width": 159,
+            "height": 100
+          },
+          {
+            "x": 186,
+            "y": 690,
+            "width": 164,
+            "height": 22
+          },
+          {
+            "x": 221,
+            "y": 711,
+            "width": 94,
+            "height": 55
+          },
+          {
+            "x": 186,
+            "y": 765,
+            "width": 164,
+            "height": 22
+          },
+          {
+            "x": 0,
+            "y": 866,
+            "width": 375,
+            "height": 144
+          },
+          {
+            "x": 25,
+            "y": 1015,
+            "width": 325,
+            "height": 51
+          },
+          {
+            "x": 58,
+            "y": 1055,
+            "width": 236,
+            "height": 171
+          },
+          {
+            "x": 25,
+            "y": 1215,
+            "width": 325,
+            "height": 90
+          },
+          {
+            "x": 58,
+            "y": 1295,
+            "width": 253,
+            "height": 149
+          },
+          {
+            "x": 25,
+            "y": 1430,
+            "width": 325,
+            "height": 90
+          },
+          {
+            "x": 58,
+            "y": 1510,
+            "width": 245,
+            "height": 149
+          },
+          {
+            "x": 25,
+            "y": 1645,
+            "width": 325,
+            "height": 50
+          },
+          {
+            "x": 0,
+            "y": 1756,
+            "width": 375,
+            "height": 79
+          }
+        ],
+        "baseline_image_url": "/storage/baselines/e29159b6/baseline_mobile.png",
+        "current_image_url": "/storage/runs/559ca405/currents/current_mobile.png",
+        "diff_image_url": "/storage/runs/559ca405/diffs/diff_mobile.png",
+        "baseline_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\baselines\\e29159b6\\baseline_mobile.png",
+        "current_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\559ca405\\currents\\current_mobile.png",
+        "diff_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\559ca405\\diffs\\diff_mobile.png",
+        "error_message": null,
+        "duration_ms": 1136.57
+      }
+    ]
+  },
+  "537d6c4d": {
+    "id": "537d6c4d",
+    "suite_id": "e29159b6",
+    "suite_name": "SaaSify Platform (Demo Suite)",
+    "target_url": "http://localhost:8000/demo/v2_regression/index.html",
+    "status": "COMPLETED",
+    "overall_status": "PASSED",
+    "started_at": "2026-10-06 14:34:44",
+    "completed_at": "2026-10-06 14:34:48",
+    "duration_seconds": 4.31,
+    "total_viewports": 3,
+    "passed_viewports": 3,
+    "failed_viewports": 0,
+    "results": [
+      {
+        "viewport": "desktop",
+        "viewport_width": 1920,
+        "viewport_height": 1080,
+        "status": "PASSED",
+        "diff_ratio": 0.0,
+        "ssim_score": 1.0,
+        "diff_pixels": 0,
+        "total_pixels": 2073600,
+        "bounding_boxes": [],
+        "baseline_image_url": "/storage/baselines/e29159b6/baseline_desktop.png",
+        "current_image_url": "/storage/runs/537d6c4d/currents/current_desktop.png",
+        "diff_image_url": "/storage/runs/537d6c4d/diffs/diff_desktop.png",
+        "baseline_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\baselines\\e29159b6\\baseline_desktop.png",
+        "current_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\537d6c4d\\currents\\current_desktop.png",
+        "diff_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\537d6c4d\\diffs\\diff_desktop.png",
+        "error_message": null,
+        "duration_ms": 1572.34
+      },
+      {
+        "viewport": "tablet",
+        "viewport_width": 768,
+        "viewport_height": 1281,
+        "status": "PASSED",
+        "diff_ratio": 0.0,
+        "ssim_score": 1.0,
+        "diff_pixels": 0,
+        "total_pixels": 983808,
+        "bounding_boxes": [],
+        "baseline_image_url": "/storage/baselines/e29159b6/baseline_tablet.png",
+        "current_image_url": "/storage/runs/537d6c4d/currents/current_tablet.png",
+        "diff_image_url": "/storage/runs/537d6c4d/diffs/diff_tablet.png",
+        "baseline_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\baselines\\e29159b6\\baseline_tablet.png",
+        "current_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\537d6c4d\\currents\\current_tablet.png",
+        "diff_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\537d6c4d\\diffs\\diff_tablet.png",
+        "error_message": null,
+        "duration_ms": 1220.46
+      },
+      {
+        "viewport": "mobile",
+        "viewport_width": 375,
+        "viewport_height": 1835,
+        "status": "PASSED",
+        "diff_ratio": 0.0,
+        "ssim_score": 1.0,
+        "diff_pixels": 0,
+        "total_pixels": 688125,
+        "bounding_boxes": [],
+        "baseline_image_url": "/storage/baselines/e29159b6/baseline_mobile.png",
+        "current_image_url": "/storage/runs/537d6c4d/currents/current_mobile.png",
+        "diff_image_url": "/storage/runs/537d6c4d/diffs/diff_mobile.png",
+        "baseline_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\baselines\\e29159b6\\baseline_mobile.png",
+        "current_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\537d6c4d\\currents\\current_mobile.png",
+        "diff_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\537d6c4d\\diffs\\diff_mobile.png",
+        "error_message": null,
+        "duration_ms": 1173.15
+      }
+    ]
+  },
+  "f4e14022": {
+    "id": "f4e14022",
+    "suite_id": "936ab21b",
+    "suite_name": "SaaSify Visual Suite",
+    "target_url": "http://localhost:8000/demo/v2_regression/index.html",
+    "status": "COMPLETED",
+    "overall_status": "FAILED",
+    "started_at": "2026-10-06 14:37:40",
+    "completed_at": "2026-10-06 14:37:47",
+    "duration_seconds": 7.19,
+    "total_viewports": 3,
+    "passed_viewports": 0,
+    "failed_viewports": 3,
+    "results": [
+      {
+        "viewport": "desktop",
+        "viewport_width": 1920,
+        "viewport_height": 1080,
+        "status": "FAILED",
+        "diff_ratio": 1.7408,
+        "ssim_score": 0.9469,
+        "diff_pixels": 36097,
+        "total_pixels": 2073600,
+        "bounding_boxes": [
+          {
+            "x": 800,
+            "y": 160,
+            "width": 320,
+            "height": 49
+          },
+          {
+            "x": 755,
+            "y": 417,
+            "width": 201,
+            "height": 75
+          },
+          {
+            "x": 958,
+            "y": 417,
+            "width": 207,
+            "height": 22
+          },
+          {
+            "x": 991,
+            "y": 439,
+            "width": 141,
+            "height": 29
+          },
+          {
+            "x": 958,
+            "y": 467,
+            "width": 207,
+            "height": 22
+          },
+          {
+            "x": 403,
+            "y": 568,
+            "width": 1114,
+            "height": 93
+          },
+          {
+            "x": 436,
+            "y": 692,
+            "width": 336,
+            "height": 23
+          },
+          {
+            "x": 792,
+            "y": 692,
+            "width": 336,
+            "height": 23
+          },
+          {
+            "x": 1148,
+            "y": 692,
+            "width": 336,
+            "height": 23
+          },
+          {
+            "x": 472,
+            "y": 732,
+            "width": 185,
+            "height": 39
+          },
+          {
+            "x": 828,
+            "y": 732,
+            "width": 183,
+            "height": 37
+          },
+          {
+            "x": 1185,
+            "y": 732,
+            "width": 174,
+            "height": 37
+          },
+          {
+            "x": 469,
+            "y": 774,
+            "width": 268,
+            "height": 81
+          },
+          {
+            "x": 824,
+            "y": 775,
+            "width": 259,
+            "height": 80
+          },
+          {
+            "x": 1180,
+            "y": 775,
+            "width": 269,
+            "height": 80
+          },
+          {
+            "x": 436,
+            "y": 869,
+            "width": 336,
+            "height": 23
+          },
+          {
+            "x": 792,
+            "y": 869,
+            "width": 336,
+            "height": 23
+          },
+          {
+            "x": 1148,
+            "y": 869,
+            "width": 336,
+            "height": 23
+          },
+          {
+            "x": 708,
+            "y": 976,
+            "width": 504,
+            "height": 32
+          }
+        ],
+        "baseline_image_url": "/storage/baselines/936ab21b/baseline_desktop.png",
+        "current_image_url": "/storage/runs/f4e14022/currents/current_desktop.png",
+        "diff_image_url": "/storage/runs/f4e14022/diffs/diff_desktop.png",
+        "baseline_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\baselines\\936ab21b\\baseline_desktop.png",
+        "current_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\f4e14022\\currents\\current_desktop.png",
+        "diff_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\f4e14022\\diffs\\diff_desktop.png",
+        "error_message": null,
+        "duration_ms": 1486.79
+      },
+      {
+        "viewport": "tablet",
+        "viewport_width": 768,
+        "viewport_height": 1281,
+        "status": "FAILED",
+        "diff_ratio": 3.9006,
+        "ssim_score": 0.8954,
+        "diff_pixels": 38374,
+        "total_pixels": 983808,
+        "bounding_boxes": [
+          {
+            "x": 224,
+            "y": 160,
+            "width": 320,
+            "height": 49
+          },
+          {
+            "x": 179,
+            "y": 448,
+            "width": 201,
+            "height": 75
+          },
+          {
+            "x": 382,
+            "y": 448,
+            "width": 207,
+            "height": 22
+          },
+          {
+            "x": 415,
+            "y": 470,
+            "width": 141,
+            "height": 29
+          },
+          {
+            "x": 382,
+            "y": 498,
+            "width": 207,
+            "height": 22
+          },
+          {
+            "x": 0,
+            "y": 599,
+            "width": 768,
+            "height": 92
+          },
+          {
+            "x": 26,
+            "y": 722,
+            "width": 348,
+            "height": 23
+          },
+          {
+            "x": 394,
+            "y": 722,
+            "width": 348,
+            "height": 23
+          },
+          {
+            "x": 62,
+            "y": 762,
+            "width": 185,
+            "height": 39
+          },
+          {
+            "x": 430,
+            "y": 762,
+            "width": 183,
+            "height": 37
+          },
+          {
+            "x": 58,
+            "y": 804,
+            "width": 276,
+            "height": 82
+          },
+          {
+            "x": 426,
+            "y": 805,
+            "width": 259,
+            "height": 81
+          },
+          {
+            "x": 26,
+            "y": 899,
+            "width": 348,
+            "height": 23
+          },
+          {
+            "x": 394,
+            "y": 899,
+            "width": 348,
+            "height": 23
+          },
+          {
+            "x": 26,
+            "y": 937,
+            "width": 348,
+            "height": 23
+          },
+          {
+            "x": 63,
+            "y": 977,
+            "width": 174,
+            "height": 37
+          },
+          {
+            "x": 58,
+            "y": 1020,
+            "width": 269,
+            "height": 81
+          },
+          {
+            "x": 26,
+            "y": 1114,
+            "width": 348,
+            "height": 23
+          },
+          {
+            "x": 132,
+            "y": 1221,
+            "width": 504,
+            "height": 32
+          },
+          {
+            "x": 0,
+            "y": 1271,
+            "width": 768,
+            "height": 10
+          }
+        ],
+        "baseline_image_url": "/storage/baselines/936ab21b/baseline_tablet.png",
+        "current_image_url": "/storage/runs/f4e14022/currents/current_tablet.png",
+        "diff_image_url": "/storage/runs/f4e14022/diffs/diff_tablet.png",
+        "baseline_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\baselines\\936ab21b\\baseline_tablet.png",
+        "current_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\f4e14022\\currents\\current_tablet.png",
+        "diff_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\f4e14022\\diffs\\diff_tablet.png",
+        "error_message": null,
+        "duration_ms": 1262.36
+      },
+      {
+        "viewport": "mobile",
+        "viewport_width": 375,
+        "viewport_height": 1835,
+        "status": "FAILED",
+        "diff_ratio": 7.475,
+        "ssim_score": 0.8002,
+        "diff_pixels": 51437,
+        "total_pixels": 688125,
+        "bounding_boxes": [
+          {
+            "x": 27,
+            "y": 199,
+            "width": 321,
+            "height": 49
+          },
+          {
+            "x": 25,
+            "y": 690,
+            "width": 159,
+            "height": 100
+          },
+          {
+            "x": 186,
+            "y": 690,
+            "width": 164,
+            "height": 22
+          },
+          {
+            "x": 221,
+            "y": 711,
+            "width": 94,
+            "height": 55
+          },
+          {
+            "x": 186,
+            "y": 765,
+            "width": 164,
+            "height": 22
+          },
+          {
+            "x": 0,
+            "y": 866,
+            "width": 375,
+            "height": 144
+          },
+          {
+            "x": 25,
+            "y": 1015,
+            "width": 325,
+            "height": 51
+          },
+          {
+            "x": 58,
+            "y": 1055,
+            "width": 236,
+            "height": 171
+          },
+          {
+            "x": 25,
+            "y": 1215,
+            "width": 325,
+            "height": 90
+          },
+          {
+            "x": 58,
+            "y": 1295,
+            "width": 253,
+            "height": 149
+          },
+          {
+            "x": 25,
+            "y": 1430,
+            "width": 325,
+            "height": 90
+          },
+          {
+            "x": 58,
+            "y": 1510,
+            "width": 245,
+            "height": 149
+          },
+          {
+            "x": 25,
+            "y": 1645,
+            "width": 325,
+            "height": 50
+          },
+          {
+            "x": 0,
+            "y": 1756,
+            "width": 375,
+            "height": 79
+          }
+        ],
+        "baseline_image_url": "/storage/baselines/936ab21b/baseline_mobile.png",
+        "current_image_url": "/storage/runs/f4e14022/currents/current_mobile.png",
+        "diff_image_url": "/storage/runs/f4e14022/diffs/diff_mobile.png",
+        "baseline_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\baselines\\936ab21b\\baseline_mobile.png",
+        "current_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\f4e14022\\currents\\current_mobile.png",
+        "diff_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\f4e14022\\diffs\\diff_mobile.png",
+        "error_message": null,
+        "duration_ms": 1150.44
+      }
+    ]
+  },
+  "6be7d7f3": {
+    "id": "6be7d7f3",
+    "suite_id": "378cfa46",
+    "suite_name": "SaaSify Visual Suite",
+    "target_url": " http://localhost:5173/",
+    "status": "COMPLETED",
+    "overall_status": "FAILED",
+    "started_at": "2026-10-06 14:41:34",
+    "completed_at": "2026-10-06 14:41:55",
+    "duration_seconds": 20.83,
+    "total_viewports": 3,
+    "passed_viewports": 0,
+    "failed_viewports": 3,
+    "results": [
+      {
+        "viewport": "desktop",
+        "viewport_width": 1920,
+        "viewport_height": 3157,
+        "status": "FAILED",
+        "diff_ratio": 1.898,
+        "ssim_score": 0.9534,
+        "diff_pixels": 115049,
+        "total_pixels": 6061440,
+        "bounding_boxes": [
+          {
+            "x": 242,
+            "y": 97,
+            "width": 1678,
+            "height": 949
+          },
+          {
+            "x": 1564,
+            "y": 97,
+            "width": 64,
+            "height": 125
+          },
+          {
+            "x": 1693,
+            "y": 97,
+            "width": 29,
+            "height": 20
+          },
+          {
+            "x": 1436,
+            "y": 98,
+            "width": 100,
+            "height": 56
+          },
+          {
+            "x": 1710,
+            "y": 98,
+            "width": 210,
+            "height": 303
+          },
+          {
+            "x": 140,
+            "y": 128,
+            "width": 31,
+            "height": 32
+          },
+          {
+            "x": 0,
+            "y": 145,
+            "width": 523,
+            "height": 939
+          },
+          {
+            "x": 1674,
+            "y": 169,
+            "width": 32,
+            "height": 32
+          },
+          {
+            "x": 308,
+            "y": 201,
+            "width": 36,
+            "height": 36
+          },
+          {
+            "x": 1708,
+            "y": 280,
+            "width": 90,
+            "height": 84
+          },
+          {
+            "x": 1776,
+            "y": 352,
+            "width": 27,
+            "height": 27
+          },
+          {
+            "x": 364,
+            "y": 464,
+            "width": 328,
+            "height": 106
+          },
+          {
+            "x": 542,
+            "y": 650,
+            "width": 33,
+            "height": 33
+          },
+          {
+            "x": 0,
+            "y": 682,
+            "width": 123,
+            "height": 73
+          },
+          {
+            "x": 0,
+            "y": 762,
+            "width": 28,
+            "height": 39
+          },
+          {
+            "x": 526,
+            "y": 797,
+            "width": 83,
+            "height": 91
+          },
+          {
+            "x": 441,
+            "y": 950,
+            "width": 110,
+            "height": 48
+          },
+          {
+            "x": 1056,
+            "y": 954,
+            "width": 118,
+            "height": 44
+          },
+          {
+            "x": 761,
+            "y": 957,
+            "width": 59,
+            "height": 40
+          },
+          {
+            "x": 1373,
+            "y": 957,
+            "width": 105,
+            "height": 41
+          },
+          {
+            "x": 1686,
+            "y": 966,
+            "width": 200,
+            "height": 121
+          },
+          {
+            "x": 631,
+            "y": 982,
+            "width": 37,
+            "height": 32
+          },
+          {
+            "x": 1561,
+            "y": 987,
+            "width": 51,
+            "height": 100
+          },
+          {
+            "x": 53,
+            "y": 1049,
+            "width": 26,
+            "height": 16
+          },
+          {
+            "x": 631,
+            "y": 1059,
+            "width": 16,
+            "height": 26
+          }
+        ],
+        "baseline_image_url": "/storage/baselines/378cfa46/baseline_desktop.png",
+        "current_image_url": "/storage/runs/6be7d7f3/currents/current_desktop.png",
+        "diff_image_url": "/storage/runs/6be7d7f3/diffs/diff_desktop.png",
+        "baseline_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\baselines\\378cfa46\\baseline_desktop.png",
+        "current_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\6be7d7f3\\currents\\current_desktop.png",
+        "diff_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\6be7d7f3\\diffs\\diff_desktop.png",
+        "error_message": null,
+        "duration_ms": 4977.34
+      },
+      {
+        "viewport": "tablet",
+        "viewport_width": 768,
+        "viewport_height": 3982,
+        "status": "FAILED",
+        "diff_ratio": 1.1494,
+        "ssim_score": 0.9738,
+        "diff_pixels": 35151,
+        "total_pixels": 3058176,
+        "bounding_boxes": [
+          {
+            "x": 0,
+            "y": 123,
+            "width": 768,
+            "height": 799
+          },
+          {
+            "x": 331,
+            "y": 124,
+            "width": 46,
+            "height": 76
+          },
+          {
+            "x": 148,
+            "y": 129,
+            "width": 15,
+            "height": 15
+          },
+          {
+            "x": 517,
+            "y": 218,
+            "width": 28,
+            "height": 54
+          },
+          {
+            "x": 592,
+            "y": 358,
+            "width": 100,
+            "height": 88
+          },
+          {
+            "x": 140,
+            "y": 385,
+            "width": 15,
+            "height": 15
+          },
+          {
+            "x": 627,
+            "y": 458,
+            "width": 40,
+            "height": 40
+          },
+          {
+            "x": 740,
+            "y": 550,
+            "width": 28,
+            "height": 38
+          },
+          {
+            "x": 348,
+            "y": 554,
+            "width": 32,
+            "height": 26
+          },
+          {
+            "x": 289,
+            "y": 562,
+            "width": 28,
+            "height": 18
+          },
+          {
+            "x": 414,
+            "y": 599,
+            "width": 46,
+            "height": 37
+          },
+          {
+            "x": 335,
+            "y": 733,
+            "width": 36,
+            "height": 35
+          },
+          {
+            "x": 290,
+            "y": 999,
+            "width": 23,
+            "height": 16
+          },
+          {
+            "x": 397,
+            "y": 1006,
+            "width": 33,
+            "height": 25
+          }
+        ],
+        "baseline_image_url": "/storage/baselines/378cfa46/baseline_tablet.png",
+        "current_image_url": "/storage/runs/6be7d7f3/currents/current_tablet.png",
+        "diff_image_url": "/storage/runs/6be7d7f3/diffs/diff_tablet.png",
+        "baseline_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\baselines\\378cfa46\\baseline_tablet.png",
+        "current_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\6be7d7f3\\currents\\current_tablet.png",
+        "diff_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\6be7d7f3\\diffs\\diff_tablet.png",
+        "error_message": null,
+        "duration_ms": 3090.01
+      },
+      {
+        "viewport": "mobile",
+        "viewport_width": 375,
+        "viewport_height": 5413,
+        "status": "FAILED",
+        "diff_ratio": 0.7212,
+        "ssim_score": 0.9832,
+        "diff_pixels": 14640,
+        "total_pixels": 2029875,
+        "bounding_boxes": [
+          {
+            "x": 0,
+            "y": 123,
+            "width": 48,
+            "height": 77
+          },
+          {
+            "x": 131,
+            "y": 124,
+            "width": 39,
+            "height": 76
+          },
+          {
+            "x": 325,
+            "y": 124,
+            "width": 50,
+            "height": 109
+          },
+          {
+            "x": 14,
+            "y": 233,
+            "width": 361,
+            "height": 435
+          },
+          {
+            "x": 274,
+            "y": 233,
+            "width": 39,
+            "height": 37
+          },
+          {
+            "x": 223,
+            "y": 321,
+            "width": 29,
+            "height": 23
+          },
+          {
+            "x": 31,
+            "y": 370,
+            "width": 30,
+            "height": 30
+          },
+          {
+            "x": 63,
+            "y": 668,
+            "width": 248,
+            "height": 32
+          },
+          {
+            "x": 70,
+            "y": 703,
+            "width": 30,
+            "height": 30
+          },
+          {
+            "x": 271,
+            "y": 703,
+            "width": 66,
+            "height": 31
+          },
+          {
+            "x": 48,
+            "y": 717,
+            "width": 21,
+            "height": 16
+          },
+          {
+            "x": 106,
+            "y": 740,
+            "width": 163,
+            "height": 29
+          },
+          {
+            "x": 6,
+            "y": 744,
+            "width": 17,
+            "height": 27
+          },
+          {
+            "x": 322,
+            "y": 773,
+            "width": 53,
+            "height": 38
+          },
+          {
+            "x": 140,
+            "y": 774,
+            "width": 45,
+            "height": 39
+          },
+          {
+            "x": 58,
+            "y": 825,
+            "width": 287,
+            "height": 48
+          },
+          {
+            "x": 13,
+            "y": 833,
+            "width": 22,
+            "height": 32
+          }
+        ],
+        "baseline_image_url": "/storage/baselines/378cfa46/baseline_mobile.png",
+        "current_image_url": "/storage/runs/6be7d7f3/currents/current_mobile.png",
+        "diff_image_url": "/storage/runs/6be7d7f3/diffs/diff_mobile.png",
+        "baseline_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\baselines\\378cfa46\\baseline_mobile.png",
+        "current_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\6be7d7f3\\currents\\current_mobile.png",
+        "diff_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\6be7d7f3\\diffs\\diff_mobile.png",
+        "error_message": null,
+        "duration_ms": 2459.49
+      }
+    ]
+  },
+  "e5a2220c": {
+    "id": "e5a2220c",
+    "suite_id": "7500b9b1",
+    "suite_name": "SaaSify Visual Suite",
+    "target_url": " http://localhost:5173/",
+    "status": "COMPLETED",
+    "overall_status": "FAILED",
+    "started_at": "2026-10-06 14:42:29",
+    "completed_at": "2026-10-06 14:42:46",
+    "duration_seconds": 16.38,
+    "total_viewports": 3,
+    "passed_viewports": 0,
+    "failed_viewports": 3,
+    "results": [
+      {
+        "viewport": "desktop",
+        "viewport_width": 1920,
+        "viewport_height": 3157,
+        "status": "FAILED",
+        "diff_ratio": 1.7287,
+        "ssim_score": 0.9571,
+        "diff_pixels": 104787,
+        "total_pixels": 6061440,
+        "bounding_boxes": [
+          {
+            "x": 0,
+            "y": 97,
+            "width": 1920,
+            "height": 906
+          },
+          {
+            "x": 0,
+            "y": 97,
+            "width": 14,
+            "height": 16
+          },
+          {
+            "x": 987,
+            "y": 97,
+            "width": 321,
+            "height": 240
+          },
+          {
+            "x": 1316,
+            "y": 97,
+            "width": 30,
+            "height": 43
+          },
+          {
+            "x": 1726,
+            "y": 97,
+            "width": 72,
+            "height": 102
+          },
+          {
+            "x": 780,
+            "y": 98,
+            "width": 91,
+            "height": 109
+          },
+          {
+            "x": 1374,
+            "y": 105,
+            "width": 178,
+            "height": 120
+          },
+          {
+            "x": 1660,
+            "y": 132,
+            "width": 49,
+            "height": 123
+          },
+          {
+            "x": 0,
+            "y": 176,
+            "width": 80,
+            "height": 106
+          },
+          {
+            "x": 1002,
+            "y": 184,
+            "width": 28,
+            "height": 23
+          },
+          {
+            "x": 1251,
+            "y": 220,
+            "width": 172,
+            "height": 169
+          },
+          {
+            "x": 850,
+            "y": 223,
+            "width": 22,
+            "height": 16
+          },
+          {
+            "x": 877,
+            "y": 223,
+            "width": 16,
+            "height": 15
+          },
+          {
+            "x": 1482,
+            "y": 235,
+            "width": 57,
+            "height": 91
+          },
+          {
+            "x": 1619,
+            "y": 282,
+            "width": 123,
+            "height": 75
+          },
+          {
+            "x": 1077,
+            "y": 343,
+            "width": 34,
+            "height": 72
+          },
+          {
+            "x": 1216,
+            "y": 352,
+            "width": 108,
+            "height": 74
+          },
+          {
+            "x": 1550,
+            "y": 518,
+            "width": 37,
+            "height": 37
+          },
+          {
+            "x": 1146,
+            "y": 553,
+            "width": 38,
+            "height": 39
+          },
+          {
+            "x": 678,
+            "y": 597,
+            "width": 15,
+            "height": 15
+          },
+          {
+            "x": 0,
+            "y": 614,
+            "width": 320,
+            "height": 439
+          },
+          {
+            "x": 17,
+            "y": 619,
+            "width": 30,
+            "height": 29
+          },
+          {
+            "x": 294,
+            "y": 684,
+            "width": 34,
+            "height": 34
+          },
+          {
+            "x": 1552,
+            "y": 690,
+            "width": 16,
+            "height": 16
+          },
+          {
+            "x": 1595,
+            "y": 706,
+            "width": 52,
+            "height": 68
+          },
+          {
+            "x": 1450,
+            "y": 767,
+            "width": 470,
+            "height": 317
+          },
+          {
+            "x": 383,
+            "y": 768,
+            "width": 40,
+            "height": 40
+          },
+          {
+            "x": 1343,
+            "y": 787,
+            "width": 55,
+            "height": 101
+          },
+          {
+            "x": 521,
+            "y": 841,
+            "width": 52,
+            "height": 47
+          },
+          {
+            "x": 1748,
+            "y": 876,
+            "width": 33,
+            "height": 33
+          },
+          {
+            "x": 256,
+            "y": 937,
+            "width": 103,
+            "height": 122
+          },
+          {
+            "x": 941,
+            "y": 948,
+            "width": 38,
+            "height": 59
+          },
+          {
+            "x": 631,
+            "y": 968,
+            "width": 30,
+            "height": 40
+          },
+          {
+            "x": 1251,
+            "y": 1013,
+            "width": 38,
+            "height": 22
+          },
+          {
+            "x": 1261,
+            "y": 1046,
+            "width": 28,
+            "height": 37
+          }
+        ],
+        "baseline_image_url": "/storage/baselines/7500b9b1/baseline_desktop.png",
+        "current_image_url": "/storage/runs/e5a2220c/currents/current_desktop.png",
+        "diff_image_url": "/storage/runs/e5a2220c/diffs/diff_desktop.png",
+        "baseline_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\baselines\\7500b9b1\\baseline_desktop.png",
+        "current_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\e5a2220c\\currents\\current_desktop.png",
+        "diff_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\e5a2220c\\diffs\\diff_desktop.png",
+        "error_message": null,
+        "duration_ms": 4624.33
+      },
+      {
+        "viewport": "tablet",
+        "viewport_width": 768,
+        "viewport_height": 3982,
+        "status": "FAILED",
+        "diff_ratio": 0.9782,
+        "ssim_score": 0.9765,
+        "diff_pixels": 29914,
+        "total_pixels": 3058176,
+        "bounding_boxes": [
+          {
+            "x": 518,
+            "y": 123,
+            "width": 106,
+            "height": 78
+          },
+          {
+            "x": 253,
+            "y": 124,
+            "width": 85,
+            "height": 77
+          },
+          {
+            "x": 29,
+            "y": 155,
+            "width": 35,
+            "height": 35
+          },
+          {
+            "x": 712,
+            "y": 160,
+            "width": 33,
+            "height": 32
+          },
+          {
+            "x": 0,
+            "y": 172,
+            "width": 127,
+            "height": 363
+          },
+          {
+            "x": 654,
+            "y": 216,
+            "width": 109,
+            "height": 56
+          },
+          {
+            "x": 365,
+            "y": 217,
+            "width": 35,
+            "height": 21
+          },
+          {
+            "x": 483,
+            "y": 217,
+            "width": 29,
+            "height": 19
+          },
+          {
+            "x": 118,
+            "y": 274,
+            "width": 650,
+            "height": 540
+          },
+          {
+            "x": 615,
+            "y": 277,
+            "width": 53,
+            "height": 142
+          },
+          {
+            "x": 723,
+            "y": 290,
+            "width": 44,
+            "height": 49
+          },
+          {
+            "x": 196,
+            "y": 306,
+            "width": 112,
+            "height": 127
+          },
+          {
+            "x": 173,
+            "y": 309,
+            "width": 22,
+            "height": 23
+          },
+          {
+            "x": 236,
+            "y": 524,
+            "width": 67,
+            "height": 56
+          },
+          {
+            "x": 180,
+            "y": 549,
+            "width": 42,
+            "height": 31
+          },
+          {
+            "x": 367,
+            "y": 592,
+            "width": 21,
+            "height": 15
+          },
+          {
+            "x": 114,
+            "y": 634,
+            "width": 24,
+            "height": 24
+          },
+          {
+            "x": 109,
+            "y": 668,
+            "width": 24,
+            "height": 30
+          },
+          {
+            "x": 12,
+            "y": 686,
+            "width": 42,
+            "height": 42
+          },
+          {
+            "x": 365,
+            "y": 824,
+            "width": 38,
+            "height": 55
+          },
+          {
+            "x": 0,
+            "y": 864,
+            "width": 31,
+            "height": 31
+          },
+          {
+            "x": 365,
+            "y": 879,
+            "width": 38,
+            "height": 111
+          },
+          {
+            "x": 6,
+            "y": 955,
+            "width": 25,
+            "height": 36
+          },
+          {
+            "x": 345,
+            "y": 994,
+            "width": 172,
+            "height": 37
+          },
+          {
+            "x": 182,
+            "y": 999,
+            "width": 45,
+            "height": 32
+          },
+          {
+            "x": 701,
+            "y": 999,
+            "width": 24,
+            "height": 15
+          }
+        ],
+        "baseline_image_url": "/storage/baselines/7500b9b1/baseline_tablet.png",
+        "current_image_url": "/storage/runs/e5a2220c/currents/current_tablet.png",
+        "diff_image_url": "/storage/runs/e5a2220c/diffs/diff_tablet.png",
+        "baseline_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\baselines\\7500b9b1\\baseline_tablet.png",
+        "current_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\e5a2220c\\currents\\current_tablet.png",
+        "diff_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\e5a2220c\\diffs\\diff_tablet.png",
+        "error_message": null,
+        "duration_ms": 3055.29
+      },
+      {
+        "viewport": "mobile",
+        "viewport_width": 375,
+        "viewport_height": 5413,
+        "status": "FAILED",
+        "diff_ratio": 0.5732,
+        "ssim_score": 0.9888,
+        "diff_pixels": 11636,
+        "total_pixels": 2029875,
+        "bounding_boxes": [
+          {
+            "x": 147,
+            "y": 123,
+            "width": 156,
+            "height": 78
+          },
+          {
+            "x": 21,
+            "y": 136,
+            "width": 86,
+            "height": 65
+          },
+          {
+            "x": 86,
+            "y": 233,
+            "width": 282,
+            "height": 386
+          },
+          {
+            "x": 0,
+            "y": 234,
+            "width": 49,
+            "height": 37
+          },
+          {
+            "x": 0,
+            "y": 355,
+            "width": 65,
+            "height": 43
+          },
+          {
+            "x": 68,
+            "y": 357,
+            "width": 15,
+            "height": 15
+          },
+          {
+            "x": 0,
+            "y": 377,
+            "width": 100,
+            "height": 60
+          },
+          {
+            "x": 1,
+            "y": 490,
+            "width": 26,
+            "height": 25
+          },
+          {
+            "x": 160,
+            "y": 704,
+            "width": 34,
+            "height": 23
+          },
+          {
+            "x": 208,
+            "y": 704,
+            "width": 32,
+            "height": 19
+          },
+          {
+            "x": 93,
+            "y": 716,
+            "width": 23,
+            "height": 18
+          },
+          {
+            "x": 43,
+            "y": 773,
+            "width": 85,
+            "height": 46
+          },
+          {
+            "x": 251,
+            "y": 790,
+            "width": 42,
+            "height": 29
+          }
+        ],
+        "baseline_image_url": "/storage/baselines/7500b9b1/baseline_mobile.png",
+        "current_image_url": "/storage/runs/e5a2220c/currents/current_mobile.png",
+        "diff_image_url": "/storage/runs/e5a2220c/diffs/diff_mobile.png",
+        "baseline_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\baselines\\7500b9b1\\baseline_mobile.png",
+        "current_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\e5a2220c\\currents\\current_mobile.png",
+        "diff_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\e5a2220c\\diffs\\diff_mobile.png",
+        "error_message": null,
+        "duration_ms": 2385.92
+      }
+    ]
+  },
+  "af8a7d95": {
+    "id": "af8a7d95",
+    "suite_id": "8241fc42",
+    "suite_name": "SaaSify Visual Suite",
+    "target_url": " http://localhost:5173/",
+    "status": "COMPLETED",
+    "overall_status": "PASSED",
+    "started_at": "2026-10-06 14:46:47",
+    "completed_at": "2026-10-06 14:47:10",
+    "duration_seconds": 22.42,
+    "total_viewports": 3,
+    "passed_viewports": 3,
+    "failed_viewports": 0,
+    "results": [
+      {
+        "viewport": "desktop",
+        "viewport_width": 1920,
+        "viewport_height": 1080,
+        "status": "PASSED",
+        "diff_ratio": 0.0,
+        "ssim_score": 1.0,
+        "diff_pixels": 0,
+        "total_pixels": 2073600,
+        "bounding_boxes": [],
+        "baseline_image_url": "/storage/baselines/8241fc42/baseline_desktop.png",
+        "current_image_url": "/storage/runs/af8a7d95/currents/current_desktop.png",
+        "diff_image_url": "/storage/runs/af8a7d95/diffs/diff_desktop.png",
+        "baseline_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\baselines\\8241fc42\\baseline_desktop.png",
+        "current_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\af8a7d95\\currents\\current_desktop.png",
+        "diff_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\af8a7d95\\diffs\\diff_desktop.png",
+        "error_message": null,
+        "duration_ms": 4844.0
+      },
+      {
+        "viewport": "tablet",
+        "viewport_width": 768,
+        "viewport_height": 1024,
+        "status": "PASSED",
+        "diff_ratio": 0.0,
+        "ssim_score": 1.0,
+        "diff_pixels": 0,
+        "total_pixels": 786432,
+        "bounding_boxes": [],
+        "baseline_image_url": "/storage/baselines/8241fc42/baseline_tablet.png",
+        "current_image_url": "/storage/runs/af8a7d95/currents/current_tablet.png",
+        "diff_image_url": "/storage/runs/af8a7d95/diffs/diff_tablet.png",
+        "baseline_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\baselines\\8241fc42\\baseline_tablet.png",
+        "current_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\af8a7d95\\currents\\current_tablet.png",
+        "diff_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\af8a7d95\\diffs\\diff_tablet.png",
+        "error_message": null,
+        "duration_ms": 3373.02
+      },
+      {
+        "viewport": "mobile",
+        "viewport_width": 375,
+        "viewport_height": 812,
+        "status": "PASSED",
+        "diff_ratio": 0.0,
+        "ssim_score": 1.0,
+        "diff_pixels": 0,
+        "total_pixels": 304500,
+        "bounding_boxes": [],
+        "baseline_image_url": "/storage/baselines/8241fc42/baseline_mobile.png",
+        "current_image_url": "/storage/runs/af8a7d95/currents/current_mobile.png",
+        "diff_image_url": "/storage/runs/af8a7d95/diffs/diff_mobile.png",
+        "baseline_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\baselines\\8241fc42\\baseline_mobile.png",
+        "current_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\af8a7d95\\currents\\current_mobile.png",
+        "diff_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\af8a7d95\\diffs\\diff_mobile.png",
+        "error_message": null,
+        "duration_ms": 2899.73
+      }
+    ]
+  },
+  "aadd7ee7": {
+    "id": "aadd7ee7",
+    "suite_id": "6295cadf",
+    "suite_name": "SaaSify Visual Suite",
+    "target_url": " http://localhost:5173/",
+    "status": "COMPLETED",
+    "overall_status": "PASSED",
+    "started_at": "2026-10-06 14:48:40",
+    "completed_at": "2026-10-06 14:49:04",
+    "duration_seconds": 24.16,
+    "total_viewports": 3,
+    "passed_viewports": 3,
+    "failed_viewports": 0,
+    "results": [
+      {
+        "viewport": "desktop",
+        "viewport_width": 1920,
+        "viewport_height": 1080,
+        "status": "PASSED",
+        "diff_ratio": 0.0,
+        "ssim_score": 1.0,
+        "diff_pixels": 0,
+        "total_pixels": 2073600,
+        "bounding_boxes": [],
+        "baseline_image_url": "/storage/baselines/6295cadf/baseline_desktop.png",
+        "current_image_url": "/storage/runs/aadd7ee7/currents/current_desktop.png",
+        "diff_image_url": "/storage/runs/aadd7ee7/diffs/diff_desktop.png",
+        "baseline_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\baselines\\6295cadf\\baseline_desktop.png",
+        "current_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\aadd7ee7\\currents\\current_desktop.png",
+        "diff_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\aadd7ee7\\diffs\\diff_desktop.png",
+        "error_message": null,
+        "duration_ms": 4854.56
+      },
+      {
+        "viewport": "tablet",
+        "viewport_width": 768,
+        "viewport_height": 1024,
+        "status": "PASSED",
+        "diff_ratio": 0.0,
+        "ssim_score": 1.0,
+        "diff_pixels": 0,
+        "total_pixels": 786432,
+        "bounding_boxes": [],
+        "baseline_image_url": "/storage/baselines/6295cadf/baseline_tablet.png",
+        "current_image_url": "/storage/runs/aadd7ee7/currents/current_tablet.png",
+        "diff_image_url": "/storage/runs/aadd7ee7/diffs/diff_tablet.png",
+        "baseline_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\baselines\\6295cadf\\baseline_tablet.png",
+        "current_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\aadd7ee7\\currents\\current_tablet.png",
+        "diff_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\aadd7ee7\\diffs\\diff_tablet.png",
+        "error_message": null,
+        "duration_ms": 3398.99
+      },
+      {
+        "viewport": "mobile",
+        "viewport_width": 375,
+        "viewport_height": 812,
+        "status": "PASSED",
+        "diff_ratio": 0.0,
+        "ssim_score": 1.0,
+        "diff_pixels": 0,
+        "total_pixels": 304500,
+        "bounding_boxes": [],
+        "baseline_image_url": "/storage/baselines/6295cadf/baseline_mobile.png",
+        "current_image_url": "/storage/runs/aadd7ee7/currents/current_mobile.png",
+        "diff_image_url": "/storage/runs/aadd7ee7/diffs/diff_mobile.png",
+        "baseline_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\baselines\\6295cadf\\baseline_mobile.png",
+        "current_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\aadd7ee7\\currents\\current_mobile.png",
+        "diff_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\aadd7ee7\\diffs\\diff_mobile.png",
+        "error_message": null,
+        "duration_ms": 2729.85
+      }
+    ]
+  },
+  "6bf463c9": {
+    "id": "6bf463c9",
+    "suite_id": "d85647d5",
+    "suite_name": "SaaSify Visual Suite",
+    "target_url": "http://localhost:5174/",
+    "status": "COMPLETED",
+    "overall_status": "FAILED",
+    "started_at": "2026-10-07 00:09:43",
+    "completed_at": "2026-10-07 00:10:19",
+    "duration_seconds": 35.82,
+    "total_viewports": 3,
+    "passed_viewports": 0,
+    "failed_viewports": 3,
+    "results": [
+      {
+        "viewport": "desktop",
+        "viewport_width": 1920,
+        "viewport_height": 1080,
+        "status": "FAILED",
+        "diff_ratio": 0.219,
+        "ssim_score": 0.9999,
+        "diff_pixels": 4542,
+        "total_pixels": 2073600,
+        "bounding_boxes": [
+          {
+            "x": 1520,
+            "y": 26,
+            "width": 183,
+            "height": 46
+          }
+        ],
+        "baseline_image_url": "/storage/baselines/d85647d5/baseline_desktop.png",
+        "current_image_url": "/storage/runs/6bf463c9/currents/current_desktop.png",
+        "diff_image_url": "/storage/runs/6bf463c9/diffs/diff_desktop.png",
+        "baseline_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\baselines\\d85647d5\\baseline_desktop.png",
+        "current_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\6bf463c9\\currents\\current_desktop.png",
+        "diff_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\6bf463c9\\diffs\\diff_desktop.png",
+        "error_message": null,
+        "duration_ms": 5538.78
+      },
+      {
+        "viewport": "tablet",
+        "viewport_width": 768,
+        "viewport_height": 1024,
+        "status": "FAILED",
+        "diff_ratio": 0.59,
+        "ssim_score": 0.9997,
+        "diff_pixels": 4640,
+        "total_pixels": 786432,
+        "bounding_boxes": [
+          {
+            "x": 560,
+            "y": 40,
+            "width": 183,
+            "height": 46
+          }
+        ],
+        "baseline_image_url": "/storage/baselines/d85647d5/baseline_tablet.png",
+        "current_image_url": "/storage/runs/6bf463c9/currents/current_tablet.png",
+        "diff_image_url": "/storage/runs/6bf463c9/diffs/diff_tablet.png",
+        "baseline_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\baselines\\d85647d5\\baseline_tablet.png",
+        "current_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\6bf463c9\\currents\\current_tablet.png",
+        "diff_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\6bf463c9\\diffs\\diff_tablet.png",
+        "error_message": null,
+        "duration_ms": 3487.58
+      },
+      {
+        "viewport": "mobile",
+        "viewport_width": 375,
+        "viewport_height": 812,
+        "status": "FAILED",
+        "diff_ratio": 0.9504,
+        "ssim_score": 0.9996,
+        "diff_pixels": 2894,
+        "total_pixels": 304500,
+        "bounding_boxes": [
+          {
+            "x": 262,
+            "y": 39,
+            "width": 113,
+            "height": 46
+          }
+        ],
+        "baseline_image_url": "/storage/baselines/d85647d5/baseline_mobile.png",
+        "current_image_url": "/storage/runs/6bf463c9/currents/current_mobile.png",
+        "diff_image_url": "/storage/runs/6bf463c9/diffs/diff_mobile.png",
+        "baseline_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\baselines\\d85647d5\\baseline_mobile.png",
+        "current_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\6bf463c9\\currents\\current_mobile.png",
+        "diff_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\6bf463c9\\diffs\\diff_mobile.png",
+        "error_message": null,
+        "duration_ms": 2975.03
+      }
+    ]
+  },
+  "9b965390": {
+    "id": "9b965390",
+    "suite_id": "7d0d1d2a",
+    "suite_name": "SaaSify Visual Suite",
+    "target_url": "http://localhost:5174/",
+    "status": "COMPLETED",
+    "overall_status": "FAILED",
+    "started_at": "2026-10-07 00:17:11",
+    "completed_at": "2026-10-07 00:17:36",
+    "duration_seconds": 25.03,
+    "total_viewports": 3,
+    "passed_viewports": 0,
+    "failed_viewports": 3,
+    "results": [
+      {
+        "viewport": "desktop",
+        "viewport_width": 1920,
+        "viewport_height": 1080,
+        "status": "FAILED",
+        "diff_ratio": 11.1921,
+        "ssim_score": 0.7258,
+        "diff_pixels": 232079,
+        "total_pixels": 2073600,
+        "bounding_boxes": [
+          {
+            "x": 1520,
+            "y": 26,
+            "width": 183,
+            "height": 46
+          },
+          {
+            "x": 870,
+            "y": 265,
+            "width": 833,
+            "height": 634
+          },
+          {
+            "x": 217,
+            "y": 324,
+            "width": 584,
+            "height": 415
+          },
+          {
+            "x": 475,
+            "y": 666,
+            "width": 149,
+            "height": 55
+          },
+          {
+            "x": 217,
+            "y": 755,
+            "width": 115,
+            "height": 82
+          },
+          {
+            "x": 410,
+            "y": 755,
+            "width": 152,
+            "height": 82
+          },
+          {
+            "x": 586,
+            "y": 762,
+            "width": 126,
+            "height": 74
+          }
+        ],
+        "baseline_image_url": "/storage/baselines/7d0d1d2a/baseline_desktop.png",
+        "current_image_url": "/storage/runs/9b965390/currents/current_desktop.png",
+        "diff_image_url": "/storage/runs/9b965390/diffs/diff_desktop.png",
+        "baseline_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\baselines\\7d0d1d2a\\baseline_desktop.png",
+        "current_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\9b965390\\currents\\current_desktop.png",
+        "diff_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\9b965390\\diffs\\diff_desktop.png",
+        "error_message": null,
+        "duration_ms": 6685.81
+      },
+      {
+        "viewport": "tablet",
+        "viewport_width": 768,
+        "viewport_height": 1024,
+        "status": "FAILED",
+        "diff_ratio": 24.3815,
+        "ssim_score": 0.5019,
+        "diff_pixels": 191744,
+        "total_pixels": 786432,
+        "bounding_boxes": [
+          {
+            "x": 560,
+            "y": 40,
+            "width": 183,
+            "height": 46
+          },
+          {
+            "x": 25,
+            "y": 143,
+            "width": 407,
+            "height": 30
+          },
+          {
+            "x": 25,
+            "y": 183,
+            "width": 718,
+            "height": 841
+          },
+          {
+            "x": 283,
+            "y": 425,
+            "width": 149,
+            "height": 35
+          },
+          {
+            "x": 283,
+            "y": 465,
+            "width": 149,
+            "height": 35
+          }
+        ],
+        "baseline_image_url": "/storage/baselines/7d0d1d2a/baseline_tablet.png",
+        "current_image_url": "/storage/runs/9b965390/currents/current_tablet.png",
+        "diff_image_url": "/storage/runs/9b965390/diffs/diff_tablet.png",
+        "baseline_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\baselines\\7d0d1d2a\\baseline_tablet.png",
+        "current_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\9b965390\\currents\\current_tablet.png",
+        "diff_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\9b965390\\diffs\\diff_tablet.png",
+        "error_message": null,
+        "duration_ms": 3454.13
+      },
+      {
+        "viewport": "mobile",
+        "viewport_width": 375,
+        "viewport_height": 812,
+        "status": "FAILED",
+        "diff_ratio": 20.7685,
+        "ssim_score": 0.605,
+        "diff_pixels": 63240,
+        "total_pixels": 304500,
+        "bounding_boxes": [
+          {
+            "x": 262,
+            "y": 39,
+            "width": 113,
+            "height": 46
+          },
+          {
+            "x": 17,
+            "y": 133,
+            "width": 297,
+            "height": 46
+          },
+          {
+            "x": 17,
+            "y": 181,
+            "width": 337,
+            "height": 408
+          },
+          {
+            "x": 33,
+            "y": 600,
+            "width": 149,
+            "height": 35
+          },
+          {
+            "x": 17,
+            "y": 639,
+            "width": 341,
+            "height": 173
+          }
+        ],
+        "baseline_image_url": "/storage/baselines/7d0d1d2a/baseline_mobile.png",
+        "current_image_url": "/storage/runs/9b965390/currents/current_mobile.png",
+        "diff_image_url": "/storage/runs/9b965390/diffs/diff_mobile.png",
+        "baseline_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\baselines\\7d0d1d2a\\baseline_mobile.png",
+        "current_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\9b965390\\currents\\current_mobile.png",
+        "diff_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\9b965390\\diffs\\diff_mobile.png",
+        "error_message": null,
+        "duration_ms": 3812.14
+      }
+    ]
+  },
+  "0d71c7a7": {
+    "id": "0d71c7a7",
+    "suite_id": "39cfbefb",
+    "suite_name": "SaaSify Visual Suite",
+    "target_url": "http://localhost:5174/",
+    "status": "COMPLETED",
+    "overall_status": "FAILED",
+    "started_at": "2026-10-07 00:22:00",
+    "completed_at": "2026-10-07 00:22:25",
+    "duration_seconds": 24.92,
+    "total_viewports": 3,
+    "passed_viewports": 0,
+    "failed_viewports": 3,
+    "results": [
+      {
+        "viewport": "desktop",
+        "viewport_width": 1920,
+        "viewport_height": 1080,
+        "status": "FAILED",
+        "diff_ratio": 11.2069,
+        "ssim_score": 0.725,
+        "diff_pixels": 232387,
+        "total_pixels": 2073600,
+        "bounding_boxes": [
+          {
+            "x": 1520,
+            "y": 26,
+            "width": 183,
+            "height": 46
+          },
+          {
+            "x": 443,
+            "y": 36,
+            "width": 103,
+            "height": 27
+          },
+          {
+            "x": 870,
+            "y": 265,
+            "width": 833,
+            "height": 634
+          },
+          {
+            "x": 217,
+            "y": 324,
+            "width": 584,
+            "height": 415
+          },
+          {
+            "x": 475,
+            "y": 666,
+            "width": 149,
+            "height": 55
+          },
+          {
+            "x": 217,
+            "y": 755,
+            "width": 115,
+            "height": 82
+          },
+          {
+            "x": 410,
+            "y": 755,
+            "width": 152,
+            "height": 82
+          },
+          {
+            "x": 586,
+            "y": 762,
+            "width": 126,
+            "height": 74
+          }
+        ],
+        "baseline_image_url": "/storage/baselines/39cfbefb/baseline_desktop.png",
+        "current_image_url": "/storage/runs/0d71c7a7/currents/current_desktop.png",
+        "diff_image_url": "/storage/runs/0d71c7a7/diffs/diff_desktop.png",
+        "baseline_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\baselines\\39cfbefb\\baseline_desktop.png",
+        "current_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\0d71c7a7\\currents\\current_desktop.png",
+        "diff_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\0d71c7a7\\diffs\\diff_desktop.png",
+        "error_message": null,
+        "duration_ms": 5794.42
+      },
+      {
+        "viewport": "tablet",
+        "viewport_width": 768,
+        "viewport_height": 1024,
+        "status": "FAILED",
+        "diff_ratio": 22.4065,
+        "ssim_score": 0.4839,
+        "diff_pixels": 176212,
+        "total_pixels": 786432,
+        "bounding_boxes": [
+          {
+            "x": 25,
+            "y": 28,
+            "width": 162,
+            "height": 60
+          },
+          {
+            "x": 560,
+            "y": 33,
+            "width": 183,
+            "height": 53
+          },
+          {
+            "x": 209,
+            "y": 34,
+            "width": 302,
+            "height": 59
+          },
+          {
+            "x": 517,
+            "y": 48,
+            "width": 17,
+            "height": 24
+          },
+          {
+            "x": 25,
+            "y": 143,
+            "width": 584,
+            "height": 362
+          },
+          {
+            "x": 283,
+            "y": 425,
+            "width": 149,
+            "height": 61
+          },
+          {
+            "x": 25,
+            "y": 514,
+            "width": 115,
+            "height": 88
+          },
+          {
+            "x": 218,
+            "y": 514,
+            "width": 152,
+            "height": 88
+          },
+          {
+            "x": 394,
+            "y": 521,
+            "width": 126,
+            "height": 80
+          },
+          {
+            "x": 25,
+            "y": 603,
+            "width": 718,
+            "height": 421
+          }
+        ],
+        "baseline_image_url": "/storage/baselines/39cfbefb/baseline_tablet.png",
+        "current_image_url": "/storage/runs/0d71c7a7/currents/current_tablet.png",
+        "diff_image_url": "/storage/runs/0d71c7a7/diffs/diff_tablet.png",
+        "baseline_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\baselines\\39cfbefb\\baseline_tablet.png",
+        "current_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\0d71c7a7\\currents\\current_tablet.png",
+        "diff_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\0d71c7a7\\diffs\\diff_tablet.png",
+        "error_message": null,
+        "duration_ms": 4028.44
+      },
+      {
+        "viewport": "mobile",
+        "viewport_width": 375,
+        "viewport_height": 812,
+        "status": "FAILED",
+        "diff_ratio": 20.7685,
+        "ssim_score": 0.605,
+        "diff_pixels": 63240,
+        "total_pixels": 304500,
+        "bounding_boxes": [
+          {
+            "x": 262,
+            "y": 39,
+            "width": 113,
+            "height": 46
+          },
+          {
+            "x": 17,
+            "y": 133,
+            "width": 297,
+            "height": 46
+          },
+          {
+            "x": 17,
+            "y": 181,
+            "width": 337,
+            "height": 408
+          },
+          {
+            "x": 33,
+            "y": 600,
+            "width": 149,
+            "height": 35
+          },
+          {
+            "x": 17,
+            "y": 639,
+            "width": 341,
+            "height": 173
+          }
+        ],
+        "baseline_image_url": "/storage/baselines/39cfbefb/baseline_mobile.png",
+        "current_image_url": "/storage/runs/0d71c7a7/currents/current_mobile.png",
+        "diff_image_url": "/storage/runs/0d71c7a7/diffs/diff_mobile.png",
+        "baseline_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\baselines\\39cfbefb\\baseline_mobile.png",
+        "current_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\0d71c7a7\\currents\\current_mobile.png",
+        "diff_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\0d71c7a7\\diffs\\diff_mobile.png",
+        "error_message": null,
+        "duration_ms": 2963.88
+      }
+    ]
+  },
+  "7598271f": {
+    "id": "7598271f",
+    "suite_id": "e29159b6",
+    "suite_name": "SaaSify Platform (Demo Suite)",
+    "target_url": "http://localhost:8000/demo/v2_regression/index.html",
+    "status": "COMPLETED",
+    "overall_status": "FAILED",
+    "executive_summary": "Phiên kiểm thử phát hiện lỗi hồi quy giao diện trên 3/3 màn hình. Tóm tắt các thay đổi nổi bật: 🎨 Phát hiện đổi màu sắc hiển thị tại Khu vực Hero / CTA Chính (Vị trí Trung tâm): Đổi mã màu thành phần từ [Xanh lơ / Cyan] sang [Đỏ / Crimson]. ℹ️ Điểm SSIM đạt 0.9469 (cấu trúc khung trang nhìn chung duy trì tốt). 📐 Chiều cao trang bị thay đổi lệch 3px so với Baseline chuẩn.",
+    "started_at": "2026-10-07 00:26:19",
+    "completed_at": "2026-10-07 00:26:24",
+    "duration_seconds": 5.49,
+    "total_viewports": 3,
+    "passed_viewports": 0,
+    "failed_viewports": 3,
+    "results": [
+      {
+        "viewport": "desktop",
+        "viewport_width": 1920,
+        "viewport_height": 1080,
+        "status": "FAILED",
+        "diff_ratio": 1.7408,
+        "ssim_score": 0.9469,
+        "diff_pixels": 36097,
+        "total_pixels": 2073600,
+        "bounding_boxes": [
+          {
+            "x": 800,
+            "y": 160,
+            "width": 320,
+            "height": 49,
+            "region_name": "Khu vực Hero / CTA Chính (Vị trí Trung tâm)",
+            "defect_type": "Sai Màu Sắc",
+            "severity": "HIGH",
+            "description": "Đổi mã màu thành phần từ [Xanh lơ / Cyan] sang [Đỏ / Crimson]"
+          },
+          {
+            "x": 755,
+            "y": 417,
+            "width": 201,
+            "height": 75,
+            "region_name": "Khu vực Hero / CTA Chính (Vị trí Trung tâm)",
+            "defect_type": "Sai Màu Sắc",
+            "severity": "HIGH",
+            "description": "Đổi mã màu thành phần từ [Xanh lục / Emerald] sang [Tím / Violet]"
+          },
+          {
+            "x": 958,
+            "y": 417,
+            "width": 207,
+            "height": 22,
+            "region_name": "Khu vực Hero / CTA Chính (Vị trí Trung tâm)",
+            "defect_type": "Thay Đổi Nội Dung",
+            "severity": "MEDIUM",
+            "description": "Thay đổi nội dung văn bản hoặc kích thước chữ"
+          },
+          {
+            "x": 991,
+            "y": 439,
+            "width": 141,
+            "height": 29,
+            "region_name": "Khu vực Hero / CTA Chính (Vị trí Trung tâm)",
+            "defect_type": "Thay Đổi Nội Dung",
+            "severity": "MEDIUM",
+            "description": "Thay đổi nội dung văn bản hoặc kích thước chữ"
+          },
+          {
+            "x": 958,
+            "y": 467,
+            "width": 207,
+            "height": 22,
+            "region_name": "Khu vực Hero / CTA Chính (Vị trí Trung tâm)",
+            "defect_type": "Thay Đổi Nội Dung",
+            "severity": "MEDIUM",
+            "description": "Thay đổi nội dung văn bản hoặc kích thước chữ"
+          },
+          {
+            "x": 403,
+            "y": 568,
+            "width": 1114,
+            "height": 93,
+            "region_name": "Nội dung thân trang / Feature Grid (Vị trí Trung tâm)",
+            "defect_type": "Vỡ Bố Cục",
+            "severity": "HIGH",
+            "description": "Biến đổi cấu trúc hình khối và khối văn bản lớn"
+          },
+          {
+            "x": 436,
+            "y": 692,
+            "width": 336,
+            "height": 23,
+            "region_name": "Nội dung thân trang / Feature Grid (Cột trái)",
+            "defect_type": "Thay Đổi Nội Dung",
+            "severity": "MEDIUM",
+            "description": "Thay đổi nội dung văn bản hoặc kích thước chữ"
+          },
+          {
+            "x": 792,
+            "y": 692,
+            "width": 336,
+            "height": 23,
+            "region_name": "Nội dung thân trang / Feature Grid (Vị trí Trung tâm)",
+            "defect_type": "Thay Đổi Nội Dung",
+            "severity": "MEDIUM",
+            "description": "Thay đổi nội dung văn bản hoặc kích thước chữ"
+          },
+          {
+            "x": 1148,
+            "y": 692,
+            "width": 336,
+            "height": 23,
+            "region_name": "Nội dung thân trang / Feature Grid (Cột phải)",
+            "defect_type": "Thay Đổi Nội Dung",
+            "severity": "MEDIUM",
+            "description": "Thay đổi nội dung văn bản hoặc kích thước chữ"
+          },
+          {
+            "x": 472,
+            "y": 732,
+            "width": 185,
+            "height": 39,
+            "region_name": "Nội dung thân trang / Feature Grid (Cột trái)",
+            "defect_type": "Thay Đổi Nội Dung",
+            "severity": "MEDIUM",
+            "description": "Thay đổi nội dung văn bản hoặc kích thước chữ"
+          },
+          {
+            "x": 828,
+            "y": 732,
+            "width": 183,
+            "height": 37,
+            "region_name": "Nội dung thân trang / Feature Grid (Vị trí Trung tâm)",
+            "defect_type": "Thay Đổi Nội Dung",
+            "severity": "MEDIUM",
+            "description": "Thay đổi nội dung văn bản hoặc kích thước chữ"
+          },
+          {
+            "x": 1185,
+            "y": 732,
+            "width": 174,
+            "height": 37,
+            "region_name": "Nội dung thân trang / Feature Grid (Cột phải)",
+            "defect_type": "Thay Đổi Nội Dung",
+            "severity": "MEDIUM",
+            "description": "Thay đổi nội dung văn bản hoặc kích thước chữ"
+          },
+          {
+            "x": 469,
+            "y": 774,
+            "width": 268,
+            "height": 81,
+            "region_name": "Nội dung thân trang / Feature Grid (Cột trái)",
+            "defect_type": "Vỡ Bố Cục",
+            "severity": "HIGH",
+            "description": "Biến đổi cấu trúc hình khối và khối văn bản lớn"
+          },
+          {
+            "x": 824,
+            "y": 775,
+            "width": 259,
+            "height": 80,
+            "region_name": "Nội dung thân trang / Feature Grid (Vị trí Trung tâm)",
+            "defect_type": "Vỡ Bố Cục",
+            "severity": "HIGH",
+            "description": "Biến đổi cấu trúc hình khối và khối văn bản lớn"
+          },
+          {
+            "x": 1180,
+            "y": 775,
+            "width": 269,
+            "height": 80,
+            "region_name": "Nội dung thân trang / Feature Grid (Cột phải)",
+            "defect_type": "Vỡ Bố Cục",
+            "severity": "HIGH",
+            "description": "Biến đổi cấu trúc hình khối và khối văn bản lớn"
+          },
+          {
+            "x": 436,
+            "y": 869,
+            "width": 336,
+            "height": 23,
+            "region_name": "Chân trang / Footer (Cột trái)",
+            "defect_type": "Thay Đổi Nội Dung",
+            "severity": "MEDIUM",
+            "description": "Thay đổi nội dung văn bản hoặc kích thước chữ"
+          },
+          {
+            "x": 792,
+            "y": 869,
+            "width": 336,
+            "height": 23,
+            "region_name": "Chân trang / Footer (Vị trí Trung tâm)",
+            "defect_type": "Thay Đổi Nội Dung",
+            "severity": "MEDIUM",
+            "description": "Thay đổi nội dung văn bản hoặc kích thước chữ"
+          },
+          {
+            "x": 1148,
+            "y": 869,
+            "width": 336,
+            "height": 23,
+            "region_name": "Chân trang / Footer (Cột phải)",
+            "defect_type": "Thay Đổi Nội Dung",
+            "severity": "MEDIUM",
+            "description": "Thay đổi nội dung văn bản hoặc kích thước chữ"
+          },
+          {
+            "x": 708,
+            "y": 976,
+            "width": 504,
+            "height": 32,
+            "region_name": "Chân trang / Footer (Vị trí Trung tâm)",
+            "defect_type": "Vỡ Bố Cục",
+            "severity": "HIGH",
+            "description": "Biến đổi cấu trúc hình khối và khối văn bản lớn"
+          }
+        ],
+        "change_summary": "Phát hiện tổng cộng 19 vùng khiếm khuyết hiển thị (Diff Ratio: 1.74%). Gồm 7 vùng cảnh báo mức độ cao (High Impact) và 0 thành phần bị dịch chuyển vị trí. Trọng tâm sai khác tập trung tại khu vực Hero/CTA.",
+        "semantic_insights": [
+          "🎨 Phát hiện đổi màu sắc hiển thị tại Khu vực Hero / CTA Chính (Vị trí Trung tâm): Đổi mã màu thành phần từ [Xanh lơ / Cyan] sang [Đỏ / Crimson].",
+          "ℹ️ Điểm SSIM đạt 0.9469 (cấu trúc khung trang nhìn chung duy trì tốt)."
+        ],
+        "baseline_image_url": "/storage/baselines/e29159b6/baseline_desktop.png",
+        "current_image_url": "/storage/runs/7598271f/currents/current_desktop.png",
+        "diff_image_url": "/storage/runs/7598271f/diffs/diff_desktop.png",
+        "baseline_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\baselines\\e29159b6\\baseline_desktop.png",
+        "current_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\7598271f\\currents\\current_desktop.png",
+        "diff_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\7598271f\\diffs\\diff_desktop.png",
+        "error_message": null,
+        "duration_ms": 2285.15
+      },
+      {
+        "viewport": "tablet",
+        "viewport_width": 768,
+        "viewport_height": 1281,
+        "status": "FAILED",
+        "diff_ratio": 3.9006,
+        "ssim_score": 0.8954,
+        "diff_pixels": 38374,
+        "total_pixels": 983808,
+        "bounding_boxes": [
+          {
+            "x": 224,
+            "y": 160,
+            "width": 320,
+            "height": 49,
+            "region_name": "Khu vực Hero / CTA Chính (Vị trí Trung tâm)",
+            "defect_type": "Sai Màu Sắc",
+            "severity": "HIGH",
+            "description": "Đổi mã màu thành phần từ [Xanh lơ / Cyan] sang [Đỏ / Crimson]"
+          },
+          {
+            "x": 179,
+            "y": 448,
+            "width": 201,
+            "height": 75,
+            "region_name": "Khu vực Hero / CTA Chính (Vị trí Trung tâm)",
+            "defect_type": "Sai Màu Sắc",
+            "severity": "HIGH",
+            "description": "Đổi mã màu thành phần từ [Xanh lục / Emerald] sang [Tím / Violet]"
+          },
+          {
+            "x": 382,
+            "y": 448,
+            "width": 207,
+            "height": 22,
+            "region_name": "Khu vực Hero / CTA Chính (Vị trí Trung tâm)",
+            "defect_type": "Thay Đổi Nội Dung",
+            "severity": "MEDIUM",
+            "description": "Thay đổi nội dung văn bản hoặc kích thước chữ"
+          },
+          {
+            "x": 415,
+            "y": 470,
+            "width": 141,
+            "height": 29,
+            "region_name": "Khu vực Hero / CTA Chính (Vị trí Trung tâm)",
+            "defect_type": "Thay Đổi Nội Dung",
+            "severity": "MEDIUM",
+            "description": "Thay đổi nội dung văn bản hoặc kích thước chữ"
+          },
+          {
+            "x": 382,
+            "y": 498,
+            "width": 207,
+            "height": 22,
+            "region_name": "Khu vực Hero / CTA Chính (Vị trí Trung tâm)",
+            "defect_type": "Thay Đổi Nội Dung",
+            "severity": "MEDIUM",
+            "description": "Thay đổi nội dung văn bản hoặc kích thước chữ"
+          },
+          {
+            "x": 0,
+            "y": 599,
+            "width": 768,
+            "height": 92,
+            "region_name": "Nội dung thân trang / Feature Grid (Vị trí Trung tâm)",
+            "defect_type": "Vỡ Bố Cục",
+            "severity": "HIGH",
+            "description": "Biến đổi cấu trúc hình khối và khối văn bản lớn"
+          },
+          {
+            "x": 26,
+            "y": 722,
+            "width": 348,
+            "height": 23,
+            "region_name": "Nội dung thân trang / Feature Grid (Cột trái)",
+            "defect_type": "Thay Đổi Nội Dung",
+            "severity": "MEDIUM",
+            "description": "Thay đổi nội dung văn bản hoặc kích thước chữ"
+          },
+          {
+            "x": 394,
+            "y": 722,
+            "width": 348,
+            "height": 23,
+            "region_name": "Nội dung thân trang / Feature Grid (Cột phải)",
+            "defect_type": "Thay Đổi Nội Dung",
+            "severity": "MEDIUM",
+            "description": "Thay đổi nội dung văn bản hoặc kích thước chữ"
+          },
+          {
+            "x": 62,
+            "y": 762,
+            "width": 185,
+            "height": 39,
+            "region_name": "Nội dung thân trang / Feature Grid (Cột trái)",
+            "defect_type": "Thay Đổi Nội Dung",
+            "severity": "MEDIUM",
+            "description": "Thay đổi nội dung văn bản hoặc kích thước chữ"
+          },
+          {
+            "x": 430,
+            "y": 762,
+            "width": 183,
+            "height": 37,
+            "region_name": "Nội dung thân trang / Feature Grid (Cột phải)",
+            "defect_type": "Thay Đổi Nội Dung",
+            "severity": "MEDIUM",
+            "description": "Thay đổi nội dung văn bản hoặc kích thước chữ"
+          },
+          {
+            "x": 58,
+            "y": 804,
+            "width": 276,
+            "height": 82,
+            "region_name": "Nội dung thân trang / Feature Grid (Cột trái)",
+            "defect_type": "Vỡ Bố Cục",
+            "severity": "HIGH",
+            "description": "Biến đổi cấu trúc hình khối và khối văn bản lớn"
+          },
+          {
+            "x": 426,
+            "y": 805,
+            "width": 259,
+            "height": 81,
+            "region_name": "Nội dung thân trang / Feature Grid (Cột phải)",
+            "defect_type": "Vỡ Bố Cục",
+            "severity": "HIGH",
+            "description": "Biến đổi cấu trúc hình khối và khối văn bản lớn"
+          },
+          {
+            "x": 26,
+            "y": 899,
+            "width": 348,
+            "height": 23,
+            "region_name": "Nội dung thân trang / Feature Grid (Cột trái)",
+            "defect_type": "Thay Đổi Nội Dung",
+            "severity": "MEDIUM",
+            "description": "Thay đổi nội dung văn bản hoặc kích thước chữ"
+          },
+          {
+            "x": 394,
+            "y": 899,
+            "width": 348,
+            "height": 23,
+            "region_name": "Nội dung thân trang / Feature Grid (Cột phải)",
+            "defect_type": "Thay Đổi Nội Dung",
+            "severity": "MEDIUM",
+            "description": "Thay đổi nội dung văn bản hoặc kích thước chữ"
+          },
+          {
+            "x": 26,
+            "y": 937,
+            "width": 348,
+            "height": 23,
+            "region_name": "Nội dung thân trang / Feature Grid (Cột trái)",
+            "defect_type": "Thay Đổi Nội Dung",
+            "severity": "MEDIUM",
+            "description": "Thay đổi nội dung văn bản hoặc kích thước chữ"
+          },
+          {
+            "x": 63,
+            "y": 977,
+            "width": 174,
+            "height": 37,
+            "region_name": "Nội dung thân trang / Feature Grid (Cột trái)",
+            "defect_type": "Thay Đổi Nội Dung",
+            "severity": "MEDIUM",
+            "description": "Thay đổi nội dung văn bản hoặc kích thước chữ"
+          },
+          {
+            "x": 58,
+            "y": 1020,
+            "width": 269,
+            "height": 81,
+            "region_name": "Chân trang / Footer (Cột trái)",
+            "defect_type": "Vỡ Bố Cục",
+            "severity": "HIGH",
+            "description": "Biến đổi cấu trúc hình khối và khối văn bản lớn"
+          },
+          {
+            "x": 26,
+            "y": 1114,
+            "width": 348,
+            "height": 23,
+            "region_name": "Chân trang / Footer (Cột trái)",
+            "defect_type": "Thay Đổi Nội Dung",
+            "severity": "MEDIUM",
+            "description": "Thay đổi nội dung văn bản hoặc kích thước chữ"
+          },
+          {
+            "x": 132,
+            "y": 1221,
+            "width": 504,
+            "height": 32,
+            "region_name": "Chân trang / Footer (Vị trí Trung tâm)",
+            "defect_type": "Vỡ Bố Cục",
+            "severity": "HIGH",
+            "description": "Biến đổi cấu trúc hình khối và khối văn bản lớn"
+          },
+          {
+            "x": 0,
+            "y": 1271,
+            "width": 768,
+            "height": 10,
+            "region_name": "Chân trang / Footer (Vị trí Trung tâm)",
+            "defect_type": "Sai Màu Sắc",
+            "severity": "HIGH",
+            "description": "Đổi mã màu thành phần từ [Trắng] sang [Đen / Nền tối]"
+          }
+        ],
+        "change_summary": "Phát hiện tổng cộng 20 vùng khiếm khuyết hiển thị (Diff Ratio: 3.90%). Gồm 8 vùng cảnh báo mức độ cao (High Impact) và 0 thành phần bị dịch chuyển vị trí. Trọng tâm sai khác tập trung tại khu vực Hero/CTA.",
+        "semantic_insights": [
+          "🎨 Phát hiện đổi màu sắc hiển thị tại Khu vực Hero / CTA Chính (Vị trí Trung tâm): Đổi mã màu thành phần từ [Xanh lơ / Cyan] sang [Đỏ / Crimson].",
+          "📐 Chiều cao trang bị thay đổi lệch 3px so với Baseline chuẩn.",
+          "🚨 Điểm tương đồng cấu trúc SSIM giảm sâu xuống 0.8954 (biến dạng hình học rõ rệt)."
+        ],
+        "baseline_image_url": "/storage/baselines/e29159b6/baseline_tablet.png",
+        "current_image_url": "/storage/runs/7598271f/currents/current_tablet.png",
+        "diff_image_url": "/storage/runs/7598271f/diffs/diff_tablet.png",
+        "baseline_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\baselines\\e29159b6\\baseline_tablet.png",
+        "current_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\7598271f\\currents\\current_tablet.png",
+        "diff_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\7598271f\\diffs\\diff_tablet.png",
+        "error_message": null,
+        "duration_ms": 1427.27
+      },
+      {
+        "viewport": "mobile",
+        "viewport_width": 375,
+        "viewport_height": 1835,
+        "status": "FAILED",
+        "diff_ratio": 7.475,
+        "ssim_score": 0.8002,
+        "diff_pixels": 51437,
+        "total_pixels": 688125,
+        "bounding_boxes": [
+          {
+            "x": 27,
+            "y": 199,
+            "width": 321,
+            "height": 49,
+            "region_name": "Khu vực Hero / CTA Chính (Vị trí Trung tâm)",
+            "defect_type": "Sai Màu Sắc",
+            "severity": "HIGH",
+            "description": "Đổi mã màu thành phần từ [Xanh lơ / Cyan] sang [Đỏ / Crimson]"
+          },
+          {
+            "x": 25,
+            "y": 690,
+            "width": 159,
+            "height": 100,
+            "region_name": "Khu vực Hero / CTA Chính (Cột trái)",
+            "defect_type": "Sai Màu Sắc",
+            "severity": "HIGH",
+            "description": "Đổi mã màu thành phần từ [Xanh lục / Emerald] sang [Tím / Violet]"
+          },
+          {
+            "x": 186,
+            "y": 690,
+            "width": 164,
+            "height": 22,
+            "region_name": "Khu vực Hero / CTA Chính (Cột phải)",
+            "defect_type": "Thay Đổi Nội Dung",
+            "severity": "MEDIUM",
+            "description": "Thay đổi nội dung văn bản hoặc kích thước chữ"
+          },
+          {
+            "x": 221,
+            "y": 711,
+            "width": 94,
+            "height": 55,
+            "region_name": "Khu vực Hero / CTA Chính (Cột phải)",
+            "defect_type": "Thay Đổi Nội Dung",
+            "severity": "MEDIUM",
+            "description": "Thay đổi nội dung văn bản hoặc kích thước chữ"
+          },
+          {
+            "x": 186,
+            "y": 765,
+            "width": 164,
+            "height": 22,
+            "region_name": "Khu vực Hero / CTA Chính (Cột phải)",
+            "defect_type": "Thay Đổi Nội Dung",
+            "severity": "MEDIUM",
+            "description": "Thay đổi nội dung văn bản hoặc kích thước chữ"
+          },
+          {
+            "x": 0,
+            "y": 866,
+            "width": 375,
+            "height": 144,
+            "region_name": "Nội dung thân trang / Feature Grid (Vị trí Trung tâm)",
+            "defect_type": "Vỡ Bố Cục",
+            "severity": "HIGH",
+            "description": "Biến đổi cấu trúc hình khối và khối văn bản lớn"
+          },
+          {
+            "x": 25,
+            "y": 1015,
+            "width": 325,
+            "height": 51,
+            "region_name": "Nội dung thân trang / Feature Grid (Vị trí Trung tâm)",
+            "defect_type": "Lệch Vị Trí",
+            "severity": "HIGH",
+            "description": "Dịch chuyển bố cục xuống dưới ~29px (Layout Shift / Vertical Offset)"
+          },
+          {
+            "x": 58,
+            "y": 1055,
+            "width": 236,
+            "height": 171,
+            "region_name": "Nội dung thân trang / Feature Grid (Vị trí Trung tâm)",
+            "defect_type": "Lệch Vị Trí",
+            "severity": "HIGH",
+            "description": "Dịch chuyển bố cục xuống dưới ~29px (Layout Shift / Vertical Offset)"
+          },
+          {
+            "x": 25,
+            "y": 1215,
+            "width": 325,
+            "height": 90,
+            "region_name": "Nội dung thân trang / Feature Grid (Vị trí Trung tâm)",
+            "defect_type": "Lệch Vị Trí",
+            "severity": "HIGH",
+            "description": "Dịch chuyển bố cục xuống dưới ~28px (Layout Shift / Vertical Offset)"
+          },
+          {
+            "x": 58,
+            "y": 1295,
+            "width": 253,
+            "height": 149,
+            "region_name": "Nội dung thân trang / Feature Grid (Vị trí Trung tâm)",
+            "defect_type": "Lệch Vị Trí",
+            "severity": "HIGH",
+            "description": "Dịch chuyển bố cục xuống dưới ~28px (Layout Shift / Vertical Offset)"
+          },
+          {
+            "x": 25,
+            "y": 1430,
+            "width": 325,
+            "height": 90,
+            "region_name": "Chân trang / Footer (Vị trí Trung tâm)",
+            "defect_type": "Lệch Vị Trí",
+            "severity": "HIGH",
+            "description": "Dịch chuyển bố cục xuống dưới ~28px (Layout Shift / Vertical Offset)"
+          },
+          {
+            "x": 58,
+            "y": 1510,
+            "width": 245,
+            "height": 149,
+            "region_name": "Chân trang / Footer (Vị trí Trung tâm)",
+            "defect_type": "Lệch Vị Trí",
+            "severity": "HIGH",
+            "description": "Dịch chuyển bố cục xuống dưới ~28px (Layout Shift / Vertical Offset)"
+          },
+          {
+            "x": 25,
+            "y": 1645,
+            "width": 325,
+            "height": 50,
+            "region_name": "Chân trang / Footer (Vị trí Trung tâm)",
+            "defect_type": "Lệch Vị Trí",
+            "severity": "HIGH",
+            "description": "Dịch chuyển bố cục xuống dưới ~28px (Layout Shift / Vertical Offset)"
+          },
+          {
+            "x": 0,
+            "y": 1756,
+            "width": 375,
+            "height": 79,
+            "region_name": "Chân trang / Footer (Vị trí Trung tâm)",
+            "defect_type": "Lệch Vị Trí",
+            "severity": "HIGH",
+            "description": "Dịch chuyển bố cục xuống dưới ~28px (Layout Shift / Vertical Offset)"
+          }
+        ],
+        "change_summary": "Phát hiện tổng cộng 14 vùng khiếm khuyết hiển thị (Diff Ratio: 7.47%). Gồm 11 vùng cảnh báo mức độ cao (High Impact) và 8 thành phần bị dịch chuyển vị trí. Trọng tâm sai khác tập trung tại khu vực Hero/CTA.",
+        "semantic_insights": [
+          "⚠️ Phát hiện xô lệch bố cục tại Nội dung thân trang / Feature Grid (Vị trí Trung tâm): Dịch chuyển bố cục xuống dưới ~29px (Layout Shift / Vertical Offset).",
+          "🎨 Phát hiện đổi màu sắc hiển thị tại Khu vực Hero / CTA Chính (Vị trí Trung tâm): Đổi mã màu thành phần từ [Xanh lơ / Cyan] sang [Đỏ / Crimson].",
+          "📐 Chiều cao trang bị thay đổi lệch 3px so với Baseline chuẩn.",
+          "🚨 Điểm tương đồng cấu trúc SSIM giảm sâu xuống 0.8002 (biến dạng hình học rõ rệt)."
+        ],
+        "baseline_image_url": "/storage/baselines/e29159b6/baseline_mobile.png",
+        "current_image_url": "/storage/runs/7598271f/currents/current_mobile.png",
+        "diff_image_url": "/storage/runs/7598271f/diffs/diff_mobile.png",
+        "baseline_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\baselines\\e29159b6\\baseline_mobile.png",
+        "current_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\7598271f\\currents\\current_mobile.png",
+        "diff_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\7598271f\\diffs\\diff_mobile.png",
+        "error_message": null,
+        "duration_ms": 1324.13
+      }
+    ]
+  },
+  "688d005b": {
+    "id": "688d005b",
+    "suite_id": "3e6bb8c7",
+    "suite_name": "SaaSify Visual Suite",
+    "target_url": "http://localhost:5174/",
+    "status": "COMPLETED",
+    "overall_status": "FAILED",
+    "executive_summary": "Phiên kiểm thử phát hiện lỗi hồi quy giao diện trên 3/3 màn hình. Tóm tắt các thay đổi nổi bật: ⚠️ Phát hiện xô lệch bố cục tại Nội dung thân trang / Feature Grid (Cột phải): Dịch chuyển bố cục xuống dưới ~20px (Layout Shift / Vertical Offset). 🎨 Phát hiện đổi màu sắc hiển thị tại Thanh điều hướng / Header (Cột phải): Đổi mã màu thành phần từ [Xám / Bạc] sang [Xanh dương / Indigo]. 🚨 Điểm tương đồng cấu trúc SSIM giảm sâu xuống 0.7250 (biến dạng hình học rõ rệt).",
+    "started_at": "2026-10-07 00:26:37",
+    "completed_at": "2026-10-07 00:26:59",
+    "duration_seconds": 22.7,
+    "total_viewports": 3,
+    "passed_viewports": 0,
+    "failed_viewports": 3,
+    "results": [
+      {
+        "viewport": "desktop",
+        "viewport_width": 1920,
+        "viewport_height": 1080,
+        "status": "FAILED",
+        "diff_ratio": 11.2069,
+        "ssim_score": 0.725,
+        "diff_pixels": 232387,
+        "total_pixels": 2073600,
+        "bounding_boxes": [
+          {
+            "x": 1520,
+            "y": 26,
+            "width": 183,
+            "height": 46,
+            "region_name": "Thanh điều hướng / Header (Cột phải)",
+            "defect_type": "Sai Màu Sắc",
+            "severity": "HIGH",
+            "description": "Đổi mã màu thành phần từ [Xám / Bạc] sang [Xanh dương / Indigo]"
+          },
+          {
+            "x": 443,
+            "y": 36,
+            "width": 103,
+            "height": 27,
+            "region_name": "Thanh điều hướng / Header (Cột trái)",
+            "defect_type": "Thay Đổi Nội Dung",
+            "severity": "MEDIUM",
+            "description": "Thay đổi nội dung văn bản hoặc kích thước chữ"
+          },
+          {
+            "x": 870,
+            "y": 265,
+            "width": 833,
+            "height": 634,
+            "region_name": "Nội dung thân trang / Feature Grid (Cột phải)",
+            "defect_type": "Lệch Vị Trí",
+            "severity": "HIGH",
+            "description": "Dịch chuyển bố cục xuống dưới ~20px (Layout Shift / Vertical Offset)"
+          },
+          {
+            "x": 217,
+            "y": 324,
+            "width": 584,
+            "height": 415,
+            "region_name": "Nội dung thân trang / Feature Grid (Cột trái)",
+            "defect_type": "Lệch Vị Trí",
+            "severity": "HIGH",
+            "description": "Dịch chuyển bố cục xuống dưới ~20px (Layout Shift / Vertical Offset)"
+          },
+          {
+            "x": 475,
+            "y": 666,
+            "width": 149,
+            "height": 55,
+            "region_name": "Nội dung thân trang / Feature Grid (Cột trái)",
+            "defect_type": "Lệch Vị Trí",
+            "severity": "HIGH",
+            "description": "Dịch chuyển bố cục xuống dưới ~20px (Layout Shift / Vertical Offset)"
+          },
+          {
+            "x": 217,
+            "y": 755,
+            "width": 115,
+            "height": 82,
+            "region_name": "Nội dung thân trang / Feature Grid (Cột trái)",
+            "defect_type": "Lệch Vị Trí",
+            "severity": "HIGH",
+            "description": "Dịch chuyển bố cục xuống dưới ~20px (Layout Shift / Vertical Offset)"
+          },
+          {
+            "x": 410,
+            "y": 755,
+            "width": 152,
+            "height": 82,
+            "region_name": "Nội dung thân trang / Feature Grid (Cột trái)",
+            "defect_type": "Lệch Vị Trí",
+            "severity": "HIGH",
+            "description": "Dịch chuyển bố cục xuống dưới ~20px (Layout Shift / Vertical Offset)"
+          },
+          {
+            "x": 586,
+            "y": 762,
+            "width": 126,
+            "height": 74,
+            "region_name": "Nội dung thân trang / Feature Grid (Vị trí Trung tâm)",
+            "defect_type": "Lệch Vị Trí",
+            "severity": "HIGH",
+            "description": "Dịch chuyển bố cục xuống dưới ~20px (Layout Shift / Vertical Offset)"
+          }
+        ],
+        "change_summary": "Phát hiện tổng cộng 8 vùng khiếm khuyết hiển thị (Diff Ratio: 11.21%). Gồm 7 vùng cảnh báo mức độ cao (High Impact) và 6 thành phần bị dịch chuyển vị trí. Trọng tâm sai khác tập trung tại khu vực Hero/CTA.",
+        "semantic_insights": [
+          "⚠️ Phát hiện xô lệch bố cục tại Nội dung thân trang / Feature Grid (Cột phải): Dịch chuyển bố cục xuống dưới ~20px (Layout Shift / Vertical Offset).",
+          "🎨 Phát hiện đổi màu sắc hiển thị tại Thanh điều hướng / Header (Cột phải): Đổi mã màu thành phần từ [Xám / Bạc] sang [Xanh dương / Indigo].",
+          "🚨 Điểm tương đồng cấu trúc SSIM giảm sâu xuống 0.7250 (biến dạng hình học rõ rệt)."
+        ],
+        "baseline_image_url": "/storage/baselines/3e6bb8c7/baseline_desktop.png",
+        "current_image_url": "/storage/runs/688d005b/currents/current_desktop.png",
+        "diff_image_url": "/storage/runs/688d005b/diffs/diff_desktop.png",
+        "baseline_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\baselines\\3e6bb8c7\\baseline_desktop.png",
+        "current_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\688d005b\\currents\\current_desktop.png",
+        "diff_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\688d005b\\diffs\\diff_desktop.png",
+        "error_message": null,
+        "duration_ms": 5300.36
+      },
+      {
+        "viewport": "tablet",
+        "viewport_width": 768,
+        "viewport_height": 1024,
+        "status": "FAILED",
+        "diff_ratio": 22.4065,
+        "ssim_score": 0.4839,
+        "diff_pixels": 176212,
+        "total_pixels": 786432,
+        "bounding_boxes": [
+          {
+            "x": 25,
+            "y": 28,
+            "width": 162,
+            "height": 60,
+            "region_name": "Thanh điều hướng / Header (Cột trái)",
+            "defect_type": "Thay Đổi Nội Dung",
+            "severity": "MEDIUM",
+            "description": "Thay đổi nội dung văn bản hoặc kích thước chữ"
+          },
+          {
+            "x": 560,
+            "y": 33,
+            "width": 183,
+            "height": 53,
+            "region_name": "Thanh điều hướng / Header (Cột phải)",
+            "defect_type": "Lệch Vị Trí & Sai Màu Sắc",
+            "severity": "HIGH",
+            "description": "Dịch chuyển bố cục lên trên ~7px (Layout Shift / Vertical Offset); Đổi mã màu thành phần từ [Xám / Bạc] sang [Xanh dương / Indigo]"
+          },
+          {
+            "x": 209,
+            "y": 34,
+            "width": 302,
+            "height": 59,
+            "region_name": "Thanh điều hướng / Header (Vị trí Trung tâm)",
+            "defect_type": "Vỡ Bố Cục",
+            "severity": "HIGH",
+            "description": "Biến đổi cấu trúc hình khối và khối văn bản lớn"
+          },
+          {
+            "x": 517,
+            "y": 48,
+            "width": 17,
+            "height": 24,
+            "region_name": "Thanh điều hướng / Header (Cột phải)",
+            "defect_type": "Lệch Padding/Viền",
+            "severity": "LOW",
+            "description": "Lệch viền lề hoặc padding chi tiết nhỏ"
+          },
+          {
+            "x": 25,
+            "y": 143,
+            "width": 584,
+            "height": 362,
+            "region_name": "Khu vực Hero / CTA Chính (Vị trí Trung tâm)",
+            "defect_type": "Lệch Vị Trí",
+            "severity": "HIGH",
+            "description": "Dịch chuyển bố cục xuống dưới ~26px (Layout Shift / Vertical Offset)"
+          },
+          {
+            "x": 283,
+            "y": 425,
+            "width": 149,
+            "height": 61,
+            "region_name": "Khu vực Hero / CTA Chính (Vị trí Trung tâm)",
+            "defect_type": "Lệch Vị Trí",
+            "severity": "HIGH",
+            "description": "Dịch chuyển bố cục xuống dưới ~26px (Layout Shift / Vertical Offset)"
+          },
+          {
+            "x": 25,
+            "y": 514,
+            "width": 115,
+            "height": 88,
+            "region_name": "Nội dung thân trang / Feature Grid (Cột trái)",
+            "defect_type": "Lệch Vị Trí",
+            "severity": "HIGH",
+            "description": "Dịch chuyển bố cục xuống dưới ~26px (Layout Shift / Vertical Offset)"
+          },
+          {
+            "x": 218,
+            "y": 514,
+            "width": 152,
+            "height": 88,
+            "region_name": "Nội dung thân trang / Feature Grid (Vị trí Trung tâm)",
+            "defect_type": "Lệch Vị Trí",
+            "severity": "HIGH",
+            "description": "Dịch chuyển bố cục xuống dưới ~26px (Layout Shift / Vertical Offset)"
+          },
+          {
+            "x": 394,
+            "y": 521,
+            "width": 126,
+            "height": 80,
+            "region_name": "Nội dung thân trang / Feature Grid (Vị trí Trung tâm)",
+            "defect_type": "Lệch Vị Trí",
+            "severity": "HIGH",
+            "description": "Dịch chuyển bố cục xuống dưới ~26px (Layout Shift / Vertical Offset)"
+          },
+          {
+            "x": 25,
+            "y": 603,
+            "width": 718,
+            "height": 421,
+            "region_name": "Nội dung thân trang / Feature Grid (Vị trí Trung tâm)",
+            "defect_type": "Lệch Vị Trí",
+            "severity": "HIGH",
+            "description": "Dịch chuyển bố cục xuống dưới ~26px (Layout Shift / Vertical Offset)"
+          }
+        ],
+        "change_summary": "Phát hiện tổng cộng 10 vùng khiếm khuyết hiển thị (Diff Ratio: 22.41%). Gồm 8 vùng cảnh báo mức độ cao (High Impact) và 7 thành phần bị dịch chuyển vị trí. Trọng tâm sai khác tập trung tại khu vực Hero/CTA.",
+        "semantic_insights": [
+          "⚠️ Phát hiện xô lệch bố cục tại Thanh điều hướng / Header (Cột phải): Dịch chuyển bố cục lên trên ~7px (Layout Shift / Vertical Offset); Đổi mã màu thành phần từ [Xám / Bạc] sang [Xanh dương / Indigo].",
+          "🎨 Phát hiện đổi màu sắc hiển thị tại Thanh điều hướng / Header (Cột phải): Dịch chuyển bố cục lên trên ~7px (Layout Shift / Vertical Offset); Đổi mã màu thành phần từ [Xám / Bạc] sang [Xanh dương / Indigo].",
+          "🚨 Điểm tương đồng cấu trúc SSIM giảm sâu xuống 0.4839 (biến dạng hình học rõ rệt)."
+        ],
+        "baseline_image_url": "/storage/baselines/3e6bb8c7/baseline_tablet.png",
+        "current_image_url": "/storage/runs/688d005b/currents/current_tablet.png",
+        "diff_image_url": "/storage/runs/688d005b/diffs/diff_tablet.png",
+        "baseline_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\baselines\\3e6bb8c7\\baseline_tablet.png",
+        "current_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\688d005b\\currents\\current_tablet.png",
+        "diff_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\688d005b\\diffs\\diff_tablet.png",
+        "error_message": null,
+        "duration_ms": 3539.13
+      },
+      {
+        "viewport": "mobile",
+        "viewport_width": 375,
+        "viewport_height": 812,
+        "status": "FAILED",
+        "diff_ratio": 20.7685,
+        "ssim_score": 0.605,
+        "diff_pixels": 63240,
+        "total_pixels": 304500,
+        "bounding_boxes": [
+          {
+            "x": 262,
+            "y": 39,
+            "width": 113,
+            "height": 46,
+            "region_name": "Thanh điều hướng / Header (Cột phải)",
+            "defect_type": "Sai Màu Sắc",
+            "severity": "HIGH",
+            "description": "Đổi mã màu thành phần từ [Xám / Bạc] sang [Xanh dương / Indigo]"
+          },
+          {
+            "x": 17,
+            "y": 133,
+            "width": 297,
+            "height": 46,
+            "region_name": "Khu vực Hero / CTA Chính (Vị trí Trung tâm)",
+            "defect_type": "Lệch Vị Trí",
+            "severity": "HIGH",
+            "description": "Dịch chuyển bố cục xuống dưới ~48px (Layout Shift / Vertical Offset)"
+          },
+          {
+            "x": 17,
+            "y": 181,
+            "width": 337,
+            "height": 408,
+            "region_name": "Nội dung thân trang / Feature Grid (Vị trí Trung tâm)",
+            "defect_type": "Lệch Vị Trí",
+            "severity": "HIGH",
+            "description": "Dịch chuyển bố cục xuống dưới ~48px (Layout Shift / Vertical Offset)"
+          },
+          {
+            "x": 33,
+            "y": 600,
+            "width": 149,
+            "height": 35,
+            "region_name": "Nội dung thân trang / Feature Grid (Cột trái)",
+            "defect_type": "Thay Đổi Nội Dung",
+            "severity": "MEDIUM",
+            "description": "Thay đổi nội dung văn bản hoặc kích thước chữ"
+          },
+          {
+            "x": 17,
+            "y": 639,
+            "width": 341,
+            "height": 173,
+            "region_name": "Chân trang / Footer (Vị trí Trung tâm)",
+            "defect_type": "Lệch Vị Trí",
+            "severity": "HIGH",
+            "description": "Dịch chuyển bố cục xuống dưới ~48px (Layout Shift / Vertical Offset)"
+          }
+        ],
+        "change_summary": "Phát hiện tổng cộng 5 vùng khiếm khuyết hiển thị (Diff Ratio: 20.77%). Gồm 4 vùng cảnh báo mức độ cao (High Impact) và 3 thành phần bị dịch chuyển vị trí. Trọng tâm sai khác tập trung tại khu vực Hero/CTA.",
+        "semantic_insights": [
+          "⚠️ Phát hiện xô lệch bố cục tại Khu vực Hero / CTA Chính (Vị trí Trung tâm): Dịch chuyển bố cục xuống dưới ~48px (Layout Shift / Vertical Offset).",
+          "🎨 Phát hiện đổi màu sắc hiển thị tại Thanh điều hướng / Header (Cột phải): Đổi mã màu thành phần từ [Xám / Bạc] sang [Xanh dương / Indigo].",
+          "🚨 Điểm tương đồng cấu trúc SSIM giảm sâu xuống 0.6050 (biến dạng hình học rõ rệt)."
+        ],
+        "baseline_image_url": "/storage/baselines/3e6bb8c7/baseline_mobile.png",
+        "current_image_url": "/storage/runs/688d005b/currents/current_mobile.png",
+        "diff_image_url": "/storage/runs/688d005b/diffs/diff_mobile.png",
+        "baseline_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\baselines\\3e6bb8c7\\baseline_mobile.png",
+        "current_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\688d005b\\currents\\current_mobile.png",
+        "diff_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\688d005b\\diffs\\diff_mobile.png",
+        "error_message": null,
+        "duration_ms": 2950.34
+      }
+    ]
+  },
+  "ff9fb8c6": {
+    "id": "ff9fb8c6",
+    "suite_id": "ab229bc5",
+    "suite_name": "SaaSify Visual Suite",
+    "target_url": "http://localhost:5174/",
+    "status": "COMPLETED",
+    "overall_status": "FAILED",
+    "executive_summary": "Phiên kiểm thử phát hiện lỗi hồi quy giao diện trên 3/3 màn hình. Tóm tắt các thay đổi nổi bật: ⚠️ Phát hiện xô lệch bố cục tại Nội dung thân trang / Feature Grid (Cột phải): Dịch chuyển bố cục xuống dưới ~20px (Layout Shift / Vertical Offset). 🎨 Phát hiện đổi màu sắc hiển thị tại Thanh điều hướng / Header (Cột phải): Đổi mã màu thành phần từ [Xám / Bạc] sang [Xanh dương / Indigo]. 🚨 Điểm tương đồng cấu trúc SSIM giảm sâu xuống 0.7250 (biến dạng hình học rõ rệt).",
+    "started_at": "2026-10-07 00:28:55",
+    "completed_at": "2026-10-07 00:29:18",
+    "duration_seconds": 22.69,
+    "total_viewports": 3,
+    "passed_viewports": 0,
+    "failed_viewports": 3,
+    "results": [
+      {
+        "viewport": "desktop",
+        "viewport_width": 1920,
+        "viewport_height": 1080,
+        "status": "FAILED",
+        "diff_ratio": 11.2069,
+        "ssim_score": 0.725,
+        "diff_pixels": 232387,
+        "total_pixels": 2073600,
+        "bounding_boxes": [
+          {
+            "x": 1520,
+            "y": 26,
+            "width": 183,
+            "height": 46,
+            "region_name": "Thanh điều hướng / Header (Cột phải)",
+            "defect_type": "Sai Màu Sắc",
+            "severity": "HIGH",
+            "description": "Đổi mã màu thành phần từ [Xám / Bạc] sang [Xanh dương / Indigo]"
+          },
+          {
+            "x": 443,
+            "y": 36,
+            "width": 103,
+            "height": 27,
+            "region_name": "Thanh điều hướng / Header (Cột trái)",
+            "defect_type": "Thay Đổi Nội Dung",
+            "severity": "MEDIUM",
+            "description": "Thay đổi nội dung văn bản hoặc kích thước chữ"
+          },
+          {
+            "x": 870,
+            "y": 265,
+            "width": 833,
+            "height": 634,
+            "region_name": "Nội dung thân trang / Feature Grid (Cột phải)",
+            "defect_type": "Lệch Vị Trí",
+            "severity": "HIGH",
+            "description": "Dịch chuyển bố cục xuống dưới ~20px (Layout Shift / Vertical Offset)"
+          },
+          {
+            "x": 217,
+            "y": 324,
+            "width": 584,
+            "height": 415,
+            "region_name": "Nội dung thân trang / Feature Grid (Cột trái)",
+            "defect_type": "Lệch Vị Trí",
+            "severity": "HIGH",
+            "description": "Dịch chuyển bố cục xuống dưới ~20px (Layout Shift / Vertical Offset)"
+          },
+          {
+            "x": 475,
+            "y": 666,
+            "width": 149,
+            "height": 55,
+            "region_name": "Nội dung thân trang / Feature Grid (Cột trái)",
+            "defect_type": "Lệch Vị Trí",
+            "severity": "HIGH",
+            "description": "Dịch chuyển bố cục xuống dưới ~20px (Layout Shift / Vertical Offset)"
+          },
+          {
+            "x": 217,
+            "y": 755,
+            "width": 115,
+            "height": 82,
+            "region_name": "Nội dung thân trang / Feature Grid (Cột trái)",
+            "defect_type": "Lệch Vị Trí",
+            "severity": "HIGH",
+            "description": "Dịch chuyển bố cục xuống dưới ~20px (Layout Shift / Vertical Offset)"
+          },
+          {
+            "x": 410,
+            "y": 755,
+            "width": 152,
+            "height": 82,
+            "region_name": "Nội dung thân trang / Feature Grid (Cột trái)",
+            "defect_type": "Lệch Vị Trí",
+            "severity": "HIGH",
+            "description": "Dịch chuyển bố cục xuống dưới ~20px (Layout Shift / Vertical Offset)"
+          },
+          {
+            "x": 586,
+            "y": 762,
+            "width": 126,
+            "height": 74,
+            "region_name": "Nội dung thân trang / Feature Grid (Vị trí Trung tâm)",
+            "defect_type": "Lệch Vị Trí",
+            "severity": "HIGH",
+            "description": "Dịch chuyển bố cục xuống dưới ~20px (Layout Shift / Vertical Offset)"
+          }
+        ],
+        "change_summary": "Phát hiện tổng cộng 8 vùng khiếm khuyết hiển thị (Diff Ratio: 11.21%). Gồm 7 vùng cảnh báo mức độ cao (High Impact) và 6 thành phần bị dịch chuyển vị trí. Trọng tâm sai khác tập trung tại khu vực Hero/CTA.",
+        "semantic_insights": [
+          "⚠️ Phát hiện xô lệch bố cục tại Nội dung thân trang / Feature Grid (Cột phải): Dịch chuyển bố cục xuống dưới ~20px (Layout Shift / Vertical Offset).",
+          "🎨 Phát hiện đổi màu sắc hiển thị tại Thanh điều hướng / Header (Cột phải): Đổi mã màu thành phần từ [Xám / Bạc] sang [Xanh dương / Indigo].",
+          "🚨 Điểm tương đồng cấu trúc SSIM giảm sâu xuống 0.7250 (biến dạng hình học rõ rệt)."
+        ],
+        "baseline_image_url": "/storage/baselines/ab229bc5/baseline_desktop.png",
+        "current_image_url": "/storage/runs/ff9fb8c6/currents/current_desktop.png",
+        "diff_image_url": "/storage/runs/ff9fb8c6/diffs/diff_desktop.png",
+        "baseline_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\baselines\\ab229bc5\\baseline_desktop.png",
+        "current_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\ff9fb8c6\\currents\\current_desktop.png",
+        "diff_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\ff9fb8c6\\diffs\\diff_desktop.png",
+        "error_message": null,
+        "duration_ms": 5148.02
+      },
+      {
+        "viewport": "tablet",
+        "viewport_width": 768,
+        "viewport_height": 1024,
+        "status": "FAILED",
+        "diff_ratio": 22.4065,
+        "ssim_score": 0.4839,
+        "diff_pixels": 176212,
+        "total_pixels": 786432,
+        "bounding_boxes": [
+          {
+            "x": 25,
+            "y": 28,
+            "width": 162,
+            "height": 60,
+            "region_name": "Thanh điều hướng / Header (Cột trái)",
+            "defect_type": "Thay Đổi Nội Dung",
+            "severity": "MEDIUM",
+            "description": "Thay đổi nội dung văn bản hoặc kích thước chữ"
+          },
+          {
+            "x": 560,
+            "y": 33,
+            "width": 183,
+            "height": 53,
+            "region_name": "Thanh điều hướng / Header (Cột phải)",
+            "defect_type": "Lệch Vị Trí & Sai Màu Sắc",
+            "severity": "HIGH",
+            "description": "Dịch chuyển bố cục lên trên ~7px (Layout Shift / Vertical Offset); Đổi mã màu thành phần từ [Xám / Bạc] sang [Xanh dương / Indigo]"
+          },
+          {
+            "x": 209,
+            "y": 34,
+            "width": 302,
+            "height": 59,
+            "region_name": "Thanh điều hướng / Header (Vị trí Trung tâm)",
+            "defect_type": "Vỡ Bố Cục",
+            "severity": "HIGH",
+            "description": "Biến đổi cấu trúc hình khối và khối văn bản lớn"
+          },
+          {
+            "x": 517,
+            "y": 48,
+            "width": 17,
+            "height": 24,
+            "region_name": "Thanh điều hướng / Header (Cột phải)",
+            "defect_type": "Lệch Padding/Viền",
+            "severity": "LOW",
+            "description": "Lệch viền lề hoặc padding chi tiết nhỏ"
+          },
+          {
+            "x": 25,
+            "y": 143,
+            "width": 584,
+            "height": 362,
+            "region_name": "Khu vực Hero / CTA Chính (Vị trí Trung tâm)",
+            "defect_type": "Lệch Vị Trí",
+            "severity": "HIGH",
+            "description": "Dịch chuyển bố cục xuống dưới ~26px (Layout Shift / Vertical Offset)"
+          },
+          {
+            "x": 283,
+            "y": 425,
+            "width": 149,
+            "height": 61,
+            "region_name": "Khu vực Hero / CTA Chính (Vị trí Trung tâm)",
+            "defect_type": "Lệch Vị Trí",
+            "severity": "HIGH",
+            "description": "Dịch chuyển bố cục xuống dưới ~26px (Layout Shift / Vertical Offset)"
+          },
+          {
+            "x": 25,
+            "y": 514,
+            "width": 115,
+            "height": 88,
+            "region_name": "Nội dung thân trang / Feature Grid (Cột trái)",
+            "defect_type": "Lệch Vị Trí",
+            "severity": "HIGH",
+            "description": "Dịch chuyển bố cục xuống dưới ~26px (Layout Shift / Vertical Offset)"
+          },
+          {
+            "x": 218,
+            "y": 514,
+            "width": 152,
+            "height": 88,
+            "region_name": "Nội dung thân trang / Feature Grid (Vị trí Trung tâm)",
+            "defect_type": "Lệch Vị Trí",
+            "severity": "HIGH",
+            "description": "Dịch chuyển bố cục xuống dưới ~26px (Layout Shift / Vertical Offset)"
+          },
+          {
+            "x": 394,
+            "y": 521,
+            "width": 126,
+            "height": 80,
+            "region_name": "Nội dung thân trang / Feature Grid (Vị trí Trung tâm)",
+            "defect_type": "Lệch Vị Trí",
+            "severity": "HIGH",
+            "description": "Dịch chuyển bố cục xuống dưới ~26px (Layout Shift / Vertical Offset)"
+          },
+          {
+            "x": 25,
+            "y": 603,
+            "width": 718,
+            "height": 421,
+            "region_name": "Nội dung thân trang / Feature Grid (Vị trí Trung tâm)",
+            "defect_type": "Lệch Vị Trí",
+            "severity": "HIGH",
+            "description": "Dịch chuyển bố cục xuống dưới ~26px (Layout Shift / Vertical Offset)"
+          }
+        ],
+        "change_summary": "Phát hiện tổng cộng 10 vùng khiếm khuyết hiển thị (Diff Ratio: 22.41%). Gồm 8 vùng cảnh báo mức độ cao (High Impact) và 7 thành phần bị dịch chuyển vị trí. Trọng tâm sai khác tập trung tại khu vực Hero/CTA.",
+        "semantic_insights": [
+          "⚠️ Phát hiện xô lệch bố cục tại Thanh điều hướng / Header (Cột phải): Dịch chuyển bố cục lên trên ~7px (Layout Shift / Vertical Offset); Đổi mã màu thành phần từ [Xám / Bạc] sang [Xanh dương / Indigo].",
+          "🎨 Phát hiện đổi màu sắc hiển thị tại Thanh điều hướng / Header (Cột phải): Dịch chuyển bố cục lên trên ~7px (Layout Shift / Vertical Offset); Đổi mã màu thành phần từ [Xám / Bạc] sang [Xanh dương / Indigo].",
+          "🚨 Điểm tương đồng cấu trúc SSIM giảm sâu xuống 0.4839 (biến dạng hình học rõ rệt)."
+        ],
+        "baseline_image_url": "/storage/baselines/ab229bc5/baseline_tablet.png",
+        "current_image_url": "/storage/runs/ff9fb8c6/currents/current_tablet.png",
+        "diff_image_url": "/storage/runs/ff9fb8c6/diffs/diff_tablet.png",
+        "baseline_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\baselines\\ab229bc5\\baseline_tablet.png",
+        "current_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\ff9fb8c6\\currents\\current_tablet.png",
+        "diff_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\ff9fb8c6\\diffs\\diff_tablet.png",
+        "error_message": null,
+        "duration_ms": 3536.23
+      },
+      {
+        "viewport": "mobile",
+        "viewport_width": 375,
+        "viewport_height": 812,
+        "status": "FAILED",
+        "diff_ratio": 20.7685,
+        "ssim_score": 0.605,
+        "diff_pixels": 63240,
+        "total_pixels": 304500,
+        "bounding_boxes": [
+          {
+            "x": 262,
+            "y": 39,
+            "width": 113,
+            "height": 46,
+            "region_name": "Thanh điều hướng / Header (Cột phải)",
+            "defect_type": "Sai Màu Sắc",
+            "severity": "HIGH",
+            "description": "Đổi mã màu thành phần từ [Xám / Bạc] sang [Xanh dương / Indigo]"
+          },
+          {
+            "x": 17,
+            "y": 133,
+            "width": 297,
+            "height": 46,
+            "region_name": "Khu vực Hero / CTA Chính (Vị trí Trung tâm)",
+            "defect_type": "Lệch Vị Trí",
+            "severity": "HIGH",
+            "description": "Dịch chuyển bố cục xuống dưới ~48px (Layout Shift / Vertical Offset)"
+          },
+          {
+            "x": 17,
+            "y": 181,
+            "width": 337,
+            "height": 408,
+            "region_name": "Nội dung thân trang / Feature Grid (Vị trí Trung tâm)",
+            "defect_type": "Lệch Vị Trí",
+            "severity": "HIGH",
+            "description": "Dịch chuyển bố cục xuống dưới ~48px (Layout Shift / Vertical Offset)"
+          },
+          {
+            "x": 33,
+            "y": 600,
+            "width": 149,
+            "height": 35,
+            "region_name": "Nội dung thân trang / Feature Grid (Cột trái)",
+            "defect_type": "Thay Đổi Nội Dung",
+            "severity": "MEDIUM",
+            "description": "Thay đổi nội dung văn bản hoặc kích thước chữ"
+          },
+          {
+            "x": 17,
+            "y": 639,
+            "width": 341,
+            "height": 173,
+            "region_name": "Chân trang / Footer (Vị trí Trung tâm)",
+            "defect_type": "Lệch Vị Trí",
+            "severity": "HIGH",
+            "description": "Dịch chuyển bố cục xuống dưới ~48px (Layout Shift / Vertical Offset)"
+          }
+        ],
+        "change_summary": "Phát hiện tổng cộng 5 vùng khiếm khuyết hiển thị (Diff Ratio: 20.77%). Gồm 4 vùng cảnh báo mức độ cao (High Impact) và 3 thành phần bị dịch chuyển vị trí. Trọng tâm sai khác tập trung tại khu vực Hero/CTA.",
+        "semantic_insights": [
+          "⚠️ Phát hiện xô lệch bố cục tại Khu vực Hero / CTA Chính (Vị trí Trung tâm): Dịch chuyển bố cục xuống dưới ~48px (Layout Shift / Vertical Offset).",
+          "🎨 Phát hiện đổi màu sắc hiển thị tại Thanh điều hướng / Header (Cột phải): Đổi mã màu thành phần từ [Xám / Bạc] sang [Xanh dương / Indigo].",
+          "🚨 Điểm tương đồng cấu trúc SSIM giảm sâu xuống 0.6050 (biến dạng hình học rõ rệt)."
+        ],
+        "baseline_image_url": "/storage/baselines/ab229bc5/baseline_mobile.png",
+        "current_image_url": "/storage/runs/ff9fb8c6/currents/current_mobile.png",
+        "diff_image_url": "/storage/runs/ff9fb8c6/diffs/diff_mobile.png",
+        "baseline_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\baselines\\ab229bc5\\baseline_mobile.png",
+        "current_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\ff9fb8c6\\currents\\current_mobile.png",
+        "diff_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\ff9fb8c6\\diffs\\diff_mobile.png",
+        "error_message": null,
+        "duration_ms": 2985.92
+      }
+    ]
+  },
+  "d87034df": {
+    "id": "d87034df",
+    "suite_id": "e9d56d31",
+    "suite_name": "SaaSify Visual Suite",
+    "target_url": "http://localhost:5174/",
+    "status": "COMPLETED",
+    "overall_status": "FAILED",
+    "executive_summary": "Phiên kiểm thử phát hiện lỗi hồi quy giao diện trên 3/3 màn hình. Tóm tắt các thay đổi nổi bật: ⚠️ Phát hiện xô lệch bố cục tại Nội dung thân trang / Feature Grid (Cột phải): Dịch chuyển bố cục xuống dưới ~20px (Layout Shift / Vertical Offset). 🎨 Phát hiện đổi màu sắc hiển thị tại Thanh điều hướng / Header (Cột phải): Đổi mã màu thành phần từ [Xám / Bạc] sang [Xanh dương / Indigo]. 🚨 Điểm tương đồng cấu trúc SSIM giảm sâu xuống 0.7236 (biến dạng hình học rõ rệt).",
+    "started_at": "2026-10-07 00:30:39",
+    "completed_at": "2026-10-07 00:31:04",
+    "duration_seconds": 24.5,
+    "total_viewports": 3,
+    "passed_viewports": 0,
+    "failed_viewports": 3,
+    "results": [
+      {
+        "viewport": "desktop",
+        "viewport_width": 1920,
+        "viewport_height": 1080,
+        "status": "FAILED",
+        "diff_ratio": 11.2571,
+        "ssim_score": 0.7236,
+        "diff_pixels": 233428,
+        "total_pixels": 2073600,
+        "bounding_boxes": [
+          {
+            "x": 1520,
+            "y": 26,
+            "width": 183,
+            "height": 46,
+            "region_name": "Thanh điều hướng / Header (Cột phải)",
+            "defect_type": "Sai Màu Sắc",
+            "severity": "HIGH",
+            "description": "Đổi mã màu thành phần từ [Xám / Bạc] sang [Xanh dương / Indigo]"
+          },
+          {
+            "x": 238,
+            "y": 33,
+            "width": 197,
+            "height": 32,
+            "region_name": "Thanh điều hướng / Header (Cột trái)",
+            "defect_type": "Thay Đổi Nội Dung",
+            "severity": "MEDIUM",
+            "description": "Thay đổi nội dung văn bản hoặc kích thước chữ"
+          },
+          {
+            "x": 443,
+            "y": 36,
+            "width": 103,
+            "height": 27,
+            "region_name": "Thanh điều hướng / Header (Cột trái)",
+            "defect_type": "Thay Đổi Nội Dung",
+            "severity": "MEDIUM",
+            "description": "Thay đổi nội dung văn bản hoặc kích thước chữ"
+          },
+          {
+            "x": 870,
+            "y": 265,
+            "width": 833,
+            "height": 634,
+            "region_name": "Nội dung thân trang / Feature Grid (Cột phải)",
+            "defect_type": "Lệch Vị Trí",
+            "severity": "HIGH",
+            "description": "Dịch chuyển bố cục xuống dưới ~20px (Layout Shift / Vertical Offset)"
+          },
+          {
+            "x": 217,
+            "y": 324,
+            "width": 584,
+            "height": 415,
+            "region_name": "Nội dung thân trang / Feature Grid (Cột trái)",
+            "defect_type": "Lệch Vị Trí",
+            "severity": "HIGH",
+            "description": "Dịch chuyển bố cục xuống dưới ~20px (Layout Shift / Vertical Offset)"
+          },
+          {
+            "x": 475,
+            "y": 666,
+            "width": 149,
+            "height": 55,
+            "region_name": "Nội dung thân trang / Feature Grid (Cột trái)",
+            "defect_type": "Lệch Vị Trí",
+            "severity": "HIGH",
+            "description": "Dịch chuyển bố cục xuống dưới ~20px (Layout Shift / Vertical Offset)"
+          },
+          {
+            "x": 217,
+            "y": 755,
+            "width": 115,
+            "height": 82,
+            "region_name": "Nội dung thân trang / Feature Grid (Cột trái)",
+            "defect_type": "Lệch Vị Trí",
+            "severity": "HIGH",
+            "description": "Dịch chuyển bố cục xuống dưới ~20px (Layout Shift / Vertical Offset)"
+          },
+          {
+            "x": 410,
+            "y": 755,
+            "width": 152,
+            "height": 82,
+            "region_name": "Nội dung thân trang / Feature Grid (Cột trái)",
+            "defect_type": "Lệch Vị Trí",
+            "severity": "HIGH",
+            "description": "Dịch chuyển bố cục xuống dưới ~20px (Layout Shift / Vertical Offset)"
+          },
+          {
+            "x": 586,
+            "y": 762,
+            "width": 126,
+            "height": 74,
+            "region_name": "Nội dung thân trang / Feature Grid (Vị trí Trung tâm)",
+            "defect_type": "Lệch Vị Trí",
+            "severity": "HIGH",
+            "description": "Dịch chuyển bố cục xuống dưới ~20px (Layout Shift / Vertical Offset)"
+          }
+        ],
+        "change_summary": "Phát hiện tổng cộng 9 vùng khiếm khuyết hiển thị (Diff Ratio: 11.26%). Gồm 7 vùng cảnh báo mức độ cao (High Impact) và 6 thành phần bị dịch chuyển vị trí. Trọng tâm sai khác tập trung tại khu vực Hero/CTA.",
+        "semantic_insights": [
+          "⚠️ Phát hiện xô lệch bố cục tại Nội dung thân trang / Feature Grid (Cột phải): Dịch chuyển bố cục xuống dưới ~20px (Layout Shift / Vertical Offset).",
+          "🎨 Phát hiện đổi màu sắc hiển thị tại Thanh điều hướng / Header (Cột phải): Đổi mã màu thành phần từ [Xám / Bạc] sang [Xanh dương / Indigo].",
+          "🚨 Điểm tương đồng cấu trúc SSIM giảm sâu xuống 0.7236 (biến dạng hình học rõ rệt)."
+        ],
+        "baseline_image_url": "/storage/baselines/e9d56d31/baseline_desktop.png",
+        "current_image_url": "/storage/runs/d87034df/currents/current_desktop.png",
+        "diff_image_url": "/storage/runs/d87034df/diffs/diff_desktop.png",
+        "baseline_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\baselines\\e9d56d31\\baseline_desktop.png",
+        "current_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\d87034df\\currents\\current_desktop.png",
+        "diff_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\d87034df\\diffs\\diff_desktop.png",
+        "error_message": null,
+        "duration_ms": 5622.3
+      },
+      {
+        "viewport": "tablet",
+        "viewport_width": 768,
+        "viewport_height": 1024,
+        "status": "FAILED",
+        "diff_ratio": 21.7884,
+        "ssim_score": 0.4897,
+        "diff_pixels": 171351,
+        "total_pixels": 786432,
+        "bounding_boxes": [
+          {
+            "x": 25,
+            "y": 30,
+            "width": 160,
+            "height": 58,
+            "region_name": "Thanh điều hướng / Header (Cột trái)",
+            "defect_type": "Thay Đổi Nội Dung",
+            "severity": "MEDIUM",
+            "description": "Thay đổi nội dung văn bản hoặc kích thước chữ"
+          },
+          {
+            "x": 560,
+            "y": 32,
+            "width": 183,
+            "height": 54,
+            "region_name": "Thanh điều hướng / Header (Cột phải)",
+            "defect_type": "Lệch Vị Trí & Sai Màu Sắc",
+            "severity": "HIGH",
+            "description": "Dịch chuyển bố cục lên trên ~8px (Layout Shift / Vertical Offset); Đổi mã màu thành phần từ [Xám / Bạc] sang [Xanh dương / Indigo]"
+          },
+          {
+            "x": 209,
+            "y": 33,
+            "width": 302,
+            "height": 60,
+            "region_name": "Thanh điều hướng / Header (Vị trí Trung tâm)",
+            "defect_type": "Vỡ Bố Cục",
+            "severity": "HIGH",
+            "description": "Biến đổi cấu trúc hình khối và khối văn bản lớn"
+          },
+          {
+            "x": 517,
+            "y": 47,
+            "width": 17,
+            "height": 25,
+            "region_name": "Thanh điều hướng / Header (Cột phải)",
+            "defect_type": "Lệch Padding/Viền",
+            "severity": "LOW",
+            "description": "Lệch viền lề hoặc padding chi tiết nhỏ"
+          },
+          {
+            "x": 25,
+            "y": 143,
+            "width": 584,
+            "height": 360,
+            "region_name": "Khu vực Hero / CTA Chính (Vị trí Trung tâm)",
+            "defect_type": "Lệch Vị Trí",
+            "severity": "HIGH",
+            "description": "Dịch chuyển bố cục xuống dưới ~24px (Layout Shift / Vertical Offset)"
+          },
+          {
+            "x": 283,
+            "y": 425,
+            "width": 149,
+            "height": 59,
+            "region_name": "Khu vực Hero / CTA Chính (Vị trí Trung tâm)",
+            "defect_type": "Lệch Vị Trí",
+            "severity": "HIGH",
+            "description": "Dịch chuyển bố cục xuống dưới ~24px (Layout Shift / Vertical Offset)"
+          },
+          {
+            "x": 25,
+            "y": 514,
+            "width": 115,
+            "height": 86,
+            "region_name": "Nội dung thân trang / Feature Grid (Cột trái)",
+            "defect_type": "Lệch Vị Trí",
+            "severity": "HIGH",
+            "description": "Dịch chuyển bố cục xuống dưới ~24px (Layout Shift / Vertical Offset)"
+          },
+          {
+            "x": 218,
+            "y": 514,
+            "width": 152,
+            "height": 86,
+            "region_name": "Nội dung thân trang / Feature Grid (Vị trí Trung tâm)",
+            "defect_type": "Lệch Vị Trí",
+            "severity": "HIGH",
+            "description": "Dịch chuyển bố cục xuống dưới ~24px (Layout Shift / Vertical Offset)"
+          },
+          {
+            "x": 394,
+            "y": 521,
+            "width": 126,
+            "height": 78,
+            "region_name": "Nội dung thân trang / Feature Grid (Vị trí Trung tâm)",
+            "defect_type": "Lệch Vị Trí",
+            "severity": "HIGH",
+            "description": "Dịch chuyển bố cục xuống dưới ~24px (Layout Shift / Vertical Offset)"
+          },
+          {
+            "x": 25,
+            "y": 603,
+            "width": 718,
+            "height": 421,
+            "region_name": "Nội dung thân trang / Feature Grid (Vị trí Trung tâm)",
+            "defect_type": "Lệch Vị Trí",
+            "severity": "HIGH",
+            "description": "Dịch chuyển bố cục xuống dưới ~24px (Layout Shift / Vertical Offset)"
+          }
+        ],
+        "change_summary": "Phát hiện tổng cộng 10 vùng khiếm khuyết hiển thị (Diff Ratio: 21.79%). Gồm 8 vùng cảnh báo mức độ cao (High Impact) và 7 thành phần bị dịch chuyển vị trí. Trọng tâm sai khác tập trung tại khu vực Hero/CTA.",
+        "semantic_insights": [
+          "⚠️ Phát hiện xô lệch bố cục tại Thanh điều hướng / Header (Cột phải): Dịch chuyển bố cục lên trên ~8px (Layout Shift / Vertical Offset); Đổi mã màu thành phần từ [Xám / Bạc] sang [Xanh dương / Indigo].",
+          "🎨 Phát hiện đổi màu sắc hiển thị tại Thanh điều hướng / Header (Cột phải): Dịch chuyển bố cục lên trên ~8px (Layout Shift / Vertical Offset); Đổi mã màu thành phần từ [Xám / Bạc] sang [Xanh dương / Indigo].",
+          "🚨 Điểm tương đồng cấu trúc SSIM giảm sâu xuống 0.4897 (biến dạng hình học rõ rệt)."
+        ],
+        "baseline_image_url": "/storage/baselines/e9d56d31/baseline_tablet.png",
+        "current_image_url": "/storage/runs/d87034df/currents/current_tablet.png",
+        "diff_image_url": "/storage/runs/d87034df/diffs/diff_tablet.png",
+        "baseline_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\baselines\\e9d56d31\\baseline_tablet.png",
+        "current_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\d87034df\\currents\\current_tablet.png",
+        "diff_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\d87034df\\diffs\\diff_tablet.png",
+        "error_message": null,
+        "duration_ms": 4459.93
+      },
+      {
+        "viewport": "mobile",
+        "viewport_width": 375,
+        "viewport_height": 812,
+        "status": "FAILED",
+        "diff_ratio": 20.7685,
+        "ssim_score": 0.605,
+        "diff_pixels": 63240,
+        "total_pixels": 304500,
+        "bounding_boxes": [
+          {
+            "x": 262,
+            "y": 39,
+            "width": 113,
+            "height": 46,
+            "region_name": "Thanh điều hướng / Header (Cột phải)",
+            "defect_type": "Sai Màu Sắc",
+            "severity": "HIGH",
+            "description": "Đổi mã màu thành phần từ [Xám / Bạc] sang [Xanh dương / Indigo]"
+          },
+          {
+            "x": 17,
+            "y": 133,
+            "width": 297,
+            "height": 46,
+            "region_name": "Khu vực Hero / CTA Chính (Vị trí Trung tâm)",
+            "defect_type": "Lệch Vị Trí",
+            "severity": "HIGH",
+            "description": "Dịch chuyển bố cục xuống dưới ~48px (Layout Shift / Vertical Offset)"
+          },
+          {
+            "x": 17,
+            "y": 181,
+            "width": 337,
+            "height": 408,
+            "region_name": "Nội dung thân trang / Feature Grid (Vị trí Trung tâm)",
+            "defect_type": "Lệch Vị Trí",
+            "severity": "HIGH",
+            "description": "Dịch chuyển bố cục xuống dưới ~48px (Layout Shift / Vertical Offset)"
+          },
+          {
+            "x": 33,
+            "y": 600,
+            "width": 149,
+            "height": 35,
+            "region_name": "Nội dung thân trang / Feature Grid (Cột trái)",
+            "defect_type": "Thay Đổi Nội Dung",
+            "severity": "MEDIUM",
+            "description": "Thay đổi nội dung văn bản hoặc kích thước chữ"
+          },
+          {
+            "x": 17,
+            "y": 639,
+            "width": 341,
+            "height": 173,
+            "region_name": "Chân trang / Footer (Vị trí Trung tâm)",
+            "defect_type": "Lệch Vị Trí",
+            "severity": "HIGH",
+            "description": "Dịch chuyển bố cục xuống dưới ~48px (Layout Shift / Vertical Offset)"
+          }
+        ],
+        "change_summary": "Phát hiện tổng cộng 5 vùng khiếm khuyết hiển thị (Diff Ratio: 20.77%). Gồm 4 vùng cảnh báo mức độ cao (High Impact) và 3 thành phần bị dịch chuyển vị trí. Trọng tâm sai khác tập trung tại khu vực Hero/CTA.",
+        "semantic_insights": [
+          "⚠️ Phát hiện xô lệch bố cục tại Khu vực Hero / CTA Chính (Vị trí Trung tâm): Dịch chuyển bố cục xuống dưới ~48px (Layout Shift / Vertical Offset).",
+          "🎨 Phát hiện đổi màu sắc hiển thị tại Thanh điều hướng / Header (Cột phải): Đổi mã màu thành phần từ [Xám / Bạc] sang [Xanh dương / Indigo].",
+          "🚨 Điểm tương đồng cấu trúc SSIM giảm sâu xuống 0.6050 (biến dạng hình học rõ rệt)."
+        ],
+        "baseline_image_url": "/storage/baselines/e9d56d31/baseline_mobile.png",
+        "current_image_url": "/storage/runs/d87034df/currents/current_mobile.png",
+        "diff_image_url": "/storage/runs/d87034df/diffs/diff_mobile.png",
+        "baseline_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\baselines\\e9d56d31\\baseline_mobile.png",
+        "current_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\d87034df\\currents\\current_mobile.png",
+        "diff_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\d87034df\\diffs\\diff_mobile.png",
+        "error_message": null,
+        "duration_ms": 3008.65
+      }
+    ]
+  }
+}
