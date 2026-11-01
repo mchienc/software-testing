@@ -4033,5 +4033,630 @@
         "duration_ms": 3008.65
       }
     ]
+  },
+  "9d852518": {
+    "id": "9d852518",
+    "suite_id": "3c1688a3",
+    "suite_name": "SaaSify Visual Suite",
+    "target_url": "http://localhost:8000/demo/v2_regression/index.html",
+    "status": "COMPLETED",
+    "overall_status": "FAILED",
+    "executive_summary": "Phiên kiểm thử phát hiện lỗi hồi quy giao diện trên 3/3 màn hình. Tóm tắt các thay đổi nổi bật: 🎨 Phát hiện đổi màu sắc hiển thị tại Khu vực Hero / CTA Chính (Vị trí Trung tâm): Đổi mã màu thành phần từ [Xanh lơ / Cyan] sang [Đỏ / Crimson]. ℹ️ Điểm SSIM đạt 0.9469 (cấu trúc khung trang nhìn chung duy trì tốt). 📐 Chiều cao trang bị thay đổi lệch 3px so với Baseline chuẩn.",
+    "started_at": "2026-10-07 00:48:58",
+    "completed_at": "2026-10-07 00:49:06",
+    "duration_seconds": 8.3,
+    "total_viewports": 3,
+    "passed_viewports": 0,
+    "failed_viewports": 3,
+    "results": [
+      {
+        "viewport": "desktop",
+        "viewport_width": 1920,
+        "viewport_height": 1080,
+        "status": "FAILED",
+        "diff_ratio": 1.7408,
+        "ssim_score": 0.9469,
+        "diff_pixels": 36097,
+        "total_pixels": 2073600,
+        "bounding_boxes": [
+          {
+            "x": 800,
+            "y": 160,
+            "width": 320,
+            "height": 49,
+            "region_name": "Khu vực Hero / CTA Chính (Vị trí Trung tâm)",
+            "defect_type": "Sai Màu Sắc",
+            "severity": "HIGH",
+            "description": "Đổi mã màu thành phần từ [Xanh lơ / Cyan] sang [Đỏ / Crimson]"
+          },
+          {
+            "x": 755,
+            "y": 417,
+            "width": 201,
+            "height": 75,
+            "region_name": "Khu vực Hero / CTA Chính (Vị trí Trung tâm)",
+            "defect_type": "Sai Màu Sắc",
+            "severity": "HIGH",
+            "description": "Đổi mã màu thành phần từ [Xanh lục / Emerald] sang [Tím / Violet]"
+          },
+          {
+            "x": 958,
+            "y": 417,
+            "width": 207,
+            "height": 22,
+            "region_name": "Khu vực Hero / CTA Chính (Vị trí Trung tâm)",
+            "defect_type": "Thay Đổi Nội Dung",
+            "severity": "MEDIUM",
+            "description": "Thay đổi nội dung văn bản hoặc kích thước chữ"
+          },
+          {
+            "x": 991,
+            "y": 439,
+            "width": 141,
+            "height": 29,
+            "region_name": "Khu vực Hero / CTA Chính (Vị trí Trung tâm)",
+            "defect_type": "Thay Đổi Nội Dung",
+            "severity": "MEDIUM",
+            "description": "Thay đổi nội dung văn bản hoặc kích thước chữ"
+          },
+          {
+            "x": 958,
+            "y": 467,
+            "width": 207,
+            "height": 22,
+            "region_name": "Khu vực Hero / CTA Chính (Vị trí Trung tâm)",
+            "defect_type": "Thay Đổi Nội Dung",
+            "severity": "MEDIUM",
+            "description": "Thay đổi nội dung văn bản hoặc kích thước chữ"
+          },
+          {
+            "x": 403,
+            "y": 568,
+            "width": 1114,
+            "height": 93,
+            "region_name": "Nội dung thân trang / Feature Grid (Vị trí Trung tâm)",
+            "defect_type": "Vỡ Bố Cục",
+            "severity": "HIGH",
+            "description": "Biến đổi cấu trúc hình khối và khối văn bản lớn"
+          },
+          {
+            "x": 436,
+            "y": 692,
+            "width": 336,
+            "height": 23,
+            "region_name": "Nội dung thân trang / Feature Grid (Cột trái)",
+            "defect_type": "Thay Đổi Nội Dung",
+            "severity": "MEDIUM",
+            "description": "Thay đổi nội dung văn bản hoặc kích thước chữ"
+          },
+          {
+            "x": 792,
+            "y": 692,
+            "width": 336,
+            "height": 23,
+            "region_name": "Nội dung thân trang / Feature Grid (Vị trí Trung tâm)",
+            "defect_type": "Thay Đổi Nội Dung",
+            "severity": "MEDIUM",
+            "description": "Thay đổi nội dung văn bản hoặc kích thước chữ"
+          },
+          {
+            "x": 1148,
+            "y": 692,
+            "width": 336,
+            "height": 23,
+            "region_name": "Nội dung thân trang / Feature Grid (Cột phải)",
+            "defect_type": "Thay Đổi Nội Dung",
+            "severity": "MEDIUM",
+            "description": "Thay đổi nội dung văn bản hoặc kích thước chữ"
+          },
+          {
+            "x": 472,
+            "y": 732,
+            "width": 185,
+            "height": 39,
+            "region_name": "Nội dung thân trang / Feature Grid (Cột trái)",
+            "defect_type": "Thay Đổi Nội Dung",
+            "severity": "MEDIUM",
+            "description": "Thay đổi nội dung văn bản hoặc kích thước chữ"
+          },
+          {
+            "x": 828,
+            "y": 732,
+            "width": 183,
+            "height": 37,
+            "region_name": "Nội dung thân trang / Feature Grid (Vị trí Trung tâm)",
+            "defect_type": "Thay Đổi Nội Dung",
+            "severity": "MEDIUM",
+            "description": "Thay đổi nội dung văn bản hoặc kích thước chữ"
+          },
+          {
+            "x": 1185,
+            "y": 732,
+            "width": 174,
+            "height": 37,
+            "region_name": "Nội dung thân trang / Feature Grid (Cột phải)",
+            "defect_type": "Thay Đổi Nội Dung",
+            "severity": "MEDIUM",
+            "description": "Thay đổi nội dung văn bản hoặc kích thước chữ"
+          },
+          {
+            "x": 469,
+            "y": 774,
+            "width": 268,
+            "height": 81,
+            "region_name": "Nội dung thân trang / Feature Grid (Cột trái)",
+            "defect_type": "Vỡ Bố Cục",
+            "severity": "HIGH",
+            "description": "Biến đổi cấu trúc hình khối và khối văn bản lớn"
+          },
+          {
+            "x": 824,
+            "y": 775,
+            "width": 259,
+            "height": 80,
+            "region_name": "Nội dung thân trang / Feature Grid (Vị trí Trung tâm)",
+            "defect_type": "Vỡ Bố Cục",
+            "severity": "HIGH",
+            "description": "Biến đổi cấu trúc hình khối và khối văn bản lớn"
+          },
+          {
+            "x": 1180,
+            "y": 775,
+            "width": 269,
+            "height": 80,
+            "region_name": "Nội dung thân trang / Feature Grid (Cột phải)",
+            "defect_type": "Vỡ Bố Cục",
+            "severity": "HIGH",
+            "description": "Biến đổi cấu trúc hình khối và khối văn bản lớn"
+          },
+          {
+            "x": 436,
+            "y": 869,
+            "width": 336,
+            "height": 23,
+            "region_name": "Chân trang / Footer (Cột trái)",
+            "defect_type": "Thay Đổi Nội Dung",
+            "severity": "MEDIUM",
+            "description": "Thay đổi nội dung văn bản hoặc kích thước chữ"
+          },
+          {
+            "x": 792,
+            "y": 869,
+            "width": 336,
+            "height": 23,
+            "region_name": "Chân trang / Footer (Vị trí Trung tâm)",
+            "defect_type": "Thay Đổi Nội Dung",
+            "severity": "MEDIUM",
+            "description": "Thay đổi nội dung văn bản hoặc kích thước chữ"
+          },
+          {
+            "x": 1148,
+            "y": 869,
+            "width": 336,
+            "height": 23,
+            "region_name": "Chân trang / Footer (Cột phải)",
+            "defect_type": "Thay Đổi Nội Dung",
+            "severity": "MEDIUM",
+            "description": "Thay đổi nội dung văn bản hoặc kích thước chữ"
+          },
+          {
+            "x": 708,
+            "y": 976,
+            "width": 504,
+            "height": 32,
+            "region_name": "Chân trang / Footer (Vị trí Trung tâm)",
+            "defect_type": "Vỡ Bố Cục",
+            "severity": "HIGH",
+            "description": "Biến đổi cấu trúc hình khối và khối văn bản lớn"
+          }
+        ],
+        "change_summary": "Phát hiện tổng cộng 19 vùng khiếm khuyết hiển thị (Diff Ratio: 1.74%). Gồm 7 vùng cảnh báo mức độ cao (High Impact) và 0 thành phần bị dịch chuyển vị trí. Trọng tâm sai khác tập trung tại khu vực Hero/CTA.",
+        "semantic_insights": [
+          "🎨 Phát hiện đổi màu sắc hiển thị tại Khu vực Hero / CTA Chính (Vị trí Trung tâm): Đổi mã màu thành phần từ [Xanh lơ / Cyan] sang [Đỏ / Crimson].",
+          "ℹ️ Điểm SSIM đạt 0.9469 (cấu trúc khung trang nhìn chung duy trì tốt)."
+        ],
+        "baseline_image_url": "/storage/baselines/3c1688a3/baseline_desktop.png",
+        "current_image_url": "/storage/runs/9d852518/currents/current_desktop.png",
+        "diff_image_url": "/storage/runs/9d852518/diffs/diff_desktop.png",
+        "baseline_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\baselines\\3c1688a3\\baseline_desktop.png",
+        "current_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\9d852518\\currents\\current_desktop.png",
+        "diff_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\9d852518\\diffs\\diff_desktop.png",
+        "error_message": null,
+        "duration_ms": 2151.34
+      },
+      {
+        "viewport": "tablet",
+        "viewport_width": 768,
+        "viewport_height": 1281,
+        "status": "FAILED",
+        "diff_ratio": 3.9006,
+        "ssim_score": 0.8954,
+        "diff_pixels": 38374,
+        "total_pixels": 983808,
+        "bounding_boxes": [
+          {
+            "x": 224,
+            "y": 160,
+            "width": 320,
+            "height": 49,
+            "region_name": "Khu vực Hero / CTA Chính (Vị trí Trung tâm)",
+            "defect_type": "Sai Màu Sắc",
+            "severity": "HIGH",
+            "description": "Đổi mã màu thành phần từ [Xanh lơ / Cyan] sang [Đỏ / Crimson]"
+          },
+          {
+            "x": 179,
+            "y": 448,
+            "width": 201,
+            "height": 75,
+            "region_name": "Khu vực Hero / CTA Chính (Vị trí Trung tâm)",
+            "defect_type": "Sai Màu Sắc",
+            "severity": "HIGH",
+            "description": "Đổi mã màu thành phần từ [Xanh lục / Emerald] sang [Tím / Violet]"
+          },
+          {
+            "x": 382,
+            "y": 448,
+            "width": 207,
+            "height": 22,
+            "region_name": "Khu vực Hero / CTA Chính (Vị trí Trung tâm)",
+            "defect_type": "Thay Đổi Nội Dung",
+            "severity": "MEDIUM",
+            "description": "Thay đổi nội dung văn bản hoặc kích thước chữ"
+          },
+          {
+            "x": 415,
+            "y": 470,
+            "width": 141,
+            "height": 29,
+            "region_name": "Khu vực Hero / CTA Chính (Vị trí Trung tâm)",
+            "defect_type": "Thay Đổi Nội Dung",
+            "severity": "MEDIUM",
+            "description": "Thay đổi nội dung văn bản hoặc kích thước chữ"
+          },
+          {
+            "x": 382,
+            "y": 498,
+            "width": 207,
+            "height": 22,
+            "region_name": "Khu vực Hero / CTA Chính (Vị trí Trung tâm)",
+            "defect_type": "Thay Đổi Nội Dung",
+            "severity": "MEDIUM",
+            "description": "Thay đổi nội dung văn bản hoặc kích thước chữ"
+          },
+          {
+            "x": 0,
+            "y": 599,
+            "width": 768,
+            "height": 92,
+            "region_name": "Nội dung thân trang / Feature Grid (Vị trí Trung tâm)",
+            "defect_type": "Vỡ Bố Cục",
+            "severity": "HIGH",
+            "description": "Biến đổi cấu trúc hình khối và khối văn bản lớn"
+          },
+          {
+            "x": 26,
+            "y": 722,
+            "width": 348,
+            "height": 23,
+            "region_name": "Nội dung thân trang / Feature Grid (Cột trái)",
+            "defect_type": "Thay Đổi Nội Dung",
+            "severity": "MEDIUM",
+            "description": "Thay đổi nội dung văn bản hoặc kích thước chữ"
+          },
+          {
+            "x": 394,
+            "y": 722,
+            "width": 348,
+            "height": 23,
+            "region_name": "Nội dung thân trang / Feature Grid (Cột phải)",
+            "defect_type": "Thay Đổi Nội Dung",
+            "severity": "MEDIUM",
+            "description": "Thay đổi nội dung văn bản hoặc kích thước chữ"
+          },
+          {
+            "x": 62,
+            "y": 762,
+            "width": 185,
+            "height": 39,
+            "region_name": "Nội dung thân trang / Feature Grid (Cột trái)",
+            "defect_type": "Thay Đổi Nội Dung",
+            "severity": "MEDIUM",
+            "description": "Thay đổi nội dung văn bản hoặc kích thước chữ"
+          },
+          {
+            "x": 430,
+            "y": 762,
+            "width": 183,
+            "height": 37,
+            "region_name": "Nội dung thân trang / Feature Grid (Cột phải)",
+            "defect_type": "Thay Đổi Nội Dung",
+            "severity": "MEDIUM",
+            "description": "Thay đổi nội dung văn bản hoặc kích thước chữ"
+          },
+          {
+            "x": 58,
+            "y": 804,
+            "width": 276,
+            "height": 82,
+            "region_name": "Nội dung thân trang / Feature Grid (Cột trái)",
+            "defect_type": "Vỡ Bố Cục",
+            "severity": "HIGH",
+            "description": "Biến đổi cấu trúc hình khối và khối văn bản lớn"
+          },
+          {
+            "x": 426,
+            "y": 805,
+            "width": 259,
+            "height": 81,
+            "region_name": "Nội dung thân trang / Feature Grid (Cột phải)",
+            "defect_type": "Vỡ Bố Cục",
+            "severity": "HIGH",
+            "description": "Biến đổi cấu trúc hình khối và khối văn bản lớn"
+          },
+          {
+            "x": 26,
+            "y": 899,
+            "width": 348,
+            "height": 23,
+            "region_name": "Nội dung thân trang / Feature Grid (Cột trái)",
+            "defect_type": "Thay Đổi Nội Dung",
+            "severity": "MEDIUM",
+            "description": "Thay đổi nội dung văn bản hoặc kích thước chữ"
+          },
+          {
+            "x": 394,
+            "y": 899,
+            "width": 348,
+            "height": 23,
+            "region_name": "Nội dung thân trang / Feature Grid (Cột phải)",
+            "defect_type": "Thay Đổi Nội Dung",
+            "severity": "MEDIUM",
+            "description": "Thay đổi nội dung văn bản hoặc kích thước chữ"
+          },
+          {
+            "x": 26,
+            "y": 937,
+            "width": 348,
+            "height": 23,
+            "region_name": "Nội dung thân trang / Feature Grid (Cột trái)",
+            "defect_type": "Thay Đổi Nội Dung",
+            "severity": "MEDIUM",
+            "description": "Thay đổi nội dung văn bản hoặc kích thước chữ"
+          },
+          {
+            "x": 63,
+            "y": 977,
+            "width": 174,
+            "height": 37,
+            "region_name": "Nội dung thân trang / Feature Grid (Cột trái)",
+            "defect_type": "Thay Đổi Nội Dung",
+            "severity": "MEDIUM",
+            "description": "Thay đổi nội dung văn bản hoặc kích thước chữ"
+          },
+          {
+            "x": 58,
+            "y": 1020,
+            "width": 269,
+            "height": 81,
+            "region_name": "Chân trang / Footer (Cột trái)",
+            "defect_type": "Vỡ Bố Cục",
+            "severity": "HIGH",
+            "description": "Biến đổi cấu trúc hình khối và khối văn bản lớn"
+          },
+          {
+            "x": 26,
+            "y": 1114,
+            "width": 348,
+            "height": 23,
+            "region_name": "Chân trang / Footer (Cột trái)",
+            "defect_type": "Thay Đổi Nội Dung",
+            "severity": "MEDIUM",
+            "description": "Thay đổi nội dung văn bản hoặc kích thước chữ"
+          },
+          {
+            "x": 132,
+            "y": 1221,
+            "width": 504,
+            "height": 32,
+            "region_name": "Chân trang / Footer (Vị trí Trung tâm)",
+            "defect_type": "Vỡ Bố Cục",
+            "severity": "HIGH",
+            "description": "Biến đổi cấu trúc hình khối và khối văn bản lớn"
+          },
+          {
+            "x": 0,
+            "y": 1271,
+            "width": 768,
+            "height": 10,
+            "region_name": "Chân trang / Footer (Vị trí Trung tâm)",
+            "defect_type": "Sai Màu Sắc",
+            "severity": "HIGH",
+            "description": "Đổi mã màu thành phần từ [Trắng] sang [Đen / Nền tối]"
+          }
+        ],
+        "change_summary": "Phát hiện tổng cộng 20 vùng khiếm khuyết hiển thị (Diff Ratio: 3.90%). Gồm 8 vùng cảnh báo mức độ cao (High Impact) và 0 thành phần bị dịch chuyển vị trí. Trọng tâm sai khác tập trung tại khu vực Hero/CTA.",
+        "semantic_insights": [
+          "🎨 Phát hiện đổi màu sắc hiển thị tại Khu vực Hero / CTA Chính (Vị trí Trung tâm): Đổi mã màu thành phần từ [Xanh lơ / Cyan] sang [Đỏ / Crimson].",
+          "📐 Chiều cao trang bị thay đổi lệch 3px so với Baseline chuẩn.",
+          "🚨 Điểm tương đồng cấu trúc SSIM giảm sâu xuống 0.8954 (biến dạng hình học rõ rệt)."
+        ],
+        "baseline_image_url": "/storage/baselines/3c1688a3/baseline_tablet.png",
+        "current_image_url": "/storage/runs/9d852518/currents/current_tablet.png",
+        "diff_image_url": "/storage/runs/9d852518/diffs/diff_tablet.png",
+        "baseline_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\baselines\\3c1688a3\\baseline_tablet.png",
+        "current_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\9d852518\\currents\\current_tablet.png",
+        "diff_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\9d852518\\diffs\\diff_tablet.png",
+        "error_message": null,
+        "duration_ms": 1451.04
+      },
+      {
+        "viewport": "mobile",
+        "viewport_width": 375,
+        "viewport_height": 1835,
+        "status": "FAILED",
+        "diff_ratio": 7.475,
+        "ssim_score": 0.8002,
+        "diff_pixels": 51437,
+        "total_pixels": 688125,
+        "bounding_boxes": [
+          {
+            "x": 27,
+            "y": 199,
+            "width": 321,
+            "height": 49,
+            "region_name": "Khu vực Hero / CTA Chính (Vị trí Trung tâm)",
+            "defect_type": "Sai Màu Sắc",
+            "severity": "HIGH",
+            "description": "Đổi mã màu thành phần từ [Xanh lơ / Cyan] sang [Đỏ / Crimson]"
+          },
+          {
+            "x": 25,
+            "y": 690,
+            "width": 159,
+            "height": 100,
+            "region_name": "Khu vực Hero / CTA Chính (Cột trái)",
+            "defect_type": "Sai Màu Sắc",
+            "severity": "HIGH",
+            "description": "Đổi mã màu thành phần từ [Xanh lục / Emerald] sang [Tím / Violet]"
+          },
+          {
+            "x": 186,
+            "y": 690,
+            "width": 164,
+            "height": 22,
+            "region_name": "Khu vực Hero / CTA Chính (Cột phải)",
+            "defect_type": "Thay Đổi Nội Dung",
+            "severity": "MEDIUM",
+            "description": "Thay đổi nội dung văn bản hoặc kích thước chữ"
+          },
+          {
+            "x": 221,
+            "y": 711,
+            "width": 94,
+            "height": 55,
+            "region_name": "Khu vực Hero / CTA Chính (Cột phải)",
+            "defect_type": "Thay Đổi Nội Dung",
+            "severity": "MEDIUM",
+            "description": "Thay đổi nội dung văn bản hoặc kích thước chữ"
+          },
+          {
+            "x": 186,
+            "y": 765,
+            "width": 164,
+            "height": 22,
+            "region_name": "Khu vực Hero / CTA Chính (Cột phải)",
+            "defect_type": "Thay Đổi Nội Dung",
+            "severity": "MEDIUM",
+            "description": "Thay đổi nội dung văn bản hoặc kích thước chữ"
+          },
+          {
+            "x": 0,
+            "y": 866,
+            "width": 375,
+            "height": 144,
+            "region_name": "Nội dung thân trang / Feature Grid (Vị trí Trung tâm)",
+            "defect_type": "Vỡ Bố Cục",
+            "severity": "HIGH",
+            "description": "Biến đổi cấu trúc hình khối và khối văn bản lớn"
+          },
+          {
+            "x": 25,
+            "y": 1015,
+            "width": 325,
+            "height": 51,
+            "region_name": "Nội dung thân trang / Feature Grid (Vị trí Trung tâm)",
+            "defect_type": "Lệch Vị Trí",
+            "severity": "HIGH",
+            "description": "Dịch chuyển bố cục xuống dưới ~29px (Layout Shift / Vertical Offset)"
+          },
+          {
+            "x": 58,
+            "y": 1055,
+            "width": 236,
+            "height": 171,
+            "region_name": "Nội dung thân trang / Feature Grid (Vị trí Trung tâm)",
+            "defect_type": "Lệch Vị Trí",
+            "severity": "HIGH",
+            "description": "Dịch chuyển bố cục xuống dưới ~29px (Layout Shift / Vertical Offset)"
+          },
+          {
+            "x": 25,
+            "y": 1215,
+            "width": 325,
+            "height": 90,
+            "region_name": "Nội dung thân trang / Feature Grid (Vị trí Trung tâm)",
+            "defect_type": "Lệch Vị Trí",
+            "severity": "HIGH",
+            "description": "Dịch chuyển bố cục xuống dưới ~28px (Layout Shift / Vertical Offset)"
+          },
+          {
+            "x": 58,
+            "y": 1295,
+            "width": 253,
+            "height": 149,
+            "region_name": "Nội dung thân trang / Feature Grid (Vị trí Trung tâm)",
+            "defect_type": "Lệch Vị Trí",
+            "severity": "HIGH",
+            "description": "Dịch chuyển bố cục xuống dưới ~28px (Layout Shift / Vertical Offset)"
+          },
+          {
+            "x": 25,
+            "y": 1430,
+            "width": 325,
+            "height": 90,
+            "region_name": "Chân trang / Footer (Vị trí Trung tâm)",
+            "defect_type": "Lệch Vị Trí",
+            "severity": "HIGH",
+            "description": "Dịch chuyển bố cục xuống dưới ~28px (Layout Shift / Vertical Offset)"
+          },
+          {
+            "x": 58,
+            "y": 1510,
+            "width": 245,
+            "height": 149,
+            "region_name": "Chân trang / Footer (Vị trí Trung tâm)",
+            "defect_type": "Lệch Vị Trí",
+            "severity": "HIGH",
+            "description": "Dịch chuyển bố cục xuống dưới ~28px (Layout Shift / Vertical Offset)"
+          },
+          {
+            "x": 25,
+            "y": 1645,
+            "width": 325,
+            "height": 50,
+            "region_name": "Chân trang / Footer (Vị trí Trung tâm)",
+            "defect_type": "Lệch Vị Trí",
+            "severity": "HIGH",
+            "description": "Dịch chuyển bố cục xuống dưới ~28px (Layout Shift / Vertical Offset)"
+          },
+          {
+            "x": 0,
+            "y": 1756,
+            "width": 375,
+            "height": 79,
+            "region_name": "Chân trang / Footer (Vị trí Trung tâm)",
+            "defect_type": "Lệch Vị Trí",
+            "severity": "HIGH",
+            "description": "Dịch chuyển bố cục xuống dưới ~28px (Layout Shift / Vertical Offset)"
+          }
+        ],
+        "change_summary": "Phát hiện tổng cộng 14 vùng khiếm khuyết hiển thị (Diff Ratio: 7.47%). Gồm 11 vùng cảnh báo mức độ cao (High Impact) và 8 thành phần bị dịch chuyển vị trí. Trọng tâm sai khác tập trung tại khu vực Hero/CTA.",
+        "semantic_insights": [
+          "⚠️ Phát hiện xô lệch bố cục tại Nội dung thân trang / Feature Grid (Vị trí Trung tâm): Dịch chuyển bố cục xuống dưới ~29px (Layout Shift / Vertical Offset).",
+          "🎨 Phát hiện đổi màu sắc hiển thị tại Khu vực Hero / CTA Chính (Vị trí Trung tâm): Đổi mã màu thành phần từ [Xanh lơ / Cyan] sang [Đỏ / Crimson].",
+          "📐 Chiều cao trang bị thay đổi lệch 3px so với Baseline chuẩn.",
+          "🚨 Điểm tương đồng cấu trúc SSIM giảm sâu xuống 0.8002 (biến dạng hình học rõ rệt)."
+        ],
+        "baseline_image_url": "/storage/baselines/3c1688a3/baseline_mobile.png",
+        "current_image_url": "/storage/runs/9d852518/currents/current_mobile.png",
+        "diff_image_url": "/storage/runs/9d852518/diffs/diff_mobile.png",
+        "baseline_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\baselines\\3c1688a3\\baseline_mobile.png",
+        "current_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\9d852518\\currents\\current_mobile.png",
+        "diff_file_path": "C:\\Users\\Admin\\Documents\\software_testing\\visual-regression-tool\\backend\\storage\\runs\\9d852518\\diffs\\diff_mobile.png",
+        "error_message": null,
+        "duration_ms": 1325.84
+      }
+    ]
   }
 }

@@ -4,6 +4,7 @@ import TestRunnerForm from './components/TestRunnerForm';
 import MetricsCard from './components/MetricsCard';
 import DiffViewer from './components/DiffViewer';
 import BaselineViewer from './components/BaselineViewer';
+import TrendChart from './components/TrendChart';
 import { 
   Sparkles, 
   Activity, 
@@ -221,6 +222,9 @@ export default function App() {
             <DiffViewer run={activeRun} onApproveSuccess={loadInitialData} />
           </div>
         )}
+
+        {/* Quality Trend Analytics Chart */}
+        {runs && runs.length > 0 && <TrendChart runs={runs} />}
 
         {/* 3. Execution History Table */}
         <div className="bg-slate-900 border border-slate-800 rounded-xl p-6 shadow-xl">

@@ -189,6 +189,15 @@ class ReportGenerator:
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body {{ background-color: #030712; color: #f9fafb; font-family: ui-sans-serif, system-ui, sans-serif; }}
+        @media print {{
+            body {{ background-color: #ffffff !important; color: #0f172a !important; padding: 0 !important; }}
+            .no-print {{ display: none !important; }}
+            .bg-slate-900, .bg-slate-950 {{ background-color: #ffffff !important; border-color: #cbd5e1 !important; color: #0f172a !important; box-shadow: none !important; }}
+            .text-white {{ color: #0f172a !important; }}
+            .text-slate-300, .text-slate-400 {{ color: #334155 !important; }}
+            * {{ -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }}
+            .print-card {{ break-inside: avoid !important; page-break-inside: avoid !important; }}
+        }}
     </style>
 </head>
 <body class="p-6 md:p-10 max-w-7xl mx-auto">
@@ -207,12 +216,25 @@ class ReportGenerator:
                 Kịch bản: <strong class="text-white">{run_data.get('suite_name')}</strong> | Target: <a href="{run_data.get('target_url')}" target="_blank" class="text-cyan-400 underline">{run_data.get('target_url')}</a>
             </p>
         </div>
-        <div class="text-right text-xs text-slate-400">
-            <p>Mã phiên chạy: <span class="font-mono text-slate-300">{run_data.get('id')}</span></p>
-            <p>Thời gian chạy: <span class="text-slate-300">{run_data.get('started_at')}</span></p>
-            <p>Thời lượng: <span class="text-slate-300">{run_data.get('duration_seconds', 0):.2f}s</span></p>
+        <div class="flex items-center gap-4">
+            <button onclick="window.print()" class="no-print px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs rounded-lg shadow flex items-center gap-2 cursor-pointer transition">
+                🖨️ In / Xuất Báo Cáo PDF
+            </button>
+            <div class="text-right text-xs text-slate-400">
+                <p>Mã phiên chạy: <span class="font-mono text-slate-300">{run_data.get('id')}</span></p>
+                <p>Thời gian chạy: <span class="text-slate-300">{run_data.get('started_at')}</span></p>
+                <p>Thời lượng: <span class="text-slate-300">{run_data.get('duration_seconds', 0):.2f}s</span></p>
+            </div>
         </div>
     </header>
+
+    <!-- Executive Summary Banner if present -->
+    {f'''
+    <div class="mb-8 p-4 bg-slate-900 border border-indigo-500/40 rounded-xl print-card">
+        <h4 class="text-xs uppercase font-bold text-indigo-400 mb-1">Tóm Tắt Tương Đối Về Sự Thay Đổi (Executive Change Summary)</h4>
+        <p class="text-sm text-slate-200 font-medium leading-relaxed">{run_data.get('executive_summary')}</p>
+    </div>
+    ''' if run_data.get('executive_summary') else ''}
 
     <!-- Executive Metrics Grid -->
     <section class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">

@@ -44,7 +44,7 @@ visual-regression-tool/
 │   └── run.py                   # Script khởi chạy Backend
 ├── frontend/
 │   ├── src/
-│   │   ├── components/          # TestRunnerForm, DiffViewer, ImageSlider, MetricsCard
+│   │   ├── components/          # TestRunnerForm, DiffViewer, ImageSlider, BlinkCompare, TrendChart, BaselineViewer
 │   │   ├── services/            # API client kết nối Backend
 │   │   ├── App.jsx
 │   │   └── main.jsx
@@ -88,9 +88,22 @@ visual-regression-tool/
 5. **Gom cụm Bounding Box (Phát hiện vùng khiếm khuyết):**
    - Dùng phép toán hình thái học `cv2.dilate` để liên kết các pixel lỗi rời rạc thành một khối thống nhất (nút bấm, khối văn bản).
    - Dùng `cv2.findContours` và `cv2.boundingRect` để xuất tọa độ $[X, Y, W, H]$ của từng vùng lỗi.
-6. **Đánh giá Pass/Fail:**
+6. **Mô tả tương đối thay đổi bằng ngôn ngữ tự nhiên (Semantic Analysis):**
+   - Tự động nhận diện đổi màu sắc (ví dụ: Emerald sang Violet), dịch chuyển lề (Layout Shift $\Delta Y \approx 25\text{px}$), và định vị khu vực layout (Hero/CTA, Header, Grid).
+7. **Đánh giá Pass/Fail:**
    $$\text{Diff Ratio} = \left(\frac{N_{\text{diff\_pixels}}}{N_{\text{total\_pixels}}}\right) \times 100\%$$
    - Nếu $\text{Diff Ratio} \le \text{Threshold}$ (mặc định $0.05\%$) $\to$ **PASSED**, ngược lại $\to$ **FAILED**.
+
+### Module 3: Visual Comparison & Trend Analytics (Frontend React)
+1. **4 Chế độ so sánh linh hoạt (Multi-mode Visual Comparison):**
+   - **Slider Mode:** Kéo thanh trượt Before/After đè lớp Current lên Baseline.
+   - **3 Cột Song Song:** Xem đồng thời Baseline (Chuẩn) - Diff Highlight (#FF0055) - Current (Hiện tại).
+   - **Blink & Onion Skin:** Chớp tắt luân phiên (tần số 300ms–1000ms) và thanh trượt hòa trộn mờ (Opacity 0–100%) giúp mắt bắt ngay sai lệch 1–2px.
+   - **Diff-Only:** Chỉ hiển thị nền xám và vùng lỗi tô đỏ dạ quang.
+2. **Biểu đồ xu hướng chất lượng (Quality Trend Analytics):**
+   - SVG Interactive Chart theo dõi lịch sử SSIM và tỷ lệ Diff Ratio % qua từng phiên kiểm thử.
+3. **In & Xuất Báo Cáo PDF Một Chạm:**
+   - Tích hợp `@media print` tối ưu trang A4 cho cả Web Dashboard và Standalone HTML Report.
 
 ---
 

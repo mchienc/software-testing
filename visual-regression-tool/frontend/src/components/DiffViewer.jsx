@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { api } from '../services/api';
 import ImageSlider from './ImageSlider';
+import BlinkCompare from './BlinkCompare';
 import { 
   Columns, 
   SlidersHorizontal, 
@@ -11,7 +12,9 @@ import {
   Tablet, 
   Monitor,
   AlertTriangle,
-  FileText
+  FileText,
+  Printer,
+  Layers
 } from 'lucide-react';
 
 export default function DiffViewer({ run, onApproveSuccess }) {
@@ -83,31 +86,44 @@ export default function DiffViewer({ run, onApproveSuccess }) {
         </div>
 
         {/* View Modes */}
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2">
           <div className="bg-slate-950 p-1 rounded-lg border border-slate-800 flex items-center">
             <button
               onClick={() => setViewMode('slider')}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold transition ${
-                viewMode === 'slider' ? 'bg-slate-800 text-cyan-400' : 'text-slate-400 hover:text-white'
+              className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-md text-xs font-semibold transition ${
+                viewMode === 'slider' ? 'bg-slate-800 text-cyan-400 shadow-sm' : 'text-slate-400 hover:text-white'
               }`}
+              title="Kéo trượt Before / After"
             >
               <SlidersHorizontal className="w-3.5 h-3.5" />
               Slider
             </button>
             <button
               onClick={() => setViewMode('side-by-side')}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold transition ${
-                viewMode === 'side-by-side' ? 'bg-slate-800 text-cyan-400' : 'text-slate-400 hover:text-white'
+              className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-md text-xs font-semibold transition ${
+                viewMode === 'side-by-side' ? 'bg-slate-800 text-cyan-400 shadow-sm' : 'text-slate-400 hover:text-white'
               }`}
+              title="So sánh 3 cột song song"
             >
               <Columns className="w-3.5 h-3.5" />
               3 Cột Song Song
             </button>
             <button
-              onClick={() => setViewMode('diff-only')}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold transition ${
-                viewMode === 'diff-only' ? 'bg-slate-800 text-rose-400' : 'text-slate-400 hover:text-white'
+              onClick={() => setViewMode('blink')}
+              className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-md text-xs font-semibold transition ${
+                viewMode === 'blink' ? 'bg-indigo-950 text-indigo-300 border border-indigo-500/40 shadow-sm' : 'text-slate-400 hover:text-white'
               }`}
+              title="Chớp tắt đảo ảnh và hòa trộn mờ (Onion Skin)"
+            >
+              <Layers className="w-3.5 h-3.5 text-indigo-400" />
+              Blink &amp; Onion
+            </button>
+            <button
+              onClick={() => setViewMode('diff-only')}
+              className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-md text-xs font-semibold transition ${
+                viewMode === 'diff-only' ? 'bg-slate-800 text-rose-400 shadow-sm' : 'text-slate-400 hover:text-white'
+              }`}
+              title="Chỉ hiển thị pixel lỗi tô đỏ dạ quang"
             >
               <Sparkles className="w-3.5 h-3.5" />
               Chỉ Diff (#FF0055)
@@ -115,24 +131,35 @@ export default function DiffViewer({ run, onApproveSuccess }) {
           </div>
 
           {/* Action Buttons */}
-          <button
-            onClick={handleApprove}
-            disabled={isApproving}
-            className="flex items-center gap-1.5 px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg text-xs font-semibold shadow transition disabled:opacity-50"
-          >
-            <CheckCheck className="w-4 h-4" />
-            {isApproving ? 'Đang duyệt...' : 'Duyệt làm Baseline'}
-          </button>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={handleApprove}
+              disabled={isApproving}
+              className="flex items-center gap-1.5 px-3.5 py-2 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg text-xs font-semibold shadow transition disabled:opacity-50"
+            >
+              <CheckCheck className="w-4 h-4" />
+              {isApproving ? 'Đang duyệt...' : 'Duyệt làm Baseline'}
+            </button>
 
-          <a
-            href={api.getReportUrl(run.id)}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-1.5 px-3 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg text-xs font-semibold transition"
-          >
-            <FileText className="w-4 h-4" />
-            Báo cáo HTML
-          </a>
+            <a
+              href={api.getReportUrl(run.id)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 px-3 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg text-xs font-semibold transition"
+            >
+              <FileText className="w-4 h-4" />
+              Báo cáo HTML
+            </a>
+
+            <button
+              onClick={() => window.print()}
+              className="flex items-center gap-1.5 px-3 py-2 bg-indigo-600/80 hover:bg-indigo-600 text-white rounded-lg text-xs font-semibold shadow transition no-print"
+              title="In trực tiếp hoặc Lưu thành file PDF"
+            >
+              <Printer className="w-4 h-4" />
+              In / Xuất PDF
+            </button>
+          </div>
         </div>
       </div>
 
@@ -229,6 +256,15 @@ export default function DiffViewer({ run, onApproveSuccess }) {
               </div>
             </div>
           </div>
+        )}
+
+        {viewMode === 'blink' && (
+          <BlinkCompare
+            baselineSrc={baselineUrl}
+            currentSrc={currentUrl}
+            baselineLabel={`Baseline (${currentResult.viewport})`}
+            currentLabel={`Current (${currentResult.viewport})`}
+          />
         )}
 
         {viewMode === 'diff-only' && (
