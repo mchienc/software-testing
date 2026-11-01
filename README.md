@@ -1,6 +1,9 @@
 # PIXELPULSE VISUAL QA — CÔNG CỤ TỰ ĐỘNG KIỂM THỬ HỒI QUY GIAO DIỆN TRỰC QUAN
 ## (AUTOMATED VISUAL REGRESSION TESTING TOOL)
 
+> 📁 **Tài Liệu Báo Cáo Đồ Án & Video Demo:**  
+> 👉 **Google Drive:** [https://drive.google.com/drive/folders/1gEZ5lAWS9EdPpJ5rg-94R94ryNQq2abx?usp=sharing](https://drive.google.com/drive/folders/1gEZ5lAWS9EdPpJ5rg-94R94ryNQq2abx?usp=sharing)
+
 **PixelPulse Visual QA** là nền tảng tự động kiểm thử hồi quy giao diện trực quan (Visual Regression Testing) dành cho các ứng dụng Web hiện đại. Hệ thống kết hợp trình duyệt không giao diện **Playwright Headless Chromium** với các thuật toán Thị giác máy tính (**Perceptual Diff**, **SSIM**, **OpenCV Morphological Clustering**) và cổng kiểm duyệt tự động **CLI / GitHub Actions CI/CD** nhằm phát hiện chính xác mọi sai lệch về bố cục, màu sắc, phông chữ và khả năng hiển thị đa thiết bị.
 
 ---
