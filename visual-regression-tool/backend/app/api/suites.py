@@ -13,14 +13,36 @@ from app.models.schemas import (
     TestRunResponse,
     BaselineCaptureRequest,
     BaselineCaptureResponse,
-    BaselineItem
+    BaselineItem,
+    GitHubRepoRunRequest,
 )
 from app.services.storage_manager import storage_manager
 from app.services.test_runner import execute_test_run
+from app.services.github_runner import execute_github_repo_visual_test
 from app.services.browser_engine import BrowserEngine
 from app.core.config import settings
 
 router = APIRouter(prefix="/suites", tags=["Test Suites"])
+
+
+@router.post("/run-github", response_model=Dict[str, Any])
+async def run_github_repository_test(payload: GitHubRepoRunRequest):
+    """
+    Clones/fetches the specified GitHub repository, serves its web interface locally,
+    and executes multi-viewport visual regression testing on that repository.
+    """
+    try:
+        run_record = await execute_github_repo_visual_test(
+            repo_url=payload.repo_url,
+            baseline_commit=payload.baseline_commit,
+            current_commit=payload.current_commit,
+            inject_regression=payload.inject_regression,
+            viewports=payload.viewports,
+            threshold=payload.threshold,
+        )
+        return run_record
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Không thể kiểm thử kho GitHub: {str(e)}")
 
 
 @router.post("", response_model=Dict[str, Any], status_code=201)

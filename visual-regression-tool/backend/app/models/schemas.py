@@ -58,6 +58,14 @@ class TestRunTrigger(BaseModel):
     override_url: Optional[str] = Field(None, description="Temporary URL to test without updating suite")
     capture_as_baseline: bool = Field(False, description="Whether to capture and set as new baseline immediately")
 
+class GitHubRepoRunRequest(BaseModel):
+    repo_url: str = Field(..., description="Public GitHub repository URL or owner/repo slug")
+    baseline_commit: Optional[str] = Field(None, description="Baseline commit SHA (optional)")
+    current_commit: Optional[str] = Field(None, description="Current commit SHA (optional)")
+    inject_regression: bool = Field(False, description="Whether to inject simulated CSS regression into current build")
+    viewports: List[str] = Field(default=["desktop", "tablet", "mobile"], description="Target viewports")
+    threshold: float = Field(0.05, description="Max acceptable pixel diff percentage (%)")
+
 class BaselineCaptureRequest(BaseModel):
     url_override: Optional[str] = Field(None, description="Optional custom URL to capture baseline from (defaults to baseline_url or url)")
 

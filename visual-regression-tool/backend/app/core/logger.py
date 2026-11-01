@@ -7,6 +7,11 @@ import logging
 import sys
 
 def setup_logger(name: str = "visual_regression") -> logging.Logger:
+    if hasattr(sys.stdout, "reconfigure"):
+        try:
+            sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+        except Exception:
+            pass
     logger = logging.getLogger(name)
     if not logger.handlers:
         logger.setLevel(logging.INFO)

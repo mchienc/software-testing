@@ -300,8 +300,12 @@ export default function App() {
         {/* TAB 03: CLI & CI/CD Gatekeeper View */}
         {activeWorkspaceTab === 'cicd' && (
           <CiCdPanel
-            onRunCreated={(newRun) => {
+            onRunRecorded={(newRun) => {
               setActiveRun(newRun);
+              loadInitialData();
+            }}
+            onOpenInWorkbench={(newRun) => {
+              if (newRun) setActiveRun(newRun);
               loadInitialData();
               setActiveWorkspaceTab('workbench');
               window.scrollTo({ top: 260, behavior: 'smooth' });

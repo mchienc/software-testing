@@ -25,6 +25,7 @@ Thumbs.db
 # Runtime test run artifacts (keep folder structure clean)
 visual-regression-tool/backend/storage/runs/
 visual-regression-tool/backend/storage/verification_run/
+visual-regression-tool/backend/storage/repos_cache/
 visual-regression-tool/backend/*.db
 
 ci_reports/

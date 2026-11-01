@@ -40,6 +40,19 @@ export const api = {
     return res.json();
   },
 
+  runGitHubRepo: async (payload) => {
+    const res = await fetch(`${API_URL}/suites/run-github`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({ detail: 'GitHub repo test failed' }));
+      throw new Error(err.detail || 'Không thể chạy kiểm thử trên kho GitHub này');
+    }
+    return res.json();
+  },
+
   getSuiteRuns: async (suiteId) => {
     const res = await fetch(`${API_URL}/suites/${suiteId}/runs`);
     if (!res.ok) throw new Error('Failed to fetch suite runs');
