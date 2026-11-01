@@ -1,6 +1,12 @@
 import React, { useState, useRef, useCallback } from 'react';
+import { ChevronsLeftRight } from 'lucide-react';
 
-export default function ImageSlider({ baselineSrc, currentSrc, baselineLabel = 'Baseline (v1.0)', currentLabel = 'Current (v2.0)' }) {
+export default function ImageSlider({
+  baselineSrc,
+  currentSrc,
+  baselineLabel = 'Baseline (v1.0)',
+  currentLabel = 'Current (v2.0)',
+}) {
   const [sliderPosition, setSliderPosition] = useState(50);
   const containerRef = useRef(null);
   const isDragging = useRef(false);
@@ -31,52 +37,97 @@ export default function ImageSlider({ baselineSrc, currentSrc, baselineLabel = '
     isDragging.current = false;
   };
 
-  return (
-    <div 
-      className="relative select-none overflow-hidden rounded-xl border border-slate-800 bg-slate-950 shadow-2xl max-h-[700px] flex justify-center"
-      ref={containerRef}
-      onMouseDown={startDrag}
-      onMouseUp={stopDrag}
-      onMouseLeave={stopDrag}
-      onMouseMove={handleMouseMove}
-      onTouchStart={startDrag}
-      onTouchEnd={stopDrag}
-      onTouchMove={handleTouchMove}
-    >
-      {/* Background: Current Image */}
-      <img
-        src={currentSrc}
-        alt="Current"
-        className="w-full max-h-[700px] object-contain pointer-events-none"
-      />
-      <div className="absolute top-3 right-3 bg-slate-900/80 backdrop-blur border border-slate-700 text-amber-400 text-xs px-2.5 py-1 rounded font-semibold z-10">
-        {currentLabel}
-      </div>
+  const handleKeyDown = (e) => {
+    if (e.key === 'ArrowLeft') {
+      e.preventDefault();
+      setSliderPosition((p) => Math.max(0, p - 2));
+    } else if (e.key === 'ArrowRight') {
+      e.preventDefault();
+      setSliderPosition((p) => Math.min(100, p + 2));
+    }
+  };
 
-      {/* Foreground: Baseline Image Clipped */}
+  return (
+    <div className="space-y-2">
       <div
-        className="absolute inset-0 overflow-hidden pointer-events-none"
-        style={{
-          clipPath: `polygon(0 0, ${sliderPosition}% 0, ${sliderPosition}% 100%, 0 100%)`,
-        }}
+        className="relative select-none overflow-hidden rounded-lg border border-line-subtle bg-optical-grid max-h-[700px] flex justify-center cursor-ew-resize"
+        ref={containerRef}
+        onMouseDown={startDrag}
+        onMouseUp={stopDrag}
+        onMouseLeave={stopDrag}
+        onMouseMove={handleMouseMove}
+        onTouchStart={startDrag}
+        onTouchEnd={stopDrag}
+        onTouchMove={handleTouchMove}
+        onClick={(e) => handleMove(e.clientX)}
       >
+        {/* Background: Current Image */}
         <img
-          src={baselineSrc}
-          alt="Baseline"
+          src={currentSrc}
+          alt={currentLabel}
           className="w-full max-h-[700px] object-contain pointer-events-none"
         />
-        <div className="absolute top-3 left-3 bg-slate-900/80 backdrop-blur border border-slate-700 text-emerald-400 text-xs px-2.5 py-1 rounded font-semibold z-10">
-          {baselineLabel}
+        <div className="absolute top-3 right-3 bg-surface-panel/90 backdrop-blur border border-line-strong text-ink-primary text-[11px] font-mono px-2.5 py-1 rounded z-10 flex items-center gap-1.5">
+          <span className="w-1.5 h-1.5 rounded-full bg-amber-500" />
+          <span>{currentLabel}</span>
+        </div>
+
+        {/* Foreground: Baseline Image Clipped */}
+        <div
+          className="absolute inset-0 overflow-hidden pointer-events-none"
+          style={{
+            clipPath: `polygon(0 0, ${sliderPosition}% 0, ${sliderPosition}% 100%, 0 100%)`,
+          }}
+        >
+          <img
+            src={baselineSrc}
+            alt={baselineLabel}
+            className="w-full max-h-[700px] object-contain pointer-events-none"
+          />
+          <div className="absolute top-3 left-3 bg-surface-panel/90 backdrop-blur border border-line-strong text-ink-primary text-[11px] font-mono px-2.5 py-1 rounded z-10 flex items-center gap-1.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+            <span>{baselineLabel}</span>
+          </div>
+        </div>
+
+        {/* Vertical Divider Line & Accessible Handle */}
+        <div
+          className="absolute top-0 bottom-0 w-px bg-blue-500 z-20 flex items-center justify-center pointer-events-none"
+          style={{ left: `${sliderPosition}%` }}
+        >
+          <button
+            type="button"
+            role="slider"
+            aria-label="Visual comparison split position"
+            aria-valuemin={0}
+            aria-valuemax={100}
+            aria-valuenow={Math.round(sliderPosition)}
+            onKeyDown={handleKeyDown}
+            className="w-7 h-7 rounded-md bg-blue-600 hover:bg-blue-500 text-white flex items-center justify-center shadow-md border border-white/20 pointer-events-auto cursor-ew-resize transition-colors"
+          >
+            <ChevronsLeftRight className="w-3.5 h-3.5" aria-hidden="true" />
+          </button>
         </div>
       </div>
 
-      {/* Vertical Divider Line & Handle */}
-      <div
-        className="absolute top-0 bottom-0 w-0.5 bg-cyan-400 cursor-ew-resize z-20 flex items-center justify-center pointer-events-none"
-        style={{ left: `${sliderPosition}%` }}
-      >
-        <div className="w-8 h-8 rounded-full bg-cyan-500 text-slate-950 flex items-center justify-center shadow-lg font-bold text-xs pointer-events-auto cursor-ew-resize">
-          ⇄
+      {/* Accessible Range Control Bar */}
+      <div className="flex items-center justify-between gap-4 px-3 py-1.5 bg-surface-elevated border border-line-subtle rounded text-[11px] font-mono text-ink-secondary">
+        <span>Split Ratio: {sliderPosition.toFixed(0)}% Baseline</span>
+        <div className="flex items-center gap-1.5">
+          {[0, 25, 50, 75, 100].map((pos) => (
+            <button
+              key={pos}
+              type="button"
+              onClick={() => setSliderPosition(pos)}
+              className={`px-2 py-0.5 rounded cursor-pointer transition-colors ${
+                Math.round(sliderPosition) === pos
+                  ? 'bg-blue-600 text-white font-semibold'
+                  : 'bg-surface-panel text-ink-secondary hover:text-ink-primary border border-line-subtle'
+              }`}
+            >
+              {pos}%
+            </button>
+          ))}
         </div>
       </div>
     </div>

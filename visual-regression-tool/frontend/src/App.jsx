@@ -1,22 +1,34 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { api } from './services/api';
 import TestRunnerForm from './components/TestRunnerForm';
 import MetricsCard from './components/MetricsCard';
 import DiffViewer from './components/DiffViewer';
 import BaselineViewer from './components/BaselineViewer';
 import TrendChart from './components/TrendChart';
-import { 
-  Sparkles, 
-  Activity, 
-  History, 
-  Layers, 
-  CheckCircle, 
-  XCircle, 
+import {
+  Activity,
+  History,
+  CheckCircle2,
+  XCircle,
   ExternalLink,
   BookOpen,
-  Camera,
-  Image as ImageIcon
+  Sun,
+  Moon,
+  Terminal,
+  Search,
+  Copy,
+  Check,
+  Scan,
+  AlertCircle,
+  Loader2,
 } from 'lucide-react';
+
+function stripEmojis(text = '') {
+  return text
+    .replace(/[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}\u{FE00}-\u{FE0F}]/gu, '')
+    .replace(/\s{2,}/g, ' ')
+    .trim();
+}
 
 export default function App() {
   const [suites, setSuites] = useState([]);
@@ -26,6 +38,32 @@ export default function App() {
   const [isCapturingBaseline, setIsCapturingBaseline] = useState(false);
   const [capturedBaselinesInfo, setCapturedBaselinesInfo] = useState(null);
   const [error, setError] = useState(null);
+
+  // Navigation & Theme
+  const [activeWorkspaceTab, setActiveWorkspaceTab] = useState('workbench'); // 'workbench' | 'analytics' | 'cicd'
+  const [isDark, setIsDark] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('pixelpulse-theme');
+      if (saved) return saved === 'dark';
+    }
+    return true;
+  });
+
+  // Audit log filters
+  const [runStatusFilter, setRunStatusFilter] = useState('ALL');
+  const [runSearchQuery, setRunSearchQuery] = useState('');
+  const [copiedCmd, setCopiedCmd] = useState(null);
+
+  useEffect(() => {
+    const root = document.documentElement;
+    if (isDark) {
+      root.classList.add('dark');
+      localStorage.setItem('pixelpulse-theme', 'dark');
+    } else {
+      root.classList.remove('dark');
+      localStorage.setItem('pixelpulse-theme', 'light');
+    }
+  }, [isDark]);
 
   const loadInitialData = async () => {
     try {
@@ -40,7 +78,9 @@ export default function App() {
       }
     } catch (err) {
       console.error(err);
-      setError('Không thể kết nối đến Backend FastAPI (http://localhost:8000). Hãy đảm bảo server đang chạy.');
+      setError(
+        'Cannot connect to FastAPI Backend (http://localhost:8000). Verify that python run.py is active.'
+      );
     }
   };
 
@@ -52,16 +92,14 @@ export default function App() {
     setIsCapturingBaseline(true);
     setError(null);
     try {
-      // 1. Create or find suite
       const suite = await api.createSuite(formData);
-      // 2. Explicitly capture baseline
       const result = await api.captureBaseline(suite.id, {
-        url_override: formData.baseline_url || formData.url
+        url_override: formData.baseline_url || formData.url,
       });
       setCapturedBaselinesInfo(result);
       await loadInitialData();
     } catch (err) {
-      setError(err.message || 'Lỗi khi chụp bộ ảnh Baseline');
+      setError(err.message || 'Failed to capture reference baseline screenshots.');
     } finally {
       setIsCapturingBaseline(false);
     }
@@ -71,14 +109,12 @@ export default function App() {
     setIsRunning(true);
     setError(null);
     try {
-      // 1. Create or find suite
       const newSuite = await api.createSuite(formData);
-      // 2. Trigger test run
       const runResult = await api.runSuite(newSuite.id);
       setActiveRun(runResult);
       await loadInitialData();
     } catch (err) {
-      setError(err.message || 'Xảy ra lỗi trong quá trình thực thi kiểm thử');
+      setError(err.message || 'Visual regression test run failed.');
     } finally {
       setIsRunning(false);
     }
@@ -88,213 +124,490 @@ export default function App() {
     try {
       const runDetails = await api.getRunDetails(runId);
       setActiveRun(runDetails);
-      window.scrollTo({ top: 400, behavior: 'smooth' });
+      setActiveWorkspaceTab('workbench');
+      window.scrollTo({ top: 260, behavior: 'smooth' });
     } catch (err) {
       setError(err.message);
     }
   };
 
+  const copyCommand = (id, cmd) => {
+    navigator.clipboard.writeText(cmd);
+    setCopiedCmd(id);
+    setTimeout(() => setCopiedCmd(null), 1800);
+  };
+
+  const filteredRuns = useMemo(() => {
+    return runs.filter((r) => {
+      if (runStatusFilter !== 'ALL' && r.overall_status !== runStatusFilter) {
+        return false;
+      }
+      if (runSearchQuery.trim()) {
+        const q = runSearchQuery.toLowerCase();
+        const hay = `${r.id} ${r.suite_name || ''} ${r.target_url || ''}`.toLowerCase();
+        return hay.includes(q);
+      }
+      return true;
+    });
+  }, [runs, runStatusFilter, runSearchQuery]);
+
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans">
-      {/* Top Navigation */}
-      <header className="border-b border-slate-800 bg-slate-900/90 backdrop-blur sticky top-0 z-50 px-6 py-4">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 to-indigo-600 flex items-center justify-center font-black text-slate-950 shadow-lg">
-              VR
+    <div className="min-h-screen bg-surface-canvas text-ink-primary flex flex-col font-sans">
+      {/* Top Enterprise Command Header */}
+      <header className="border-b border-line-subtle bg-surface-panel/95 backdrop-blur sticky top-0 z-50 px-4 lg:px-6 h-14 flex items-center">
+        <div className="max-w-[1400px] w-full mx-auto flex items-center justify-between gap-4">
+          {/* Brand Identity */}
+          <div className="flex items-center gap-6">
+            <div className="flex items-center gap-2.5">
+              <div className="w-8 h-8 rounded-md bg-blue-600 text-white flex items-center justify-center shadow-sm">
+                <Scan className="w-4 h-4" aria-hidden="true" />
+              </div>
+              <div>
+                <div className="flex items-center gap-2">
+                  <span className="text-sm font-mono font-bold tracking-tight text-ink-primary">
+                    PIXELPULSE
+                  </span>
+                  <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-surface-elevated text-ink-secondary border border-line-subtle uppercase">
+                    QA ENGINE v2.0
+                  </span>
+                </div>
+                <p className="text-[11px] text-ink-muted hidden sm:block leading-none mt-0.5">
+                  Automated Visual Regression &amp; Perceptual SSIM Workbench
+                </p>
+              </div>
             </div>
-            <div>
-              <h1 className="text-lg font-black tracking-tight text-white flex items-center gap-2">
-                VISUAL REGRESSION QA
-                <span className="text-[10px] px-2 py-0.5 rounded bg-cyan-500/20 text-cyan-300 font-semibold border border-cyan-500/30">
-                  PRO v1.0
-                </span>
-              </h1>
-              <p className="text-xs text-slate-400">
-                Đồ án: Đánh giá và Kiểm định Chất lượng Phần mềm (Black-box UI Testing)
-              </p>
-            </div>
+
+            {/* Workspace Navigation Tabs */}
+            <nav
+              aria-label="Workspace Views"
+              className="hidden md:flex items-center bg-surface-elevated p-0.5 rounded-md border border-line-subtle text-xs"
+            >
+              {[
+                { id: 'workbench', label: '01 / Diff Workbench' },
+                { id: 'analytics', label: `02 / Audit & Trends (${runs.length})` },
+                { id: 'cicd', label: '03 / CLI & CI/CD' },
+              ].map((tab) => (
+                <button
+                  key={tab.id}
+                  type="button"
+                  onClick={() => setActiveWorkspaceTab(tab.id)}
+                  className={`px-3 py-1 rounded font-mono text-[11px] font-medium cursor-pointer transition-colors ${
+                    activeWorkspaceTab === tab.id
+                      ? 'bg-surface-panel text-ink-primary border border-line-strong shadow-sm'
+                      : 'text-ink-secondary hover:text-ink-primary'
+                  }`}
+                >
+                  {tab.label}
+                </button>
+              ))}
+            </nav>
           </div>
 
-          <div className="flex items-center gap-4 text-xs font-semibold">
-            <a
-              href="http://localhost:8000/docs"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-1.5 text-slate-400 hover:text-white transition"
-            >
-              <BookOpen className="w-4 h-4 text-cyan-400" />
-              FastAPI Swagger Docs
-            </a>
+          {/* Right Quick Links & Theme Switcher */}
+          <div className="flex items-center gap-2 text-xs font-mono">
             <a
               href="http://localhost:8000/demo/v1_baseline/index.html"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-3 py-1.5 rounded-lg bg-slate-800 text-emerald-400 hover:bg-slate-700 transition"
+              className="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-elevated hover:bg-surface-inset text-ink-secondary hover:text-ink-primary border border-line-subtle transition-colors"
             >
-              Demo Baseline (v1.0)
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+              <span>v1.0 Baseline</span>
             </a>
             <a
               href="http://localhost:8000/demo/v2_regression/index.html"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-3 py-1.5 rounded-lg bg-slate-800 text-rose-400 hover:bg-slate-700 transition"
+              className="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-elevated hover:bg-surface-inset text-ink-secondary hover:text-ink-primary border border-line-subtle transition-colors"
             >
-              Demo Bug (v2.0)
+              <span className="w-1.5 h-1.5 rounded-full bg-rose-500" />
+              <span>v2.0 Regression</span>
             </a>
+            <a
+              href="http://localhost:8000/docs"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden lg:inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-elevated hover:bg-surface-inset text-ink-secondary hover:text-ink-primary border border-line-subtle transition-colors"
+            >
+              <BookOpen className="w-3.5 h-3.5 text-blue-500" aria-hidden="true" />
+              <span>OpenAPI</span>
+            </a>
+
+            <button
+              type="button"
+              onClick={() => setIsDark(!isDark)}
+              aria-label={isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+              className="p-1.5 rounded-md bg-surface-elevated hover:bg-surface-inset text-ink-secondary hover:text-ink-primary border border-line-subtle cursor-pointer transition-colors"
+              title={isDark ? 'Switch to Swiss Alabaster (Light)' : 'Switch to Carbon Obsidian (Dark)'}
+            >
+              {isDark ? (
+                <Sun className="w-4 h-4 text-amber-400" aria-hidden="true" />
+              ) : (
+                <Moon className="w-4 h-4 text-blue-600" aria-hidden="true" />
+              )}
+            </button>
           </div>
         </div>
       </header>
 
-      {/* Main Content Area */}
-      <main className="max-w-7xl mx-auto w-full p-6 flex-1">
+      {/* Mobile Workspace Switcher */}
+      <div className="md:hidden px-4 py-2 bg-surface-panel border-b border-line-subtle flex items-center gap-1">
+        {[
+          { id: 'workbench', label: 'Workbench' },
+          { id: 'analytics', label: `Audit (${runs.length})` },
+          { id: 'cicd', label: 'CLI / CI' },
+        ].map((tab) => (
+          <button
+            key={tab.id}
+            type="button"
+            onClick={() => setActiveWorkspaceTab(tab.id)}
+            className={`flex-1 py-1 rounded font-mono text-xs font-medium cursor-pointer ${
+              activeWorkspaceTab === tab.id
+                ? 'bg-blue-600 text-white'
+                : 'bg-surface-elevated text-ink-secondary'
+            }`}
+          >
+            {tab.label}
+          </button>
+        ))}
+      </div>
+
+      {/* Main Content Container */}
+      <main className="max-w-[1400px] mx-auto w-full px-4 lg:px-6 py-6 flex-1">
         {error && (
-          <div className="mb-6 p-4 bg-rose-950/60 border border-rose-800/80 rounded-xl text-rose-300 text-sm flex items-center justify-between">
-            <span>{error}</span>
-            <button onClick={() => setError(null)} className="text-xs text-rose-400 underline">Đóng</button>
+          <div
+            role="alert"
+            className="mb-6 p-3.5 bg-rose-500/10 border border-rose-500/30 rounded-lg text-rose-500 text-xs flex items-center justify-between gap-3"
+          >
+            <div className="flex items-center gap-2 font-medium">
+              <AlertCircle className="w-4 h-4 shrink-0" aria-hidden="true" />
+              <span>{error}</span>
+            </div>
+            <button
+              type="button"
+              onClick={() => setError(null)}
+              className="text-xs font-mono underline cursor-pointer"
+            >
+              Dismiss
+            </button>
           </div>
         )}
 
-        {/* 1. Control Panel Form */}
-        <TestRunnerForm
-          onSubmit={handleStartRun}
-          onCaptureBaseline={handleCaptureBaseline}
-          isRunning={isRunning}
-          isCapturingBaseline={isCapturingBaseline}
-        />
-
-        {/* Baseline Capture Progress State */}
-        {isCapturingBaseline && (
-          <div className="bg-slate-900 border border-emerald-500/40 rounded-xl p-8 mb-8 text-center shadow-2xl">
-            <div className="inline-block animate-spin w-10 h-10 border-4 border-emerald-500 border-t-transparent rounded-full mb-4"></div>
-            <h3 className="text-lg font-bold text-white mb-2">Đang Chụp Bộ Ảnh Chuẩn (Baseline Capture)...</h3>
-            <p className="text-xs text-slate-400 max-w-md mx-auto">
-              Playwright đang mở Chromium headless nạp trang gốc, đóng băng CSS animation, đồng bộ phông chữ và chụp ảnh quy chuẩn cho Desktop, Tablet, Mobile. Vui lòng chờ 2-4 giây!
-            </p>
-          </div>
-        )}
-
-        {/* Display Captured Baseline Preview if available */}
-        {capturedBaselinesInfo && (
-          <BaselineViewer
-            baselines={capturedBaselinesInfo.baselines}
-            suiteName={capturedBaselinesInfo.suite_name}
-            capturedUrl={capturedBaselinesInfo.captured_url}
-            onClose={() => setCapturedBaselinesInfo(null)}
-          />
-        )}
-
-        {/* Loading Progress State for Test Run */}
-        {isRunning && (
-          <div className="bg-slate-900 border border-cyan-500/40 rounded-xl p-8 mb-8 text-center shadow-2xl">
-            <div className="inline-block animate-spin w-10 h-10 border-4 border-cyan-500 border-t-transparent rounded-full mb-4"></div>
-            <h3 className="text-lg font-bold text-white mb-2">Đang Thực Thi Kiểm Thử Tự Động...</h3>
-            <p className="text-xs text-slate-400 max-w-md mx-auto">
-              Playwright đang mở Chromium headless, tiêm mã Anti-Flakiness, chờ phông chữ tải hoàn tất, che vùng động và phân tích Perceptual Diff / SSIM. Vui lòng chờ 3-5 giây!
-            </p>
-          </div>
-        )}
-
-        {/* 2. Visual Regression Details */}
-        {activeRun && (
-          <div className="mb-10">
-            <div className="flex items-center justify-between mb-4">
-              <h2 className="text-lg font-bold text-white flex items-center gap-2">
-                <Activity className="w-5 h-5 text-indigo-400" />
-                Kết Quả Kiểm Định Chi Tiết ({activeRun.suite_name})
-              </h2>
-              <span className="text-xs text-slate-500">Mã phiên: {activeRun.id}</span>
+        {/* TAB 03: CLI & CI/CD Gatekeeper View */}
+        {activeWorkspaceTab === 'cicd' && (
+          <div className="bg-surface-panel border border-line-subtle rounded-lg overflow-hidden mb-8">
+            <div className="px-5 py-3.5 bg-surface-elevated border-b border-line-subtle flex items-center justify-between">
+              <div className="flex items-center gap-2.5">
+                <Terminal className="w-4 h-4 text-blue-500" aria-hidden="true" />
+                <h2 className="text-xs font-mono font-bold uppercase tracking-wider text-ink-primary">
+                  Headless CLI Gatekeeper &amp; GitHub Actions CI/CD Integration
+                </h2>
+              </div>
+              <span className="text-[11px] font-mono text-emerald-500 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/25">
+                .github/workflows/visual-regression.yml
+              </span>
             </div>
 
-            {activeRun.executive_summary && (
-              <div className="mb-6 p-4 bg-gradient-to-r from-slate-900 via-indigo-950/40 to-slate-900 border border-indigo-500/30 rounded-xl shadow-lg">
-                <div className="flex items-center gap-2 mb-1.5 text-xs font-bold uppercase tracking-wider text-indigo-300">
-                  <Sparkles className="w-4 h-4 text-cyan-400" />
-                  <span>Tóm Tắt Tương Đối Về Sự Thay Đổi (Executive Change Summary)</span>
+            <div className="p-5 grid grid-cols-1 lg:grid-cols-2 gap-4">
+              {[
+                {
+                  id: 'cmd-pass',
+                  title: '01 / Zero-Diff Gate Verification (Exit Code 0)',
+                  desc: 'Compares v1.0 Baseline against v1.0 Current across Desktop, Tablet, and Mobile viewports to verify 0.0000% False Positives.',
+                  cmd: 'python cli.py --mode pass --reset-baseline --output-html ci_reports/pass_report.html',
+                },
+                {
+                  id: 'cmd-reg',
+                  title: '02 / Regression Defect Detection (Exit Code 1)',
+                  desc: 'Compares v1.0 Baseline against v2.0 Mutated Current, outputs Base64 HTML + JSON reports, and fails the CI pipeline.',
+                  cmd: 'python cli.py --mode regression --reset-baseline --output-html ci_reports/regression_report.html --output-json ci_reports/result.json',
+                },
+                {
+                  id: 'cmd-base',
+                  title: '03 / Headless Reference Baseline Capture',
+                  desc: 'Captures fresh full-page reference screenshots for all configured viewports with CSS animation freeze.',
+                  cmd: 'python cli.py --capture-baseline',
+                },
+                {
+                  id: 'cmd-approve',
+                  title: '04 / Promote Latest Run to Official Baseline',
+                  desc: 'Approves the latest candidate screenshots from the terminal when UI changes are intentional.',
+                  cmd: 'python cli.py --approve-latest',
+                },
+              ].map((item) => (
+                <div
+                  key={item.id}
+                  className="p-4 bg-surface-elevated border border-line-subtle rounded-lg flex flex-col justify-between"
+                >
+                  <div>
+                    <h3 className="text-xs font-mono font-bold text-ink-primary mb-1">
+                      {item.title}
+                    </h3>
+                    <p className="text-xs text-ink-secondary mb-3">{item.desc}</p>
+                  </div>
+                  <div className="flex items-center justify-between gap-2 bg-surface-inset border border-line-subtle rounded px-3 py-2 font-mono text-[11px] text-ink-primary">
+                    <code className="truncate">{item.cmd}</code>
+                    <button
+                      type="button"
+                      onClick={() => copyCommand(item.id, item.cmd)}
+                      className="inline-flex items-center gap-1 px-2 py-1 rounded bg-surface-panel hover:bg-surface-elevated text-ink-secondary hover:text-ink-primary border border-line-subtle shrink-0 cursor-pointer transition-colors"
+                    >
+                      {copiedCmd === item.id ? (
+                        <>
+                          <Check className="w-3 h-3 text-emerald-500" aria-hidden="true" />
+                          <span>Copied</span>
+                        </>
+                      ) : (
+                        <>
+                          <Copy className="w-3 h-3" aria-hidden="true" />
+                          <span>Copy</span>
+                        </>
+                      )}
+                    </button>
+                  </div>
                 </div>
-                <p className="text-xs text-slate-200 leading-relaxed font-medium">
-                  {activeRun.executive_summary}
-                </p>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* TAB 01: Diff Workbench */}
+        {activeWorkspaceTab === 'workbench' && (
+          <>
+            {/* 1. Control Panel Form */}
+            <TestRunnerForm
+              onSubmit={handleStartRun}
+              onCaptureBaseline={handleCaptureBaseline}
+              isRunning={isRunning}
+              isCapturingBaseline={isCapturingBaseline}
+            />
+
+            {/* Baseline Capture Progress State */}
+            {isCapturingBaseline && (
+              <div className="bg-surface-panel border border-emerald-500/40 rounded-lg p-6 mb-6 flex items-center gap-4">
+                <Loader2 className="w-6 h-6 text-emerald-500 animate-spin shrink-0" aria-hidden="true" />
+                <div>
+                  <h3 className="text-sm font-mono font-bold text-ink-primary">
+                    Capturing Multi-Viewport Reference Baseline...
+                  </h3>
+                  <p className="text-xs text-ink-secondary mt-0.5">
+                    Playwright Headless Chromium is freezing CSS transitions, awaiting document.fonts.ready, masking dynamic selectors, and capturing Desktop (1920×1080), Tablet (768×1024), and Mobile (375×812).
+                  </p>
+                </div>
               </div>
             )}
 
-            <MetricsCard run={activeRun} />
-            <DiffViewer run={activeRun} onApproveSuccess={loadInitialData} />
-          </div>
+            {/* Display Captured Baseline Preview if available */}
+            {capturedBaselinesInfo && (
+              <BaselineViewer
+                baselines={capturedBaselinesInfo.baselines}
+                suiteName={capturedBaselinesInfo.suite_name}
+                capturedUrl={capturedBaselinesInfo.captured_url}
+                onClose={() => setCapturedBaselinesInfo(null)}
+              />
+            )}
+
+            {/* Loading Progress State for Test Run */}
+            {isRunning && (
+              <div className="bg-surface-panel border border-blue-500/40 rounded-lg p-6 mb-6 flex items-center gap-4">
+                <Loader2 className="w-6 h-6 text-blue-500 animate-spin shrink-0" aria-hidden="true" />
+                <div>
+                  <h3 className="text-sm font-mono font-bold text-ink-primary">
+                    Executing Perceptual Diff, SSIM &amp; OpenCV Contour Clustering...
+                  </h3>
+                  <p className="text-xs text-ink-secondary mt-0.5">
+                    Normalizing canvas dimensions, filtering 3×3 anti-aliasing artifacts, computing Structural Similarity Index (SSIM), and localizing defect bounding boxes.
+                  </p>
+                </div>
+              </div>
+            )}
+
+            {/* 2. Active Run Telemetry & Optical Diff Inspector */}
+            {activeRun && (
+              <section aria-label="Active Run Inspection" className="mb-8">
+                <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
+                  <div className="flex items-center gap-2">
+                    <Activity className="w-4 h-4 text-blue-500" aria-hidden="true" />
+                    <h2 className="text-xs font-mono font-bold uppercase tracking-wider text-ink-primary">
+                      Inspection Report // {activeRun.suite_name}
+                    </h2>
+                  </div>
+                  <div className="flex items-center gap-3 text-xs font-mono text-ink-muted tabular-nums">
+                    <span>RUN ID: #{activeRun.id}</span>
+                    <span>&middot;</span>
+                    <span>COMPLETED: {activeRun.completed_at || activeRun.started_at}</span>
+                  </div>
+                </div>
+
+                {/* Clean Executive Diagnostic Banner (Emojis stripped) */}
+                {activeRun.executive_summary && (
+                  <div className="mb-4 p-3.5 bg-surface-panel border-l-4 border-l-blue-600 border border-line-subtle rounded-r-lg flex items-start justify-between gap-4">
+                    <div>
+                      <span className="block text-[10px] font-mono font-bold uppercase tracking-wider text-blue-500 mb-1">
+                        Executive Diagnostic Summary
+                      </span>
+                      <p className="text-xs text-ink-primary leading-relaxed">
+                        {stripEmojis(activeRun.executive_summary)}
+                      </p>
+                    </div>
+                  </div>
+                )}
+
+                <MetricsCard run={activeRun} />
+                <DiffViewer run={activeRun} onApproveSuccess={loadInitialData} />
+              </section>
+            )}
+          </>
         )}
 
-        {/* Quality Trend Analytics Chart */}
-        {runs && runs.length > 0 && <TrendChart runs={runs} />}
+        {/* Quality Trend Analytics & Execution Audit Log (Shown in Analytics Tab AND at bottom of Workbench) */}
+        {(activeWorkspaceTab === 'analytics' || activeWorkspaceTab === 'workbench') && (
+          <section aria-label="Quality Trend and Execution Audit Log">
+            {runs && runs.length > 0 && <TrendChart runs={runs} />}
 
-        {/* 3. Execution History Table */}
-        <div className="bg-slate-900 border border-slate-800 rounded-xl p-6 shadow-xl">
-          <div className="flex items-center justify-between pb-4 border-b border-slate-800 mb-4">
-            <div className="flex items-center gap-2 text-white font-bold">
-              <History className="w-5 h-5 text-amber-400" />
-              <span>Lịch Sử Các Lần Chạy Kiểm Thử (Execution Runs)</span>
-            </div>
-            <span className="text-xs text-slate-400">{runs.length} phiên đã lưu</span>
-          </div>
+            {/* Execution History Table with Status Filter & Search */}
+            <div className="bg-surface-panel border border-line-subtle rounded-lg overflow-hidden">
+              <div className="px-5 py-3 bg-surface-elevated border-b border-line-subtle flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div className="flex items-center gap-2.5">
+                  <History className="w-4 h-4 text-blue-500" aria-hidden="true" />
+                  <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-ink-primary">
+                    Execution Audit Log ({filteredRuns.length} / {runs.length})
+                  </h3>
+                </div>
 
-          {runs.length === 0 ? (
-            <p className="text-center text-slate-500 text-xs py-6">Chưa có lịch sử kiểm thử nào.</p>
-          ) : (
-            <div className="overflow-x-auto">
-              <table className="w-full text-left text-xs border-collapse">
-                <thead>
-                  <tr className="border-b border-slate-800 text-slate-400 uppercase font-semibold">
-                    <th className="py-3 px-4">Run ID</th>
-                    <th className="py-3 px-4">Kịch bản</th>
-                    <th className="py-3 px-4">Kết quả</th>
-                    <th className="py-3 px-4">Viewports Đạt</th>
-                    <th className="py-3 px-4">Thời gian chạy</th>
-                    <th className="py-3 px-4">Thời lượng</th>
-                    <th className="py-3 px-4 text-right">Thao tác</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-slate-800">
-                  {runs.map((r) => {
-                    const isPassed = r.overall_status === 'PASSED';
-                    const isSelected = activeRun?.id === r.id;
-                    return (
-                      <tr key={r.id} className={`hover:bg-slate-800/50 ${isSelected ? 'bg-slate-800/70' : ''}`}>
-                        <td className="py-3 px-4 font-mono text-cyan-400 font-semibold">{r.id}</td>
-                        <td className="py-3 px-4 font-medium text-slate-200">{r.suite_name}</td>
-                        <td className="py-3 px-4">
-                          <span className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-bold ${
-                            isPassed ? 'bg-emerald-500/20 text-emerald-400' : 'bg-rose-500/20 text-rose-400'
-                          }`}>
-                            {isPassed ? <CheckCircle className="w-3 h-3" /> : <XCircle className="w-3 h-3" />}
-                            {r.overall_status}
-                          </span>
-                        </td>
-                        <td className="py-3 px-4 text-slate-300">
-                          {r.passed_viewports} / {r.total_viewports}
-                        </td>
-                        <td className="py-3 px-4 text-slate-400">{r.started_at}</td>
-                        <td className="py-3 px-4 text-slate-400">{r.duration_seconds}s</td>
-                        <td className="py-3 px-4 text-right">
-                          <button
-                            onClick={() => handleSelectHistoricalRun(r.id)}
-                            className="px-3 py-1 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded font-semibold text-[11px] transition"
-                          >
-                            Xem Chi Tiết
-                          </button>
-                        </td>
+                {/* Filter & Search Controls */}
+                <div className="flex flex-wrap items-center gap-2">
+                  <div className="flex items-center bg-surface-panel p-0.5 rounded border border-line-subtle text-[11px] font-mono">
+                    {['ALL', 'PASSED', 'FAILED'].map((st) => (
+                      <button
+                        key={st}
+                        type="button"
+                        onClick={() => setRunStatusFilter(st)}
+                        className={`px-2 py-0.5 rounded cursor-pointer transition-colors ${
+                          runStatusFilter === st
+                            ? 'bg-blue-600 text-white font-semibold'
+                            : 'text-ink-secondary hover:text-ink-primary'
+                        }`}
+                      >
+                        {st}
+                      </button>
+                    ))}
+                  </div>
+
+                  <div className="relative">
+                    <Search
+                      className="w-3.5 h-3.5 text-ink-muted absolute left-2.5 top-1/2 -translate-y-1/2"
+                      aria-hidden="true"
+                    />
+                    <input
+                      type="text"
+                      value={runSearchQuery}
+                      onChange={(e) => setRunSearchQuery(e.target.value)}
+                      placeholder="Search Run ID or Suite..."
+                      aria-label="Search execution history"
+                      className="bg-surface-inset border border-line-subtle focus:border-blue-500 rounded pl-8 pr-2.5 py-1 text-xs text-ink-primary w-48"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {filteredRuns.length === 0 ? (
+                <p className="text-center text-ink-muted text-xs font-mono py-8">
+                  No matching test runs found in storage.
+                </p>
+              ) : (
+                <div className="overflow-x-auto">
+                  <table className="w-full text-left text-xs border-collapse">
+                    <thead>
+                      <tr className="border-b border-line-subtle bg-surface-elevated/50 text-ink-muted font-mono text-[11px] uppercase">
+                        <th className="py-2.5 px-4">Run ID</th>
+                        <th className="py-2.5 px-4">Suite Name</th>
+                        <th className="py-2.5 px-4">Verdict</th>
+                        <th className="py-2.5 px-4">Viewports</th>
+                        <th className="py-2.5 px-4">Duration</th>
+                        <th className="py-2.5 px-4">Timestamp</th>
+                        <th className="py-2.5 px-4 text-right">Actions</th>
                       </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
+                    </thead>
+                    <tbody className="divide-y divide-line-subtle">
+                      {filteredRuns.map((r) => {
+                        const isPassed = r.overall_status === 'PASSED';
+                        const isSelected = activeRun?.id === r.id;
+                        return (
+                          <tr
+                            key={r.id}
+                            onClick={() => handleSelectHistoricalRun(r.id)}
+                            className={`cursor-pointer transition-colors ${
+                              isSelected
+                                ? 'bg-blue-500/10'
+                                : 'hover:bg-surface-elevated/60'
+                            }`}
+                          >
+                            <td className="py-2.5 px-4 font-mono font-semibold text-blue-500 tabular-nums">
+                              #{r.id}
+                            </td>
+                            <td className="py-2.5 px-4 font-medium text-ink-primary">
+                              {r.suite_name}
+                            </td>
+                            <td className="py-2.5 px-4">
+                              <span
+                                className={`inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-mono font-bold border ${
+                                  isPassed
+                                    ? 'bg-emerald-500/10 text-emerald-500 border-emerald-500/30'
+                                    : 'bg-rose-500/10 text-rose-500 border-rose-500/30'
+                                }`}
+                              >
+                                {isPassed ? (
+                                  <CheckCircle2 className="w-3 h-3" aria-hidden="true" />
+                                ) : (
+                                  <XCircle className="w-3 h-3" aria-hidden="true" />
+                                )}
+                                {r.overall_status}
+                              </span>
+                            </td>
+                            <td className="py-2.5 px-4 font-mono text-ink-secondary tabular-nums">
+                              {r.passed_viewports}/{r.total_viewports} passed
+                            </td>
+                            <td className="py-2.5 px-4 font-mono text-ink-secondary tabular-nums">
+                              {r.duration_seconds}s
+                            </td>
+                            <td className="py-2.5 px-4 font-mono text-ink-muted tabular-nums">
+                              {r.started_at}
+                            </td>
+                            <td className="py-2.5 px-4 text-right">
+                              <a
+                                href={api.getReportUrl(r.id)}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                onClick={(e) => e.stopPropagation()}
+                                className="inline-flex items-center gap-1 text-blue-500 hover:underline font-mono text-[11px]"
+                              >
+                                <span>Report</span>
+                                <ExternalLink className="w-3 h-3" aria-hidden="true" />
+                              </a>
+                            </td>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                </div>
+              )}
             </div>
-          )}
-        </div>
+          </section>
+        )}
       </main>
 
-      {/* Footer */}
-      <footer className="border-t border-slate-900 bg-slate-950 py-6 text-center text-xs text-slate-500">
-        <p>Hệ Thống Tự Động Kiểm Thử Hồi Quy Giao Diện Web (Automated Visual Regression Testing Tool)</p>
-        <p className="mt-1">Đề tài Báo cáo & Đồ án môn học: Đánh giá và Kiểm định Chất lượng Phần mềm (SQA).</p>
+      {/* Compact Technical Footer */}
+      <footer className="border-t border-line-subtle bg-surface-panel py-4 px-6 mt-10 text-[11px] font-mono text-ink-muted">
+        <div className="max-w-[1400px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
+          <span>
+            PIXELPULSE VISUAL QA ENGINE // PLAYWRIGHT CHROMIUM + OPENCV + SCIKIT-IMAGE SSIM
+          </span>
+          <span>
+            DESIGN SYSTEM: SWISS DATA-DENSE WORKBENCH (IBM PLEX SANS + JETBRAINS MONO)
+          </span>
+        </div>
       </footer>
     </div>
   );

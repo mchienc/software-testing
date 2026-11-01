@@ -2,11 +2,143 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ============================================================================
+   THREE-LAYER DESIGN TOKEN ARCHITECTURE (design-system + ui-ux-pro-max)
+   Layer 1: Primitive -> Layer 2: Semantic -> Layer 3: Component
+   ============================================================================ */
+
+:root {
+  /* Layer 1: Primitives */
+  --p-slate-50: #f8fafc;
+  --p-slate-100: #f1f5f9;
+  --p-slate-200: #e2e8f0;
+  --p-slate-300: #cbd5e1;
+  --p-slate-500: #64748b;
+  --p-slate-600: #475569;
+  --p-slate-700: #334155;
+  --p-slate-800: #1e293b;
+  --p-slate-900: #0f172a;
+
+  --p-carbon-950: #090a0f;
+  --p-carbon-900: #101218;
+  --p-carbon-850: #161922;
+  --p-carbon-800: #1e222d;
+  --p-carbon-700: #2a303f;
+
+  --p-blue-600: #2563eb;
+  --p-blue-500: #3b82f6;
+  --p-blue-700: #1d4ed8;
+
+  --p-emerald-600: #059669;
+  --p-emerald-500: #10b981;
+  --p-rose-600: #e11d48;
+  --p-rose-500: #f43f5e;
+  --p-amber-600: #d97706;
+  --p-amber-500: #f59e0b;
+
+  /* Density 8/10 Spacing Scale */
+  --space-xs: 0.125rem; /* 2px */
+  --space-sm: 0.25rem;  /* 4px */
+  --space-md: 0.5rem;   /* 8px */
+  --space-lg: 0.75rem;  /* 12px */
+  --space-xl: 1rem;     /* 16px */
+  --space-2xl: 1.5rem;  /* 24px */
+
+  /* Layer 2: Semantic Tokens (Light Mode Default - Swiss Alabaster) */
+  --bg-canvas: var(--p-slate-50);
+  --bg-panel: #ffffff;
+  --bg-elevated: var(--p-slate-100);
+  --bg-inset: #f1f5f9;
+
+  --text-primary: var(--p-slate-900);
+  --text-secondary: var(--p-slate-600);
+  --text-muted: var(--p-slate-500);
+
+  --border-subtle: var(--p-slate-200);
+  --border-strong: var(--p-slate-300);
+
+  --color-primary: var(--p-blue-600);
+  --color-primary-hover: var(--p-blue-700);
+  --color-primary-subtle: rgba(37, 99, 235, 0.08);
+
+  --status-pass: var(--p-emerald-600);
+  --status-fail: var(--p-rose-600);
+  --status-warn: var(--p-amber-600);
+
+  --checker-a: #f1f5f9;
+  --checker-b: #e2e8f0;
+}
+
+html.dark {
+  /* Layer 2: Semantic Tokens (Dark Mode - Carbon Obsidian) */
+  --bg-canvas: var(--p-carbon-950);
+  --bg-panel: var(--p-carbon-900);
+  --bg-elevated: var(--p-carbon-850);
+  --bg-inset: #06070a;
+
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+
+  --border-subtle: var(--p-carbon-800);
+  --border-strong: var(--p-carbon-700);
+
+  --color-primary: var(--p-blue-500);
+  --color-primary-hover: var(--p-blue-600);
+  --color-primary-subtle: rgba(59, 130, 246, 0.12);
+
+  --status-pass: var(--p-emerald-500);
+  --status-fail: var(--p-rose-500);
+  --status-warn: var(--p-amber-500);
+
+  --checker-a: #0c0e14;
+  --checker-b: #12151e;
+}
+
 body {
   margin: 0;
-  background-color: #030712;
-  color: #f3f4f6;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  background-color: var(--bg-canvas);
+  color: var(--text-primary);
+  font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+}
+
+/* Strict Tabular Numerals for Metrics, Coordinates, SSIM & Timestamps */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Optical Inspection Backdrop (CAD / Chromatic style) */
+.bg-optical-grid {
+  background-color: var(--checker-a);
+  background-image:
+    linear-gradient(45deg, var(--checker-b) 25%, transparent 25%),
+    linear-gradient(-45deg, var(--checker-b) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, var(--checker-b) 75%),
+    linear-gradient(-45deg, transparent 75%, var(--checker-b) 75%);
+  background-size: 16px 16px;
+  background-position: 0 0, 0 8px, 8px -8px, -8px 0;
+}
+
+/* Accessible Focus States */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Reduced Motion Compliance */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 /* Print optimizations for One-Click PDF Export */
@@ -16,7 +148,6 @@ body {
     color: #0f172a !important;
   }
 
-  /* Hide navigation, forms, interactive controls during print */
   header,
   form,
   .no-print,
@@ -24,32 +155,11 @@ body {
     display: none !important;
   }
 
-  /* Make containers light-themed and border-crisp */
-  .bg-slate-900,
-  .bg-slate-950 {
-    background-color: #ffffff !important;
-    border-color: #cbd5e1 !important;
-    color: #0f172a !important;
-    box-shadow: none !important;
-  }
-
-  .text-white {
-    color: #0f172a !important;
-  }
-
-  .text-slate-200,
-  .text-slate-300,
-  .text-slate-400 {
-    color: #334155 !important;
-  }
-
-  /* Ensure colors and images are printed with exact fidelity */
   * {
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
   }
 
-  /* Prevent page-breaks in the middle of defect cluster cards */
   .break-inside-avoid {
     break-inside: avoid !important;
     page-break-inside: avoid !important;

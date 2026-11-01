@@ -1,332 +1,540 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { api } from '../services/api';
 import ImageSlider from './ImageSlider';
 import BlinkCompare from './BlinkCompare';
-import { 
-  Columns, 
-  SlidersHorizontal, 
-  Sparkles, 
-  CheckCheck, 
-  ExternalLink, 
-  Smartphone, 
-  Tablet, 
+import {
+  Columns,
+  SlidersHorizontal,
+  ScanEye,
+  CheckCheck,
+  Smartphone,
+  Tablet,
   Monitor,
   AlertTriangle,
   FileText,
   Printer,
-  Layers
+  Layers,
+  Palette,
+  MoveVertical,
+  Ruler,
+  Activity,
+  Info,
+  Search,
+  CheckCircle2,
+  XCircle,
 } from 'lucide-react';
+
+/**
+ * Strips leading emojis from legacy backend semantic_insights strings
+ * and returns a clean string + semantic category for vector icon pairing.
+ */
+function parseSemanticInsight(rawText = '') {
+  const cleaned = rawText
+    .replace(/^[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}\u{FE00}-\u{FE0F}\s]+/u, '')
+    .trim();
+
+  const lower = cleaned.toLowerCase();
+  if (lower.includes('màu') || lower.includes('color')) {
+    return { text: cleaned, type: 'color', Icon: Palette, colorClass: 'text-amber-500' };
+  }
+  if (lower.includes('xô lệch') || lower.includes('dịch chuyển') || lower.includes('layout')) {
+    return { text: cleaned, type: 'layout', Icon: MoveVertical, colorClass: 'text-rose-500' };
+  }
+  if (lower.includes('chiều cao') || lower.includes('kích thước')) {
+    return { text: cleaned, type: 'dimension', Icon: Ruler, colorClass: 'text-blue-500' };
+  }
+  if (lower.includes('ssim')) {
+    return { text: cleaned, type: 'ssim', Icon: Activity, colorClass: 'text-indigo-500' };
+  }
+  return { text: cleaned, type: 'info', Icon: Info, colorClass: 'text-ink-secondary' };
+}
 
 export default function DiffViewer({ run, onApproveSuccess }) {
   const [selectedViewportIndex, setSelectedViewportIndex] = useState(0);
-  const [viewMode, setViewMode] = useState('slider'); // 'slider' | 'side-by-side' | 'diff-only'
+  const [viewMode, setViewMode] = useState('slider'); // 'slider' | 'side-by-side' | 'blink' | 'diff-only'
+  const [confirmApprove, setConfirmApprove] = useState(false);
   const [isApproving, setIsApproving] = useState(false);
-  const [approveMessage, setApproveMessage] = useState(null);
+  const [approveStatus, setApproveStatus] = useState(null); // { ok: boolean, text: string }
+
+  // Defect cluster filtering (addresses MASTER.md "No filtering" anti-pattern)
+  const [severityFilter, setSeverityFilter] = useState('ALL');
+  const [defectSearch, setDefectSearch] = useState('');
 
   if (!run || !run.results || run.results.length === 0) {
     return (
-      <div className="bg-slate-900 border border-slate-800 rounded-xl p-8 text-center text-slate-400">
-        Không có dữ liệu kết quả phân tích hình ảnh.
+      <div className="bg-surface-panel border border-line-subtle rounded-lg p-8 text-center text-ink-muted text-xs font-mono">
+        No viewport comparison artifacts available for this run.
       </div>
     );
   }
 
   const currentResult = run.results[selectedViewportIndex] || run.results[0];
-
   const baselineUrl = api.getImageUrl(currentResult.baseline_image_url);
   const currentUrl = api.getImageUrl(currentResult.current_image_url);
   const diffUrl = api.getImageUrl(currentResult.diff_image_url);
 
   const handleApprove = async () => {
-    if (!window.confirm('Bạn có chắc chắn muốn duyệt ảnh phiên bản này làm Baseline chuẩn mới?')) return;
     setIsApproving(true);
-    setApproveMessage(null);
+    setApproveStatus(null);
     try {
       await api.approveBaseline(run.id);
-      setApproveMessage('✓ Đã cập nhật thành công làm Baseline chuẩn mới!');
+      setApproveStatus({
+        ok: true,
+        text: 'Current screenshots promoted to active Baseline for this suite.',
+      });
+      setConfirmApprove(false);
       if (onApproveSuccess) onApproveSuccess();
     } catch (err) {
-      setApproveMessage(`❌ Lỗi: ${err.message}`);
+      setApproveStatus({
+        ok: false,
+        text: `Failed to promote baseline: ${err.message}`,
+      });
     } finally {
       setIsApproving(false);
     }
   };
 
   const getViewportIcon = (vp) => {
-    if (vp.toLowerCase().includes('mobile')) return <Smartphone className="w-4 h-4" />;
-    if (vp.toLowerCase().includes('tablet')) return <Tablet className="w-4 h-4" />;
-    return <Monitor className="w-4 h-4" />;
+    if (vp.toLowerCase().includes('mobile'))
+      return <Smartphone className="w-3.5 h-3.5" aria-hidden="true" />;
+    if (vp.toLowerCase().includes('tablet'))
+      return <Tablet className="w-3.5 h-3.5" aria-hidden="true" />;
+    return <Monitor className="w-3.5 h-3.5" aria-hidden="true" />;
   };
 
+  const allBboxes = currentResult.bounding_boxes || [];
+  const filteredBboxes = allBboxes.filter((box) => {
+    if (severityFilter !== 'ALL' && (box.severity || 'MEDIUM') !== severityFilter) {
+      return false;
+    }
+    if (defectSearch.trim()) {
+      const q = defectSearch.toLowerCase();
+      const hay = `${box.region_name || ''} ${box.defect_type || ''} ${box.description || ''}`.toLowerCase();
+      return hay.includes(q);
+    }
+    return true;
+  });
+
   return (
-    <div className="bg-slate-900 border border-slate-800 rounded-xl p-6 shadow-xl">
-      {/* Top Controls: Viewport Tabs + Mode Switches */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-slate-800">
-        {/* Viewport Selectors */}
-        <div className="flex items-center gap-2">
+    <div className="bg-surface-panel border border-line-subtle rounded-lg overflow-hidden">
+      {/* Unified Inspector Control Bar */}
+      <div className="p-4 bg-surface-elevated border-b border-line-subtle flex flex-col xl:flex-row xl:items-center justify-between gap-3">
+        {/* Left: Viewport Segmented Tabs with Live Diff % */}
+        <div className="flex flex-wrap items-center gap-1.5" role="tablist" aria-label="Viewports">
           {run.results.map((res, idx) => {
             const isSelected = idx === selectedViewportIndex;
             const isPass = res.status === 'PASSED';
             return (
               <button
                 key={res.viewport}
+                type="button"
+                role="tab"
+                aria-selected={isSelected}
                 onClick={() => setSelectedViewportIndex(idx)}
-                className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold transition-all ${
+                className={`flex items-center gap-2 px-3 py-1.5 rounded-md text-xs font-mono font-medium cursor-pointer transition-colors border ${
                   isSelected
-                    ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/40'
-                    : 'bg-slate-950 text-slate-400 border border-slate-800 hover:text-white'
+                    ? 'bg-surface-panel text-ink-primary border-line-strong shadow-sm'
+                    : 'bg-transparent text-ink-secondary border-transparent hover:bg-surface-panel/50 hover:text-ink-primary'
                 }`}
               >
                 {getViewportIcon(res.viewport)}
-                <span>{res.viewport.toUpperCase()}</span>
-                <span className={`w-2 h-2 rounded-full ${isPass ? 'bg-emerald-400' : 'bg-rose-500'}`} />
+                <span className="uppercase font-semibold">{res.viewport}</span>
+                <span
+                  className={`px-1.5 py-0.5 rounded text-[10px] tabular-nums ${
+                    isPass
+                      ? 'bg-emerald-500/10 text-emerald-500'
+                      : 'bg-rose-500/10 text-rose-500 font-semibold'
+                  }`}
+                >
+                  {res.diff_ratio.toFixed(2)}%
+                </span>
               </button>
             );
           })}
         </div>
 
-        {/* View Modes */}
+        {/* Center + Right: Inspection Mode Switcher & Actions */}
         <div className="flex flex-wrap items-center gap-2">
-          <div className="bg-slate-950 p-1 rounded-lg border border-slate-800 flex items-center">
-            <button
-              onClick={() => setViewMode('slider')}
-              className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-md text-xs font-semibold transition ${
-                viewMode === 'slider' ? 'bg-slate-800 text-cyan-400 shadow-sm' : 'text-slate-400 hover:text-white'
-              }`}
-              title="Kéo trượt Before / After"
-            >
-              <SlidersHorizontal className="w-3.5 h-3.5" />
-              Slider
-            </button>
-            <button
-              onClick={() => setViewMode('side-by-side')}
-              className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-md text-xs font-semibold transition ${
-                viewMode === 'side-by-side' ? 'bg-slate-800 text-cyan-400 shadow-sm' : 'text-slate-400 hover:text-white'
-              }`}
-              title="So sánh 3 cột song song"
-            >
-              <Columns className="w-3.5 h-3.5" />
-              3 Cột Song Song
-            </button>
-            <button
-              onClick={() => setViewMode('blink')}
-              className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-md text-xs font-semibold transition ${
-                viewMode === 'blink' ? 'bg-indigo-950 text-indigo-300 border border-indigo-500/40 shadow-sm' : 'text-slate-400 hover:text-white'
-              }`}
-              title="Chớp tắt đảo ảnh và hòa trộn mờ (Onion Skin)"
-            >
-              <Layers className="w-3.5 h-3.5 text-indigo-400" />
-              Blink &amp; Onion
-            </button>
-            <button
-              onClick={() => setViewMode('diff-only')}
-              className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-md text-xs font-semibold transition ${
-                viewMode === 'diff-only' ? 'bg-slate-800 text-rose-400 shadow-sm' : 'text-slate-400 hover:text-white'
-              }`}
-              title="Chỉ hiển thị pixel lỗi tô đỏ dạ quang"
-            >
-              <Sparkles className="w-3.5 h-3.5" />
-              Chỉ Diff (#FF0055)
-            </button>
+          {/* Mode Switcher */}
+          <div className="bg-surface-inset p-0.5 rounded-md border border-line-subtle flex items-center">
+            {[
+              { id: 'slider', label: 'Split Slider', icon: SlidersHorizontal },
+              { id: 'side-by-side', label: '3-Up Matrix', icon: Columns },
+              { id: 'blink', label: 'Blink / Onion', icon: Layers },
+              { id: 'diff-only', label: 'Diff Mask', icon: ScanEye },
+            ].map((mode) => {
+              const Icon = mode.icon;
+              const active = viewMode === mode.id;
+              return (
+                <button
+                  key={mode.id}
+                  type="button"
+                  onClick={() => setViewMode(mode.id)}
+                  className={`flex items-center gap-1.5 px-2.5 py-1 rounded text-xs font-medium cursor-pointer transition-colors ${
+                    active
+                      ? 'bg-surface-panel text-ink-primary border border-line-strong shadow-sm'
+                      : 'text-ink-secondary hover:text-ink-primary'
+                  }`}
+                >
+                  <Icon className="w-3.5 h-3.5" aria-hidden="true" />
+                  <span>{mode.label}</span>
+                </button>
+              );
+            })}
           </div>
 
-          {/* Action Buttons */}
-          <div className="flex items-center gap-2">
-            <button
-              onClick={handleApprove}
-              disabled={isApproving}
-              className="flex items-center gap-1.5 px-3.5 py-2 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg text-xs font-semibold shadow transition disabled:opacity-50"
-            >
-              <CheckCheck className="w-4 h-4" />
-              {isApproving ? 'Đang duyệt...' : 'Duyệt làm Baseline'}
-            </button>
+          {/* Actions */}
+          <div className="flex items-center gap-1.5">
+            {!confirmApprove ? (
+              <button
+                type="button"
+                onClick={() => setConfirmApprove(true)}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-md text-xs font-medium cursor-pointer transition-colors"
+              >
+                <CheckCheck className="w-3.5 h-3.5" aria-hidden="true" />
+                <span>Approve Baseline</span>
+              </button>
+            ) : (
+              <div className="inline-flex items-center gap-1 bg-surface-panel border border-emerald-500/50 rounded-md px-2 py-1 text-xs">
+                <span className="text-ink-secondary text-[11px] mr-1">Promote to Baseline?</span>
+                <button
+                  type="button"
+                  disabled={isApproving}
+                  onClick={handleApprove}
+                  className="px-2 py-0.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded text-[11px] font-semibold cursor-pointer"
+                >
+                  {isApproving ? 'Saving...' : 'Confirm'}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setConfirmApprove(false)}
+                  className="px-2 py-0.5 text-ink-muted hover:text-ink-primary text-[11px] cursor-pointer"
+                >
+                  Cancel
+                </button>
+              </div>
+            )}
 
             <a
               href={api.getReportUrl(run.id)}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1.5 px-3 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg text-xs font-semibold transition"
+              className="inline-flex items-center gap-1.5 px-2.5 py-1.5 bg-surface-panel hover:bg-surface-inset text-ink-secondary hover:text-ink-primary border border-line-subtle rounded-md text-xs font-medium transition-colors"
             >
-              <FileText className="w-4 h-4" />
-              Báo cáo HTML
+              <FileText className="w-3.5 h-3.5" aria-hidden="true" />
+              <span>HTML Report</span>
             </a>
 
             <button
+              type="button"
               onClick={() => window.print()}
-              className="flex items-center gap-1.5 px-3 py-2 bg-indigo-600/80 hover:bg-indigo-600 text-white rounded-lg text-xs font-semibold shadow transition no-print"
-              title="In trực tiếp hoặc Lưu thành file PDF"
+              className="inline-flex items-center gap-1.5 px-2.5 py-1.5 bg-surface-panel hover:bg-surface-inset text-ink-secondary hover:text-ink-primary border border-line-subtle rounded-md text-xs font-medium cursor-pointer transition-colors no-print"
             >
-              <Printer className="w-4 h-4" />
-              In / Xuất PDF
+              <Printer className="w-3.5 h-3.5" aria-hidden="true" />
+              <span>PDF</span>
             </button>
           </div>
         </div>
       </div>
 
-      {approveMessage && (
-        <div className="mt-4 p-3 bg-slate-950 border border-emerald-500/30 rounded-lg text-xs text-emerald-300">
-          {approveMessage}
+      {/* Inline Status Notification */}
+      {approveStatus && (
+        <div
+          className={`px-4 py-2.5 border-b text-xs flex items-center justify-between ${
+            approveStatus.ok
+              ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-500'
+              : 'bg-rose-500/10 border-rose-500/30 text-rose-500'
+          }`}
+        >
+          <span className="flex items-center gap-2 font-medium">
+            {approveStatus.ok ? (
+              <CheckCircle2 className="w-4 h-4 shrink-0" aria-hidden="true" />
+            ) : (
+              <XCircle className="w-4 h-4 shrink-0" aria-hidden="true" />
+            )}
+            {approveStatus.text}
+          </span>
+          <button
+            type="button"
+            onClick={() => setApproveStatus(null)}
+            className="text-[11px] underline cursor-pointer"
+          >
+            Dismiss
+          </button>
         </div>
       )}
 
-      {/* Viewport Granular Stat Header */}
-      <div className="flex flex-wrap items-center justify-between gap-4 py-3 my-2 text-xs text-slate-300">
-        <div className="flex items-center gap-6">
+      {/* Viewport Telemetry Strip */}
+      <div className="px-4 py-2.5 bg-surface-panel border-b border-line-subtle flex flex-wrap items-center justify-between gap-4 text-xs font-mono tabular-nums">
+        <div className="flex flex-wrap items-center gap-5">
           <div>
-            <span className="text-slate-500">Độ phân giải:</span>{' '}
-            <span className="font-semibold text-white">{currentResult.viewport_width} &times; {currentResult.viewport_height} px</span>
+            <span className="text-ink-muted">DIMENSIONS:</span>{' '}
+            <span className="text-ink-primary font-semibold">
+              {currentResult.viewport_width}×{currentResult.viewport_height}px
+            </span>
           </div>
           <div>
-            <span className="text-slate-500">Tỷ lệ sai biệt (Diff Ratio):</span>{' '}
-            <span className="font-bold text-rose-400">{currentResult.diff_ratio.toFixed(4)}%</span>
+            <span className="text-ink-muted">DIFF RATIO:</span>{' '}
+            <span
+              className={`font-bold ${
+                currentResult.status === 'PASSED' ? 'text-emerald-500' : 'text-rose-500'
+              }`}
+            >
+              {currentResult.diff_ratio.toFixed(4)}%
+            </span>
           </div>
           <div>
-            <span className="text-slate-500">Chỉ số SSIM:</span>{' '}
-            <span className="font-bold text-cyan-400">{currentResult.ssim_score.toFixed(4)}</span>
+            <span className="text-ink-muted">SSIM:</span>{' '}
+            <span className="text-blue-500 font-bold">{currentResult.ssim_score.toFixed(4)}</span>
           </div>
           <div>
-            <span className="text-slate-500">Pixel lệch:</span>{' '}
-            <span className="font-mono text-amber-300">{currentResult.diff_pixels.toLocaleString()} / {currentResult.total_pixels.toLocaleString()}</span>
+            <span className="text-ink-muted">MISMATCHED PIXELS:</span>{' '}
+            <span className="text-ink-primary">
+              {currentResult.diff_pixels.toLocaleString()}{' '}
+              <span className="text-ink-muted">
+                / {currentResult.total_pixels.toLocaleString()}
+              </span>
+            </span>
           </div>
         </div>
+
         <div className="flex items-center gap-2">
-          <span className="text-slate-500">Vùng khiếm khuyết:</span>
-          <span className="px-2 py-0.5 rounded bg-rose-500/20 text-rose-300 border border-rose-500/30 font-semibold">
-            {currentResult.bounding_boxes.length} cụm Bounding Box
+          <span className="text-ink-muted">DEFECT CLUSTERS:</span>
+          <span
+            className={`px-2 py-0.5 rounded text-[11px] font-semibold border ${
+              allBboxes.length === 0
+                ? 'bg-emerald-500/10 text-emerald-500 border-emerald-500/25'
+                : 'bg-rose-500/10 text-rose-500 border-rose-500/25'
+            }`}
+          >
+            {allBboxes.length} region(s)
           </span>
         </div>
       </div>
 
-      {/* Semantic Change Summary & Diagnostic Insights */}
-      {currentResult.change_summary && (
-        <div className="mb-4 p-4 bg-slate-950/80 border border-slate-800 rounded-xl">
-          <div className="flex items-center gap-2 mb-2">
-            <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
-            <h4 className="text-xs font-bold uppercase tracking-wider text-cyan-300">
-              Mô Tả Tương Đối Về Sự Thay Đổi (Semantic Change Analysis)
-            </h4>
-          </div>
-          <p className="text-xs text-slate-200 leading-relaxed mb-3">
-            {currentResult.change_summary}
-          </p>
+      <div className="p-4 space-y-5">
+        {/* Semantic Root-Cause Diagnostic Panel */}
+        {currentResult.change_summary && (
+          <div className="p-3.5 bg-surface-elevated border border-line-subtle rounded-lg">
+            <div className="flex items-center justify-between mb-1.5">
+              <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-ink-secondary">
+                Semantic Root-Cause Diagnostics ({currentResult.viewport.toUpperCase()})
+              </span>
+              <span className="text-[11px] font-mono text-ink-muted">
+                OpenCV Canny + HSV Delta Analysis
+              </span>
+            </div>
+            <p className="text-xs text-ink-primary leading-relaxed">
+              {currentResult.change_summary}
+            </p>
 
-          {currentResult.semantic_insights && currentResult.semantic_insights.length > 0 && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 pt-2 border-t border-slate-800/80 text-[11px]">
-              {currentResult.semantic_insights.map((insight, idx) => (
-                <div key={idx} className="flex items-start gap-2 bg-slate-900/60 p-2 rounded border border-slate-800 text-slate-300">
-                  <span>{insight}</span>
+            {currentResult.semantic_insights && currentResult.semantic_insights.length > 0 && (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mt-3 pt-3 border-t border-line-subtle">
+                {currentResult.semantic_insights.map((rawInsight, idx) => {
+                  const { text, Icon, colorClass } = parseSemanticInsight(rawInsight);
+                  return (
+                    <div
+                      key={idx}
+                      className="flex items-start gap-2.5 bg-surface-panel p-2.5 rounded border border-line-subtle text-xs text-ink-secondary"
+                    >
+                      <Icon className={`w-4 h-4 shrink-0 mt-0.5 ${colorClass}`} aria-hidden="true" />
+                      <span className="leading-snug text-ink-primary">{text}</span>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* Main Optical Comparison Canvas */}
+        <div>
+          {viewMode === 'slider' && (
+            <ImageSlider
+              baselineSrc={baselineUrl}
+              currentSrc={currentUrl}
+              baselineLabel={`Baseline · ${currentResult.viewport.toUpperCase()}`}
+              currentLabel={`Current · ${currentResult.viewport.toUpperCase()}`}
+            />
+          )}
+
+          {viewMode === 'side-by-side' && (
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
+              <div className="bg-surface-elevated p-2.5 rounded-lg border border-line-subtle">
+                <div className="flex items-center justify-between text-[11px] font-mono mb-2 px-1">
+                  <span className="font-semibold text-ink-primary flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-emerald-500" />
+                    01 / BASELINE REFERENCE
+                  </span>
+                  <span className="text-ink-muted">v1.0</span>
                 </div>
-              ))}
+                <div className="overflow-auto max-h-[600px] flex justify-center bg-optical-grid rounded border border-line-subtle p-1">
+                  <img
+                    src={baselineUrl}
+                    alt="Baseline Reference"
+                    className="max-w-full h-auto object-contain"
+                  />
+                </div>
+              </div>
+
+              <div className="bg-surface-elevated p-2.5 rounded-lg border border-rose-500/30">
+                <div className="flex items-center justify-between text-[11px] font-mono mb-2 px-1">
+                  <span className="font-semibold text-rose-500 flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-rose-500" />
+                    02 / PERCEPTUAL DIFF (#FF0055)
+                  </span>
+                  <span className="text-rose-500 tabular-nums">{allBboxes.length} clusters</span>
+                </div>
+                <div className="overflow-auto max-h-[600px] flex justify-center bg-optical-grid rounded border border-line-subtle p-1">
+                  <img
+                    src={diffUrl}
+                    alt="Perceptual Diff Mask"
+                    className="max-w-full h-auto object-contain"
+                  />
+                </div>
+              </div>
+
+              <div className="bg-surface-elevated p-2.5 rounded-lg border border-line-subtle">
+                <div className="flex items-center justify-between text-[11px] font-mono mb-2 px-1">
+                  <span className="font-semibold text-ink-primary flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-amber-500" />
+                    03 / CURRENT CANDIDATE
+                  </span>
+                  <span className="text-ink-muted">v2.0</span>
+                </div>
+                <div className="overflow-auto max-h-[600px] flex justify-center bg-optical-grid rounded border border-line-subtle p-1">
+                  <img
+                    src={currentUrl}
+                    alt="Current Candidate"
+                    className="max-w-full h-auto object-contain"
+                  />
+                </div>
+              </div>
+            </div>
+          )}
+
+          {viewMode === 'blink' && (
+            <BlinkCompare
+              baselineSrc={baselineUrl}
+              currentSrc={currentUrl}
+              baselineLabel={`Baseline · ${currentResult.viewport.toUpperCase()}`}
+              currentLabel={`Current · ${currentResult.viewport.toUpperCase()}`}
+            />
+          )}
+
+          {viewMode === 'diff-only' && (
+            <div className="bg-optical-grid p-4 rounded-lg border border-line-subtle flex justify-center overflow-auto max-h-[700px]">
+              <img
+                src={diffUrl}
+                alt="Perceptual Diff Highlight"
+                className="max-w-full h-auto object-contain"
+              />
             </div>
           )}
         </div>
-      )}
 
-      {/* Main Image Comparison Area */}
-      <div className="mt-2">
-        {viewMode === 'slider' && (
-          <ImageSlider
-            baselineSrc={baselineUrl}
-            currentSrc={currentUrl}
-            baselineLabel={`Baseline (${currentResult.viewport})`}
-            currentLabel={`Current (${currentResult.viewport})`}
-          />
-        )}
+        {/* Defect Bounding Boxes Table with Filter & Search */}
+        {allBboxes.length > 0 && (
+          <div className="pt-4 border-t border-line-subtle">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3">
+              <div className="flex items-center gap-2">
+                <AlertTriangle className="w-4 h-4 text-rose-500" aria-hidden="true" />
+                <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-ink-primary">
+                  Bounding Box Defect Clusters ({filteredBboxes.length} / {allBboxes.length})
+                </h4>
+              </div>
 
-        {viewMode === 'side-by-side' && (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="bg-slate-950 p-3 rounded-lg border border-slate-800">
-              <p className="text-xs font-semibold text-emerald-400 mb-2">1. Baseline (Chuẩn)</p>
-              <div className="overflow-auto max-h-[600px] flex justify-center bg-black rounded">
-                <img src={baselineUrl} alt="Baseline" className="max-w-full h-auto object-contain" />
+              {/* Filter & Search Bar */}
+              <div className="flex flex-wrap items-center gap-2">
+                <div className="flex items-center bg-surface-elevated p-0.5 rounded border border-line-subtle text-[11px] font-mono">
+                  {['ALL', 'HIGH', 'MEDIUM'].map((sev) => (
+                    <button
+                      key={sev}
+                      type="button"
+                      onClick={() => setSeverityFilter(sev)}
+                      className={`px-2 py-0.5 rounded cursor-pointer transition-colors ${
+                        severityFilter === sev
+                          ? 'bg-blue-600 text-white font-semibold'
+                          : 'text-ink-secondary hover:text-ink-primary'
+                      }`}
+                    >
+                      {sev}
+                    </button>
+                  ))}
+                </div>
+
+                <div className="relative">
+                  <Search
+                    className="w-3.5 h-3.5 text-ink-muted absolute left-2.5 top-1/2 -translate-y-1/2"
+                    aria-hidden="true"
+                  />
+                  <input
+                    type="text"
+                    value={defectSearch}
+                    onChange={(e) => setDefectSearch(e.target.value)}
+                    placeholder="Filter region or defect..."
+                    aria-label="Filter defect clusters"
+                    className="bg-surface-inset border border-line-subtle focus:border-blue-500 rounded pl-8 pr-2.5 py-1 text-xs text-ink-primary w-48"
+                  />
+                </div>
               </div>
             </div>
 
-            <div className="bg-slate-950 p-3 rounded-lg border border-rose-900/40">
-              <p className="text-xs font-semibold text-rose-400 mb-2">2. Perceptual Diff (#FF0055)</p>
-              <div className="overflow-auto max-h-[600px] flex justify-center bg-black rounded">
-                <img src={diffUrl} alt="Diff" className="max-w-full h-auto object-contain" />
-              </div>
+            <div className="overflow-x-auto border border-line-subtle rounded-lg">
+              <table className="w-full text-left text-xs border-collapse">
+                <thead>
+                  <tr className="bg-surface-elevated border-b border-line-subtle text-ink-muted font-mono text-[11px] uppercase">
+                    <th className="py-2 px-3">#</th>
+                    <th className="py-2 px-3">DOM / Layout Zone</th>
+                    <th className="py-2 px-3">Classification</th>
+                    <th className="py-2 px-3">Severity</th>
+                    <th className="py-2 px-3">Diagnostic Description</th>
+                    <th className="py-2 px-3 text-right">Geometry [X, Y, W×H]</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-line-subtle bg-surface-panel">
+                  {filteredBboxes.map((box, i) => {
+                    const isHigh = box.severity === 'HIGH';
+                    const isMedium = box.severity === 'MEDIUM';
+                    const badgeColor = isHigh
+                      ? 'bg-rose-500/10 text-rose-500 border-rose-500/30'
+                      : isMedium
+                      ? 'bg-amber-500/10 text-amber-500 border-amber-500/30'
+                      : 'bg-surface-elevated text-ink-secondary border-line-subtle';
+
+                    return (
+                      <tr key={i} className="hover:bg-surface-elevated/60 transition-colors">
+                        <td className="py-2 px-3 font-mono text-ink-muted tabular-nums">
+                          #{i + 1}
+                        </td>
+                        <td className="py-2 px-3 font-medium text-ink-primary whitespace-nowrap">
+                          {box.region_name || 'Viewport Canvas'}
+                        </td>
+                        <td className="py-2 px-3 font-mono text-[11px] text-ink-secondary whitespace-nowrap">
+                          {box.defect_type || 'Visual Delta'}
+                        </td>
+                        <td className="py-2 px-3 whitespace-nowrap">
+                          <span
+                            className={`inline-block px-1.5 py-0.5 rounded text-[10px] font-mono font-bold border ${badgeColor}`}
+                          >
+                            {box.severity || 'MEDIUM'}
+                          </span>
+                        </td>
+                        <td className="py-2 px-3 text-ink-secondary leading-normal">
+                          {box.description || 'Perceptual pixel deviation detected'}
+                        </td>
+                        <td className="py-2 px-3 font-mono text-[11px] text-ink-muted text-right whitespace-nowrap tabular-nums">
+                          ({box.x}, {box.y}) &middot; {box.width}×{box.height}px
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
             </div>
-
-            <div className="bg-slate-950 p-3 rounded-lg border border-slate-800">
-              <p className="text-xs font-semibold text-amber-400 mb-2">3. Current (Hiện tại)</p>
-              <div className="overflow-auto max-h-[600px] flex justify-center bg-black rounded">
-                <img src={currentUrl} alt="Current" className="max-w-full h-auto object-contain" />
-              </div>
-            </div>
-          </div>
-        )}
-
-        {viewMode === 'blink' && (
-          <BlinkCompare
-            baselineSrc={baselineUrl}
-            currentSrc={currentUrl}
-            baselineLabel={`Baseline (${currentResult.viewport})`}
-            currentLabel={`Current (${currentResult.viewport})`}
-          />
-        )}
-
-        {viewMode === 'diff-only' && (
-          <div className="bg-slate-950 p-4 rounded-xl border border-slate-800 flex justify-center overflow-auto max-h-[700px]">
-            <img src={diffUrl} alt="Diff Highlight" className="max-w-full h-auto object-contain" />
           </div>
         )}
       </div>
-
-      {/* Defect Bounding Boxes Table */}
-      {currentResult.bounding_boxes && currentResult.bounding_boxes.length > 0 && (
-        <div className="mt-8 pt-6 border-t border-slate-800">
-          <h4 className="text-sm font-bold text-slate-200 mb-3 flex items-center gap-2">
-            <AlertTriangle className="w-4 h-4 text-amber-400" />
-            Chi tiết các cụm Bounding Box phát hiện lỗi (Defect Clusters)
-          </h4>
-          <div className="overflow-x-auto">
-            <table className="w-full text-left text-xs border-collapse border border-slate-800 bg-slate-950 rounded-lg">
-              <thead>
-                <tr className="bg-slate-800/60 text-slate-400">
-                  <th className="p-2.5 border border-slate-800 font-medium">STT</th>
-                  <th className="p-2.5 border border-slate-800 font-medium">Vị trí Layout</th>
-                  <th className="p-2.5 border border-slate-800 font-medium">Phân loại lỗi</th>
-                  <th className="p-2.5 border border-slate-800 font-medium">Mức độ</th>
-                  <th className="p-2.5 border border-slate-800 font-medium">Mô tả tương đối về thay đổi</th>
-                  <th className="p-2.5 border border-slate-800 font-medium">Tọa độ & Kích thước</th>
-                </tr>
-              </thead>
-              <tbody>
-                {currentResult.bounding_boxes.map((box, i) => {
-                  const isHigh = box.severity === 'HIGH';
-                  const isMedium = box.severity === 'MEDIUM';
-                  const badgeColor = isHigh 
-                    ? 'bg-rose-500/20 text-rose-300 border-rose-500/30' 
-                    : isMedium 
-                    ? 'bg-amber-500/20 text-amber-300 border-amber-500/30' 
-                    : 'bg-slate-800 text-slate-400 border-slate-700';
-
-                  return (
-                    <tr key={i} className="hover:bg-slate-900/60 transition">
-                      <td className="p-2.5 border border-slate-800 font-mono text-cyan-400 font-semibold">#{i + 1}</td>
-                      <td className="p-2.5 border border-slate-800 text-cyan-300 font-medium whitespace-nowrap">{box.region_name || 'Khu vực chung'}</td>
-                      <td className="p-2.5 border border-slate-800 text-slate-200 font-semibold whitespace-nowrap">{box.defect_type || 'Biến đổi giao diện'}</td>
-                      <td className="p-2.5 border border-slate-800 whitespace-nowrap">
-                        <span className={`px-2 py-0.5 rounded text-[10px] font-bold border ${badgeColor}`}>
-                          {box.severity || 'MEDIUM'}
-                        </span>
-                      </td>
-                      <td className="p-2.5 border border-slate-800 text-slate-300 leading-normal">
-                        {box.description || 'Phát hiện sai khác pixel tại vùng này'}
-                      </td>
-                      <td className="p-2.5 border border-slate-800 font-mono text-slate-400 whitespace-nowrap">
-                        ({box.x}, {box.y}) &bull; {box.width}&times;{box.height}px
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      )}
     </div>
   );
 }
