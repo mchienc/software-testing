@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState } from 'react';
 import { api } from '../services/api';
 import ImageSlider from './ImageSlider';
 import BlinkCompare from './BlinkCompare';
@@ -30,7 +30,7 @@ import {
  */
 function parseSemanticInsight(rawText = '') {
   const cleaned = rawText
-    .replace(/^[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}\u{FE00}-\u{FE0F}\s]+/u, '')
+    .replace(/^[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}\u{2139}\u{FE00}-\u{FE0F}\s]+/u, '')
     .trim();
 
   const lower = cleaned.toLowerCase();
@@ -54,16 +54,16 @@ export default function DiffViewer({ run, onApproveSuccess }) {
   const [viewMode, setViewMode] = useState('slider'); // 'slider' | 'side-by-side' | 'blink' | 'diff-only'
   const [confirmApprove, setConfirmApprove] = useState(false);
   const [isApproving, setIsApproving] = useState(false);
-  const [approveStatus, setApproveStatus] = useState(null); // { ok: boolean, text: string }
+  const [approveStatus, setApproveStatus] = useState(null);
 
-  // Defect cluster filtering (addresses MASTER.md "No filtering" anti-pattern)
+  // Defect cluster filtering
   const [severityFilter, setSeverityFilter] = useState('ALL');
   const [defectSearch, setDefectSearch] = useState('');
 
   if (!run || !run.results || run.results.length === 0) {
     return (
       <div className="bg-surface-panel border border-line-subtle rounded-lg p-8 text-center text-ink-muted text-xs font-mono">
-        No viewport comparison artifacts available for this run.
+        Không có dữ liệu kết quả so sánh hình ảnh cho phiên chạy này.
       </div>
     );
   }
@@ -80,14 +80,14 @@ export default function DiffViewer({ run, onApproveSuccess }) {
       await api.approveBaseline(run.id);
       setApproveStatus({
         ok: true,
-        text: 'Current screenshots promoted to active Baseline for this suite.',
+        text: 'Đã cập nhật bộ ảnh hiện tại làm ảnh chuẩn gốc (Baseline) mới cho kịch bản này.',
       });
       setConfirmApprove(false);
       if (onApproveSuccess) onApproveSuccess();
     } catch (err) {
       setApproveStatus({
         ok: false,
-        text: `Failed to promote baseline: ${err.message}`,
+        text: `Không thể duyệt Baseline: ${err.message}`,
       });
     } finally {
       setIsApproving(false);
@@ -115,12 +115,18 @@ export default function DiffViewer({ run, onApproveSuccess }) {
     return true;
   });
 
+  const severityLabel = (sev) => {
+    if (sev === 'HIGH') return 'NGHIÊM TRỌNG (HIGH)';
+    if (sev === 'MEDIUM') return 'TRUNG BÌNH (MEDIUM)';
+    return 'THẤP (LOW)';
+  };
+
   return (
     <div className="bg-surface-panel border border-line-subtle rounded-lg overflow-hidden">
       {/* Unified Inspector Control Bar */}
       <div className="p-4 bg-surface-elevated border-b border-line-subtle flex flex-col xl:flex-row xl:items-center justify-between gap-3">
         {/* Left: Viewport Segmented Tabs with Live Diff % */}
-        <div className="flex flex-wrap items-center gap-1.5" role="tablist" aria-label="Viewports">
+        <div className="flex flex-wrap items-center gap-1.5" role="tablist" aria-label="Chọn màn hình">
           {run.results.map((res, idx) => {
             const isSelected = idx === selectedViewportIndex;
             const isPass = res.status === 'PASSED';
@@ -158,10 +164,10 @@ export default function DiffViewer({ run, onApproveSuccess }) {
           {/* Mode Switcher */}
           <div className="bg-surface-inset p-0.5 rounded-md border border-line-subtle flex items-center">
             {[
-              { id: 'slider', label: 'Split Slider', icon: SlidersHorizontal },
-              { id: 'side-by-side', label: '3-Up Matrix', icon: Columns },
-              { id: 'blink', label: 'Blink / Onion', icon: Layers },
-              { id: 'diff-only', label: 'Diff Mask', icon: ScanEye },
+              { id: 'slider', label: 'Kéo Trượt (Slider)', icon: SlidersHorizontal },
+              { id: 'side-by-side', label: '3 Cột Song Song', icon: Columns },
+              { id: 'blink', label: 'Chớp Tắt / Đè Lớp', icon: Layers },
+              { id: 'diff-only', label: 'Chỉ Vùng Lỗi', icon: ScanEye },
             ].map((mode) => {
               const Icon = mode.icon;
               const active = viewMode === mode.id;
@@ -192,25 +198,25 @@ export default function DiffViewer({ run, onApproveSuccess }) {
                 className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-md text-xs font-medium cursor-pointer transition-colors"
               >
                 <CheckCheck className="w-3.5 h-3.5" aria-hidden="true" />
-                <span>Approve Baseline</span>
+                <span>Duyệt làm Baseline</span>
               </button>
             ) : (
               <div className="inline-flex items-center gap-1 bg-surface-panel border border-emerald-500/50 rounded-md px-2 py-1 text-xs">
-                <span className="text-ink-secondary text-[11px] mr-1">Promote to Baseline?</span>
+                <span className="text-ink-secondary text-[11px] mr-1">Cập nhật làm ảnh chuẩn mới?</span>
                 <button
                   type="button"
                   disabled={isApproving}
                   onClick={handleApprove}
                   className="px-2 py-0.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded text-[11px] font-semibold cursor-pointer"
                 >
-                  {isApproving ? 'Saving...' : 'Confirm'}
+                  {isApproving ? 'Đang lưu...' : 'Đồng ý'}
                 </button>
                 <button
                   type="button"
                   onClick={() => setConfirmApprove(false)}
                   className="px-2 py-0.5 text-ink-muted hover:text-ink-primary text-[11px] cursor-pointer"
                 >
-                  Cancel
+                  Hủy
                 </button>
               </div>
             )}
@@ -222,7 +228,7 @@ export default function DiffViewer({ run, onApproveSuccess }) {
               className="inline-flex items-center gap-1.5 px-2.5 py-1.5 bg-surface-panel hover:bg-surface-inset text-ink-secondary hover:text-ink-primary border border-line-subtle rounded-md text-xs font-medium transition-colors"
             >
               <FileText className="w-3.5 h-3.5" aria-hidden="true" />
-              <span>HTML Report</span>
+              <span>Báo cáo HTML</span>
             </a>
 
             <button
@@ -231,7 +237,7 @@ export default function DiffViewer({ run, onApproveSuccess }) {
               className="inline-flex items-center gap-1.5 px-2.5 py-1.5 bg-surface-panel hover:bg-surface-inset text-ink-secondary hover:text-ink-primary border border-line-subtle rounded-md text-xs font-medium cursor-pointer transition-colors no-print"
             >
               <Printer className="w-3.5 h-3.5" aria-hidden="true" />
-              <span>PDF</span>
+              <span>In / PDF</span>
             </button>
           </div>
         </div>
@@ -259,7 +265,7 @@ export default function DiffViewer({ run, onApproveSuccess }) {
             onClick={() => setApproveStatus(null)}
             className="text-[11px] underline cursor-pointer"
           >
-            Dismiss
+            Đóng
           </button>
         </div>
       )}
@@ -268,13 +274,13 @@ export default function DiffViewer({ run, onApproveSuccess }) {
       <div className="px-4 py-2.5 bg-surface-panel border-b border-line-subtle flex flex-wrap items-center justify-between gap-4 text-xs font-mono tabular-nums">
         <div className="flex flex-wrap items-center gap-5">
           <div>
-            <span className="text-ink-muted">DIMENSIONS:</span>{' '}
+            <span className="text-ink-muted">KÍCH THƯỚC ẢNH:</span>{' '}
             <span className="text-ink-primary font-semibold">
               {currentResult.viewport_width}×{currentResult.viewport_height}px
             </span>
           </div>
           <div>
-            <span className="text-ink-muted">DIFF RATIO:</span>{' '}
+            <span className="text-ink-muted">TỶ LỆ SAI LỆCH (DIFF RATIO):</span>{' '}
             <span
               className={`font-bold ${
                 currentResult.status === 'PASSED' ? 'text-emerald-500' : 'text-rose-500'
@@ -284,11 +290,11 @@ export default function DiffViewer({ run, onApproveSuccess }) {
             </span>
           </div>
           <div>
-            <span className="text-ink-muted">SSIM:</span>{' '}
+            <span className="text-ink-muted">ĐIỂM CẤU TRÚC SSIM:</span>{' '}
             <span className="text-blue-500 font-bold">{currentResult.ssim_score.toFixed(4)}</span>
           </div>
           <div>
-            <span className="text-ink-muted">MISMATCHED PIXELS:</span>{' '}
+            <span className="text-ink-muted">SỐ PIXEL LỆCH:</span>{' '}
             <span className="text-ink-primary">
               {currentResult.diff_pixels.toLocaleString()}{' '}
               <span className="text-ink-muted">
@@ -299,7 +305,7 @@ export default function DiffViewer({ run, onApproveSuccess }) {
         </div>
 
         <div className="flex items-center gap-2">
-          <span className="text-ink-muted">DEFECT CLUSTERS:</span>
+          <span className="text-ink-muted">VÙNG LỖI PHÁT HIỆN:</span>
           <span
             className={`px-2 py-0.5 rounded text-[11px] font-semibold border ${
               allBboxes.length === 0
@@ -307,7 +313,7 @@ export default function DiffViewer({ run, onApproveSuccess }) {
                 : 'bg-rose-500/10 text-rose-500 border-rose-500/25'
             }`}
           >
-            {allBboxes.length} region(s)
+            {allBboxes.length} cụm vùng lỗi
           </span>
         </div>
       </div>
@@ -318,10 +324,10 @@ export default function DiffViewer({ run, onApproveSuccess }) {
           <div className="p-3.5 bg-surface-elevated border border-line-subtle rounded-lg">
             <div className="flex items-center justify-between mb-1.5">
               <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-ink-secondary">
-                Semantic Root-Cause Diagnostics ({currentResult.viewport.toUpperCase()})
+                Phân Tích Nguyên Nhân Thay Đổi Giao Diện ({currentResult.viewport.toUpperCase()})
               </span>
               <span className="text-[11px] font-mono text-ink-muted">
-                OpenCV Canny + HSV Delta Analysis
+                Thuật toán OpenCV Canny + Phân tích màu HSV
               </span>
             </div>
             <p className="text-xs text-ink-primary leading-relaxed">
@@ -353,8 +359,8 @@ export default function DiffViewer({ run, onApproveSuccess }) {
             <ImageSlider
               baselineSrc={baselineUrl}
               currentSrc={currentUrl}
-              baselineLabel={`Baseline · ${currentResult.viewport.toUpperCase()}`}
-              currentLabel={`Current · ${currentResult.viewport.toUpperCase()}`}
+              baselineLabel={`Ảnh Gốc Baseline · ${currentResult.viewport.toUpperCase()}`}
+              currentLabel={`Ảnh Hiện Tại · ${currentResult.viewport.toUpperCase()}`}
             />
           )}
 
@@ -364,14 +370,14 @@ export default function DiffViewer({ run, onApproveSuccess }) {
                 <div className="flex items-center justify-between text-[11px] font-mono mb-2 px-1">
                   <span className="font-semibold text-ink-primary flex items-center gap-1.5">
                     <span className="w-2 h-2 rounded-full bg-emerald-500" />
-                    01 / BASELINE REFERENCE
+                    01 / ẢNH CHUẨN GỐC (BASELINE)
                   </span>
                   <span className="text-ink-muted">v1.0</span>
                 </div>
                 <div className="overflow-auto max-h-[600px] flex justify-center bg-optical-grid rounded border border-line-subtle p-1">
                   <img
                     src={baselineUrl}
-                    alt="Baseline Reference"
+                    alt="Ảnh chuẩn gốc Baseline"
                     className="max-w-full h-auto object-contain"
                   />
                 </div>
@@ -381,14 +387,14 @@ export default function DiffViewer({ run, onApproveSuccess }) {
                 <div className="flex items-center justify-between text-[11px] font-mono mb-2 px-1">
                   <span className="font-semibold text-rose-500 flex items-center gap-1.5">
                     <span className="w-2 h-2 rounded-full bg-rose-500" />
-                    02 / PERCEPTUAL DIFF (#FF0055)
+                    02 / BẢN ĐỒ ĐIỂM ẢNH LỆCH (#FF0055)
                   </span>
-                  <span className="text-rose-500 tabular-nums">{allBboxes.length} clusters</span>
+                  <span className="text-rose-500 tabular-nums">{allBboxes.length} cụm lỗi</span>
                 </div>
                 <div className="overflow-auto max-h-[600px] flex justify-center bg-optical-grid rounded border border-line-subtle p-1">
                   <img
                     src={diffUrl}
-                    alt="Perceptual Diff Mask"
+                    alt="Bản đồ điểm ảnh lệch"
                     className="max-w-full h-auto object-contain"
                   />
                 </div>
@@ -398,14 +404,14 @@ export default function DiffViewer({ run, onApproveSuccess }) {
                 <div className="flex items-center justify-between text-[11px] font-mono mb-2 px-1">
                   <span className="font-semibold text-ink-primary flex items-center gap-1.5">
                     <span className="w-2 h-2 rounded-full bg-amber-500" />
-                    03 / CURRENT CANDIDATE
+                    03 / ẢNH HIỆN TẠI (CURRENT)
                   </span>
                   <span className="text-ink-muted">v2.0</span>
                 </div>
                 <div className="overflow-auto max-h-[600px] flex justify-center bg-optical-grid rounded border border-line-subtle p-1">
                   <img
                     src={currentUrl}
-                    alt="Current Candidate"
+                    alt="Ảnh hiện tại Current"
                     className="max-w-full h-auto object-contain"
                   />
                 </div>
@@ -417,8 +423,8 @@ export default function DiffViewer({ run, onApproveSuccess }) {
             <BlinkCompare
               baselineSrc={baselineUrl}
               currentSrc={currentUrl}
-              baselineLabel={`Baseline · ${currentResult.viewport.toUpperCase()}`}
-              currentLabel={`Current · ${currentResult.viewport.toUpperCase()}`}
+              baselineLabel={`Ảnh Gốc Baseline · ${currentResult.viewport.toUpperCase()}`}
+              currentLabel={`Ảnh Hiện Tại · ${currentResult.viewport.toUpperCase()}`}
             />
           )}
 
@@ -426,7 +432,7 @@ export default function DiffViewer({ run, onApproveSuccess }) {
             <div className="bg-optical-grid p-4 rounded-lg border border-line-subtle flex justify-center overflow-auto max-h-[700px]">
               <img
                 src={diffUrl}
-                alt="Perceptual Diff Highlight"
+                alt="Bản đồ điểm ảnh sai lệch"
                 className="max-w-full h-auto object-contain"
               />
             </div>
@@ -440,25 +446,29 @@ export default function DiffViewer({ run, onApproveSuccess }) {
               <div className="flex items-center gap-2">
                 <AlertTriangle className="w-4 h-4 text-rose-500" aria-hidden="true" />
                 <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-ink-primary">
-                  Bounding Box Defect Clusters ({filteredBboxes.length} / {allBboxes.length})
+                  Danh Sách Các Vùng Khiếm Khuyết Giao Diện ({filteredBboxes.length} / {allBboxes.length})
                 </h4>
               </div>
 
               {/* Filter & Search Bar */}
               <div className="flex flex-wrap items-center gap-2">
                 <div className="flex items-center bg-surface-elevated p-0.5 rounded border border-line-subtle text-[11px] font-mono">
-                  {['ALL', 'HIGH', 'MEDIUM'].map((sev) => (
+                  {[
+                    { id: 'ALL', label: 'TẤT CẢ' },
+                    { id: 'HIGH', label: 'NGHIÊM TRỌNG' },
+                    { id: 'MEDIUM', label: 'TRUNG BÌNH' },
+                  ].map((sev) => (
                     <button
-                      key={sev}
+                      key={sev.id}
                       type="button"
-                      onClick={() => setSeverityFilter(sev)}
+                      onClick={() => setSeverityFilter(sev.id)}
                       className={`px-2 py-0.5 rounded cursor-pointer transition-colors ${
-                        severityFilter === sev
+                        severityFilter === sev.id
                           ? 'bg-blue-600 text-white font-semibold'
                           : 'text-ink-secondary hover:text-ink-primary'
                       }`}
                     >
-                      {sev}
+                      {sev.label}
                     </button>
                   ))}
                 </div>
@@ -472,9 +482,9 @@ export default function DiffViewer({ run, onApproveSuccess }) {
                     type="text"
                     value={defectSearch}
                     onChange={(e) => setDefectSearch(e.target.value)}
-                    placeholder="Filter region or defect..."
-                    aria-label="Filter defect clusters"
-                    className="bg-surface-inset border border-line-subtle focus:border-blue-500 rounded pl-8 pr-2.5 py-1 text-xs text-ink-primary w-48"
+                    placeholder="Lọc vùng hoặc loại lỗi..."
+                    aria-label="Lọc danh sách vùng lỗi"
+                    className="bg-surface-inset border border-line-subtle focus:border-blue-500 rounded pl-8 pr-2.5 py-1 text-xs text-ink-primary w-52"
                   />
                 </div>
               </div>
@@ -484,12 +494,12 @@ export default function DiffViewer({ run, onApproveSuccess }) {
               <table className="w-full text-left text-xs border-collapse">
                 <thead>
                   <tr className="bg-surface-elevated border-b border-line-subtle text-ink-muted font-mono text-[11px] uppercase">
-                    <th className="py-2 px-3">#</th>
-                    <th className="py-2 px-3">DOM / Layout Zone</th>
-                    <th className="py-2 px-3">Classification</th>
-                    <th className="py-2 px-3">Severity</th>
-                    <th className="py-2 px-3">Diagnostic Description</th>
-                    <th className="py-2 px-3 text-right">Geometry [X, Y, W×H]</th>
+                    <th className="py-2 px-3">STT</th>
+                    <th className="py-2 px-3">Vị Trí Trên Trang</th>
+                    <th className="py-2 px-3">Loại Lỗi</th>
+                    <th className="py-2 px-3">Mức Độ</th>
+                    <th className="py-2 px-3">Mô Tả Chi Tiết Thay Đổi</th>
+                    <th className="py-2 px-3 text-right">Tọa Độ &amp; Kích Thước [X, Y, W×H]</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-line-subtle bg-surface-panel">
@@ -508,20 +518,20 @@ export default function DiffViewer({ run, onApproveSuccess }) {
                           #{i + 1}
                         </td>
                         <td className="py-2 px-3 font-medium text-ink-primary whitespace-nowrap">
-                          {box.region_name || 'Viewport Canvas'}
+                          {box.region_name || 'Khu vực chung'}
                         </td>
                         <td className="py-2 px-3 font-mono text-[11px] text-ink-secondary whitespace-nowrap">
-                          {box.defect_type || 'Visual Delta'}
+                          {box.defect_type || 'Sai lệch hiển thị'}
                         </td>
                         <td className="py-2 px-3 whitespace-nowrap">
                           <span
                             className={`inline-block px-1.5 py-0.5 rounded text-[10px] font-mono font-bold border ${badgeColor}`}
                           >
-                            {box.severity || 'MEDIUM'}
+                            {severityLabel(box.severity || 'MEDIUM')}
                           </span>
                         </td>
                         <td className="py-2 px-3 text-ink-secondary leading-normal">
-                          {box.description || 'Perceptual pixel deviation detected'}
+                          {box.description || 'Phát hiện sai lệch điểm ảnh tại vùng này'}
                         </td>
                         <td className="py-2 px-3 font-mono text-[11px] text-ink-muted text-right whitespace-nowrap tabular-nums">
                           ({box.x}, {box.y}) &middot; {box.width}×{box.height}px

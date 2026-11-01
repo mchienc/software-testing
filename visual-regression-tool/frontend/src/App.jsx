@@ -25,7 +25,7 @@ import {
 
 function stripEmojis(text = '') {
   return text
-    .replace(/[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}\u{FE00}-\u{FE0F}]/gu, '')
+    .replace(/[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}\u{2139}\u{FE00}-\u{FE0F}]/gu, '')
     .replace(/\s{2,}/g, ' ')
     .trim();
 }
@@ -79,7 +79,7 @@ export default function App() {
     } catch (err) {
       console.error(err);
       setError(
-        'Cannot connect to FastAPI Backend (http://localhost:8000). Verify that python run.py is active.'
+        'Không thể kết nối đến máy chủ FastAPI (http://localhost:8000). Vui lòng kiểm tra lệnh python run.py đang chạy.'
       );
     }
   };
@@ -99,7 +99,7 @@ export default function App() {
       setCapturedBaselinesInfo(result);
       await loadInitialData();
     } catch (err) {
-      setError(err.message || 'Failed to capture reference baseline screenshots.');
+      setError(err.message || 'Lỗi khi chụp bộ ảnh gốc Baseline.');
     } finally {
       setIsCapturingBaseline(false);
     }
@@ -114,7 +114,7 @@ export default function App() {
       setActiveRun(runResult);
       await loadInitialData();
     } catch (err) {
-      setError(err.message || 'Visual regression test run failed.');
+      setError(err.message || 'Xảy ra lỗi trong quá trình chạy kiểm thử hồi quy giao diện.');
     } finally {
       setIsRunning(false);
     }
@@ -168,24 +168,24 @@ export default function App() {
                     PIXELPULSE
                   </span>
                   <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-surface-elevated text-ink-secondary border border-line-subtle uppercase">
-                    QA ENGINE v2.0
+                    KIỂM THỬ GIAO DIỆN v2.0
                   </span>
                 </div>
                 <p className="text-[11px] text-ink-muted hidden sm:block leading-none mt-0.5">
-                  Automated Visual Regression &amp; Perceptual SSIM Workbench
+                  Hệ thống Kiểm thử Hồi quy Giao diện Tự động (Perceptual Diff &amp; SSIM)
                 </p>
               </div>
             </div>
 
             {/* Workspace Navigation Tabs */}
             <nav
-              aria-label="Workspace Views"
+              aria-label="Không gian làm việc"
               className="hidden md:flex items-center bg-surface-elevated p-0.5 rounded-md border border-line-subtle text-xs"
             >
               {[
-                { id: 'workbench', label: '01 / Diff Workbench' },
-                { id: 'analytics', label: `02 / Audit & Trends (${runs.length})` },
-                { id: 'cicd', label: '03 / CLI & CI/CD' },
+                { id: 'workbench', label: '01 / Bàn Kiểm Định & So Khớp' },
+                { id: 'analytics', label: `02 / Xu Hướng & Lịch Sử (${runs.length})` },
+                { id: 'cicd', label: '03 / Tích Hợp CLI & CI/CD' },
               ].map((tab) => (
                 <button
                   key={tab.id}
@@ -210,35 +210,38 @@ export default function App() {
               target="_blank"
               rel="noopener noreferrer"
               className="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-elevated hover:bg-surface-inset text-ink-secondary hover:text-ink-primary border border-line-subtle transition-colors"
+              title="Mở trang mẫu phiên bản chuẩn v1.0"
             >
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-              <span>v1.0 Baseline</span>
+              <span>Trang Mẫu v1.0 (Gốc)</span>
             </a>
             <a
               href="http://localhost:8000/demo/v2_regression/index.html"
               target="_blank"
               rel="noopener noreferrer"
               className="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-elevated hover:bg-surface-inset text-ink-secondary hover:text-ink-primary border border-line-subtle transition-colors"
+              title="Mở trang mẫu phiên bản lỗi hồi quy v2.0"
             >
               <span className="w-1.5 h-1.5 rounded-full bg-rose-500" />
-              <span>v2.0 Regression</span>
+              <span>Trang Mẫu v2.0 (Lỗi)</span>
             </a>
             <a
               href="http://localhost:8000/docs"
               target="_blank"
               rel="noopener noreferrer"
               className="hidden lg:inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-elevated hover:bg-surface-inset text-ink-secondary hover:text-ink-primary border border-line-subtle transition-colors"
+              title="Tài liệu REST API (Swagger UI)"
             >
               <BookOpen className="w-3.5 h-3.5 text-blue-500" aria-hidden="true" />
-              <span>OpenAPI</span>
+              <span>Tài liệu API</span>
             </a>
 
             <button
               type="button"
               onClick={() => setIsDark(!isDark)}
-              aria-label={isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+              aria-label={isDark ? 'Chuyển sang giao diện Sáng' : 'Chuyển sang giao diện Tối'}
               className="p-1.5 rounded-md bg-surface-elevated hover:bg-surface-inset text-ink-secondary hover:text-ink-primary border border-line-subtle cursor-pointer transition-colors"
-              title={isDark ? 'Switch to Swiss Alabaster (Light)' : 'Switch to Carbon Obsidian (Dark)'}
+              title={isDark ? 'Chuyển sang chế độ Sáng (Light Mode)' : 'Chuyển sang chế độ Tối (Dark Mode)'}
             >
               {isDark ? (
                 <Sun className="w-4 h-4 text-amber-400" aria-hidden="true" />
@@ -253,9 +256,9 @@ export default function App() {
       {/* Mobile Workspace Switcher */}
       <div className="md:hidden px-4 py-2 bg-surface-panel border-b border-line-subtle flex items-center gap-1">
         {[
-          { id: 'workbench', label: 'Workbench' },
-          { id: 'analytics', label: `Audit (${runs.length})` },
-          { id: 'cicd', label: 'CLI / CI' },
+          { id: 'workbench', label: 'Bàn Kiểm Định' },
+          { id: 'analytics', label: `Lịch Sử (${runs.length})` },
+          { id: 'cicd', label: 'CLI / CI-CD' },
         ].map((tab) => (
           <button
             key={tab.id}
@@ -288,7 +291,7 @@ export default function App() {
               onClick={() => setError(null)}
               className="text-xs font-mono underline cursor-pointer"
             >
-              Dismiss
+              Đóng
             </button>
           </div>
         )}
@@ -296,11 +299,11 @@ export default function App() {
         {/* TAB 03: CLI & CI/CD Gatekeeper View */}
         {activeWorkspaceTab === 'cicd' && (
           <div className="bg-surface-panel border border-line-subtle rounded-lg overflow-hidden mb-8">
-            <div className="px-5 py-3.5 bg-surface-elevated border-b border-line-subtle flex items-center justify-between">
+            <div className="px-5 py-3.5 bg-surface-elevated border-b border-line-subtle flex flex-wrap items-center justify-between gap-2">
               <div className="flex items-center gap-2.5">
                 <Terminal className="w-4 h-4 text-blue-500" aria-hidden="true" />
                 <h2 className="text-xs font-mono font-bold uppercase tracking-wider text-ink-primary">
-                  Headless CLI Gatekeeper &amp; GitHub Actions CI/CD Integration
+                  Công Cụ Dòng Lệnh (Headless CLI) &amp; Tích Hợp GitHub Actions CI/CD
                 </h2>
               </div>
               <span className="text-[11px] font-mono text-emerald-500 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/25">
@@ -312,26 +315,26 @@ export default function App() {
               {[
                 {
                   id: 'cmd-pass',
-                  title: '01 / Zero-Diff Gate Verification (Exit Code 0)',
-                  desc: 'Compares v1.0 Baseline against v1.0 Current across Desktop, Tablet, and Mobile viewports to verify 0.0000% False Positives.',
+                  title: '01 / Kiểm tra Chuẩn Zero-Diff (Trả về Exit Code 0 - ĐẠT)',
+                  desc: 'So sánh bản v1.0 Gốc với chính v1.0 trên 3 màn hình (Desktop, Tablet, Mobile) để kiểm chứng tỷ lệ báo động giả = 0.0000%.',
                   cmd: 'python cli.py --mode pass --reset-baseline --output-html ci_reports/pass_report.html',
                 },
                 {
                   id: 'cmd-reg',
-                  title: '02 / Regression Defect Detection (Exit Code 1)',
-                  desc: 'Compares v1.0 Baseline against v2.0 Mutated Current, outputs Base64 HTML + JSON reports, and fails the CI pipeline.',
+                  title: '02 / Phát hiện Lỗi Hồi quy Giao diện (Trả về Exit Code 1 - LỖI)',
+                  desc: 'So sánh bản v1.0 Gốc với bản v2.0 bị vỡ CSS, tự động xuất báo cáo HTML + JSON và chặn Pull Request trên CI/CD.',
                   cmd: 'python cli.py --mode regression --reset-baseline --output-html ci_reports/regression_report.html --output-json ci_reports/result.json',
                 },
                 {
                   id: 'cmd-base',
-                  title: '03 / Headless Reference Baseline Capture',
-                  desc: 'Captures fresh full-page reference screenshots for all configured viewports with CSS animation freeze.',
+                  title: '03 / Chụp Mới Bộ Ảnh Chuẩn Gốc (Capture Baseline)',
+                  desc: 'Mở trình duyệt ngầm chụp lại toàn bộ ảnh chuẩn gốc (v1.0) trên các độ phân giải và đóng băng hiệu ứng động CSS.',
                   cmd: 'python cli.py --capture-baseline',
                 },
                 {
                   id: 'cmd-approve',
-                  title: '04 / Promote Latest Run to Official Baseline',
-                  desc: 'Approves the latest candidate screenshots from the terminal when UI changes are intentional.',
+                  title: '04 / Duyệt Kết Quả Mới Nhất Làm Baseline Chuẩn',
+                  desc: 'Thăng cấp bộ ảnh của lần chạy gần nhất thành bộ ảnh gốc Baseline mới ngay từ cửa sổ dòng lệnh.',
                   cmd: 'python cli.py --approve-latest',
                 },
               ].map((item) => (
@@ -355,12 +358,12 @@ export default function App() {
                       {copiedCmd === item.id ? (
                         <>
                           <Check className="w-3 h-3 text-emerald-500" aria-hidden="true" />
-                          <span>Copied</span>
+                          <span>Đã chép</span>
                         </>
                       ) : (
                         <>
                           <Copy className="w-3 h-3" aria-hidden="true" />
-                          <span>Copy</span>
+                          <span>Sao chép</span>
                         </>
                       )}
                     </button>
@@ -388,10 +391,10 @@ export default function App() {
                 <Loader2 className="w-6 h-6 text-emerald-500 animate-spin shrink-0" aria-hidden="true" />
                 <div>
                   <h3 className="text-sm font-mono font-bold text-ink-primary">
-                    Capturing Multi-Viewport Reference Baseline...
+                    Đang chụp bộ ảnh chuẩn gốc (Baseline) trên đa màn hình...
                   </h3>
                   <p className="text-xs text-ink-secondary mt-0.5">
-                    Playwright Headless Chromium is freezing CSS transitions, awaiting document.fonts.ready, masking dynamic selectors, and capturing Desktop (1920×1080), Tablet (768×1024), and Mobile (375×812).
+                    Playwright Chromium đang đóng băng hiệu ứng chuyển động CSS, đồng bộ phông chữ, che vùng dữ liệu động và chụp ảnh Desktop (1920×1080), Tablet (768×1024), Mobile (375×812).
                   </p>
                 </div>
               </div>
@@ -413,10 +416,10 @@ export default function App() {
                 <Loader2 className="w-6 h-6 text-blue-500 animate-spin shrink-0" aria-hidden="true" />
                 <div>
                   <h3 className="text-sm font-mono font-bold text-ink-primary">
-                    Executing Perceptual Diff, SSIM &amp; OpenCV Contour Clustering...
+                    Đang thực thi so khớp điểm ảnh (Perceptual Diff), chấm điểm SSIM &amp; khoanh vùng lỗi...
                   </h3>
                   <p className="text-xs text-ink-secondary mt-0.5">
-                    Normalizing canvas dimensions, filtering 3×3 anti-aliasing artifacts, computing Structural Similarity Index (SSIM), and localizing defect bounding boxes.
+                    Hệ thống đang chuẩn hóa kích thước ảnh, lọc nhiễu răng cưa chữ (3×3 Anti-Aliasing), tính toán độ tương đồng cấu trúc SSIM và gom cụm đường bao lỗi OpenCV.
                   </p>
                 </div>
               </div>
@@ -424,18 +427,18 @@ export default function App() {
 
             {/* 2. Active Run Telemetry & Optical Diff Inspector */}
             {activeRun && (
-              <section aria-label="Active Run Inspection" className="mb-8">
+              <section aria-label="Báo cáo kiểm định chi tiết" className="mb-8">
                 <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
                   <div className="flex items-center gap-2">
                     <Activity className="w-4 h-4 text-blue-500" aria-hidden="true" />
                     <h2 className="text-xs font-mono font-bold uppercase tracking-wider text-ink-primary">
-                      Inspection Report // {activeRun.suite_name}
+                      Kết Quả Phân Tích &amp; So Khớp // {activeRun.suite_name}
                     </h2>
                   </div>
                   <div className="flex items-center gap-3 text-xs font-mono text-ink-muted tabular-nums">
-                    <span>RUN ID: #{activeRun.id}</span>
+                    <span>MÃ PHIÊN: #{activeRun.id}</span>
                     <span>&middot;</span>
-                    <span>COMPLETED: {activeRun.completed_at || activeRun.started_at}</span>
+                    <span>HOÀN TẤT: {activeRun.completed_at || activeRun.started_at}</span>
                   </div>
                 </div>
 
@@ -444,7 +447,7 @@ export default function App() {
                   <div className="mb-4 p-3.5 bg-surface-panel border-l-4 border-l-blue-600 border border-line-subtle rounded-r-lg flex items-start justify-between gap-4">
                     <div>
                       <span className="block text-[10px] font-mono font-bold uppercase tracking-wider text-blue-500 mb-1">
-                        Executive Diagnostic Summary
+                        Tóm Tắt Đánh Giá Thay Đổi Giao Diện (Executive Summary)
                       </span>
                       <p className="text-xs text-ink-primary leading-relaxed">
                         {stripEmojis(activeRun.executive_summary)}
@@ -460,9 +463,9 @@ export default function App() {
           </>
         )}
 
-        {/* Quality Trend Analytics & Execution Audit Log (Shown in Analytics Tab AND at bottom of Workbench) */}
+        {/* Quality Trend Analytics & Execution Audit Log */}
         {(activeWorkspaceTab === 'analytics' || activeWorkspaceTab === 'workbench') && (
-          <section aria-label="Quality Trend and Execution Audit Log">
+          <section aria-label="Biểu đồ xu hướng và lịch sử chạy">
             {runs && runs.length > 0 && <TrendChart runs={runs} />}
 
             {/* Execution History Table with Status Filter & Search */}
@@ -471,25 +474,29 @@ export default function App() {
                 <div className="flex items-center gap-2.5">
                   <History className="w-4 h-4 text-blue-500" aria-hidden="true" />
                   <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-ink-primary">
-                    Execution Audit Log ({filteredRuns.length} / {runs.length})
+                    Lịch Sử Các Phiên Kiểm Thử ({filteredRuns.length} / {runs.length})
                   </h3>
                 </div>
 
                 {/* Filter & Search Controls */}
                 <div className="flex flex-wrap items-center gap-2">
                   <div className="flex items-center bg-surface-panel p-0.5 rounded border border-line-subtle text-[11px] font-mono">
-                    {['ALL', 'PASSED', 'FAILED'].map((st) => (
+                    {[
+                      { id: 'ALL', label: 'TẤT CẢ' },
+                      { id: 'PASSED', label: 'ĐẠT (PASSED)' },
+                      { id: 'FAILED', label: 'LỖI (FAILED)' },
+                    ].map((st) => (
                       <button
-                        key={st}
+                        key={st.id}
                         type="button"
-                        onClick={() => setRunStatusFilter(st)}
+                        onClick={() => setRunStatusFilter(st.id)}
                         className={`px-2 py-0.5 rounded cursor-pointer transition-colors ${
-                          runStatusFilter === st
+                          runStatusFilter === st.id
                             ? 'bg-blue-600 text-white font-semibold'
                             : 'text-ink-secondary hover:text-ink-primary'
                         }`}
                       >
-                        {st}
+                        {st.label}
                       </button>
                     ))}
                   </div>
@@ -503,9 +510,9 @@ export default function App() {
                       type="text"
                       value={runSearchQuery}
                       onChange={(e) => setRunSearchQuery(e.target.value)}
-                      placeholder="Search Run ID or Suite..."
-                      aria-label="Search execution history"
-                      className="bg-surface-inset border border-line-subtle focus:border-blue-500 rounded pl-8 pr-2.5 py-1 text-xs text-ink-primary w-48"
+                      placeholder="Tìm mã phiên hoặc tên kịch bản..."
+                      aria-label="Tìm kiếm lịch sử kiểm thử"
+                      className="bg-surface-inset border border-line-subtle focus:border-blue-500 rounded pl-8 pr-2.5 py-1 text-xs text-ink-primary w-56"
                     />
                   </div>
                 </div>
@@ -513,20 +520,20 @@ export default function App() {
 
               {filteredRuns.length === 0 ? (
                 <p className="text-center text-ink-muted text-xs font-mono py-8">
-                  No matching test runs found in storage.
+                  Không tìm thấy phiên kiểm thử nào khớp với bộ lọc.
                 </p>
               ) : (
                 <div className="overflow-x-auto">
                   <table className="w-full text-left text-xs border-collapse">
                     <thead>
                       <tr className="border-b border-line-subtle bg-surface-elevated/50 text-ink-muted font-mono text-[11px] uppercase">
-                        <th className="py-2.5 px-4">Run ID</th>
-                        <th className="py-2.5 px-4">Suite Name</th>
-                        <th className="py-2.5 px-4">Verdict</th>
-                        <th className="py-2.5 px-4">Viewports</th>
-                        <th className="py-2.5 px-4">Duration</th>
-                        <th className="py-2.5 px-4">Timestamp</th>
-                        <th className="py-2.5 px-4 text-right">Actions</th>
+                        <th className="py-2.5 px-4">Mã Phiên</th>
+                        <th className="py-2.5 px-4">Tên Kịch Bản</th>
+                        <th className="py-2.5 px-4">Kết Quả</th>
+                        <th className="py-2.5 px-4">Màn Hình Đạt</th>
+                        <th className="py-2.5 px-4">Thời Lượng</th>
+                        <th className="py-2.5 px-4">Thời Gian Chạy</th>
+                        <th className="py-2.5 px-4 text-right">Báo Cáo</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-line-subtle">
@@ -562,11 +569,11 @@ export default function App() {
                                 ) : (
                                   <XCircle className="w-3 h-3" aria-hidden="true" />
                                 )}
-                                {r.overall_status}
+                                {isPassed ? 'ĐẠT (PASSED)' : 'LỖI (FAILED)'}
                               </span>
                             </td>
                             <td className="py-2.5 px-4 font-mono text-ink-secondary tabular-nums">
-                              {r.passed_viewports}/{r.total_viewports} passed
+                              {r.passed_viewports}/{r.total_viewports} màn hình
                             </td>
                             <td className="py-2.5 px-4 font-mono text-ink-secondary tabular-nums">
                               {r.duration_seconds}s
@@ -582,7 +589,7 @@ export default function App() {
                                 onClick={(e) => e.stopPropagation()}
                                 className="inline-flex items-center gap-1 text-blue-500 hover:underline font-mono text-[11px]"
                               >
-                                <span>Report</span>
+                                <span>Mở HTML</span>
                                 <ExternalLink className="w-3 h-3" aria-hidden="true" />
                               </a>
                             </td>
@@ -602,10 +609,10 @@ export default function App() {
       <footer className="border-t border-line-subtle bg-surface-panel py-4 px-6 mt-10 text-[11px] font-mono text-ink-muted">
         <div className="max-w-[1400px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
           <span>
-            PIXELPULSE VISUAL QA ENGINE // PLAYWRIGHT CHROMIUM + OPENCV + SCIKIT-IMAGE SSIM
+            ĐỒ ÁN ĐÁNH GIÁ &amp; KIỂM ĐỊNH CHẤT LƯỢNG PHẦN MỀM // PLAYWRIGHT + OPENCV + SSIM
           </span>
           <span>
-            DESIGN SYSTEM: SWISS DATA-DENSE WORKBENCH (IBM PLEX SANS + JETBRAINS MONO)
+            HỆ THỐNG KIỂM THỬ HỒI QUY GIAO DIỆN TRỰC QUAN TỰ ĐỘNG
           </span>
         </div>
       </footer>

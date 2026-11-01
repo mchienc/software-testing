@@ -26,14 +26,14 @@ export default function BaselineViewer({ baselines, suiteName, capturedUrl, onCl
           <div>
             <div className="flex items-center gap-2">
               <h3 className="text-sm font-bold text-ink-primary">
-                Reference Baseline Snapshot Locked
+                Bộ Ảnh Chuẩn Gốc (Baseline) Đã Lưu Thành Công
               </h3>
               <span className="text-[10px] font-mono bg-emerald-500/10 text-emerald-500 px-1.5 py-0.5 rounded border border-emerald-500/25 uppercase">
-                ACTIVE BASELINE
+                ĐANG SỬ DỤNG
               </span>
             </div>
             <p className="text-xs text-ink-secondary mt-0.5 font-mono">
-              Suite: <span className="text-ink-primary font-semibold">{suiteName}</span> · Source:{' '}
+              Kịch bản: <span className="text-ink-primary font-semibold">{suiteName}</span> · Nguồn chụp:{' '}
               <a
                 href={capturedUrl}
                 target="_blank"
@@ -50,11 +50,11 @@ export default function BaselineViewer({ baselines, suiteName, capturedUrl, onCl
           <button
             type="button"
             onClick={onClose}
-            aria-label="Close baseline preview"
+            aria-label="Đóng khung xem ảnh gốc"
             className="inline-flex items-center gap-1 text-xs text-ink-secondary hover:text-ink-primary px-2.5 py-1 rounded bg-surface-elevated border border-line-subtle cursor-pointer transition-colors"
           >
             <X className="w-3.5 h-3.5" aria-hidden="true" />
-            <span>Dismiss</span>
+            <span>Đóng</span>
           </button>
         )}
       </div>
@@ -90,18 +90,18 @@ export default function BaselineViewer({ baselines, suiteName, capturedUrl, onCl
         <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-ink-secondary tabular-nums">
           <span className="flex items-center gap-1">
             <Monitor className="w-3.5 h-3.5 text-ink-muted" aria-hidden="true" />
-            {current.width || 'Full'}×{current.height || 'Page'}px
+            Kích thước: {current.width || 'Toàn'}×{current.height || 'Trang'}px
           </span>
           {current.updated_at && (
             <span className="flex items-center gap-1">
               <Calendar className="w-3.5 h-3.5 text-ink-muted" aria-hidden="true" />
-              {current.updated_at}
+              Lúc chụp: {current.updated_at}
             </span>
           )}
           {current.size_bytes && (
             <span className="flex items-center gap-1">
               <HardDrive className="w-3.5 h-3.5 text-ink-muted" aria-hidden="true" />
-              {(current.size_bytes / 1024).toFixed(1)} KB
+              Dung lượng: {(current.size_bytes / 1024).toFixed(1)} KB
             </span>
           )}
         </div>
@@ -111,7 +111,7 @@ export default function BaselineViewer({ baselines, suiteName, capturedUrl, onCl
       <div className="bg-optical-grid border border-line-subtle rounded overflow-auto max-h-[540px] flex justify-center p-3">
         <img
           src={api.getImageUrl(current.image_url)}
-          alt={`Baseline ${current.viewport}`}
+          alt={`Ảnh gốc Baseline ${current.viewport}`}
           className="max-w-full h-auto object-contain rounded border border-line-subtle"
         />
       </div>

@@ -4,8 +4,8 @@ import { ChevronsLeftRight } from 'lucide-react';
 export default function ImageSlider({
   baselineSrc,
   currentSrc,
-  baselineLabel = 'Baseline (v1.0)',
-  currentLabel = 'Current (v2.0)',
+  baselineLabel = 'Ảnh Gốc (v1.0)',
+  currentLabel = 'Ảnh Hiện Tại (v2.0)',
 }) {
   const [sliderPosition, setSliderPosition] = useState(50);
   const containerRef = useRef(null);
@@ -98,7 +98,7 @@ export default function ImageSlider({
           <button
             type="button"
             role="slider"
-            aria-label="Visual comparison split position"
+            aria-label="Thanh kéo so sánh trước và sau"
             aria-valuemin={0}
             aria-valuemax={100}
             aria-valuenow={Math.round(sliderPosition)}
@@ -112,7 +112,7 @@ export default function ImageSlider({
 
       {/* Accessible Range Control Bar */}
       <div className="flex items-center justify-between gap-4 px-3 py-1.5 bg-surface-elevated border border-line-subtle rounded text-[11px] font-mono text-ink-secondary">
-        <span>Split Ratio: {sliderPosition.toFixed(0)}% Baseline</span>
+        <span>Vị trí thanh trượt: {sliderPosition.toFixed(0)}% Ảnh Gốc (Baseline)</span>
         <div className="flex items-center gap-1.5">
           {[0, 25, 50, 75, 100].map((pos) => (
             <button

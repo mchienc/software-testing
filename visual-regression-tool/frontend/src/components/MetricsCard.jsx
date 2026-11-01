@@ -22,7 +22,7 @@ export default function MetricsCard({ run }) {
       {/* 1. Gate Verdict */}
       <div className="p-4 flex flex-col justify-between">
         <div className="flex items-center justify-between text-xs text-ink-muted font-medium uppercase tracking-wider">
-          <span>Gate Verdict</span>
+          <span>Kết Luận Kiểm Định</span>
           {isPassed ? (
             <CheckCircle2 className="w-4 h-4 text-emerald-500" aria-hidden="true" />
           ) : (
@@ -35,28 +35,28 @@ export default function MetricsCard({ run }) {
               isPassed ? 'text-emerald-500' : 'text-rose-500'
             }`}
           >
-            {run.overall_status}
+            {isPassed ? 'ĐẠT (PASSED)' : 'LỖI (FAILED)'}
           </span>
           <span className="text-xs font-mono text-ink-muted tabular-nums">
-            max Δ {maxDiffRatio.toFixed(4)}%
+            lệch max {maxDiffRatio.toFixed(4)}%
           </span>
         </div>
         <div className="mt-2 text-[11px] text-ink-secondary">
           {isPassed
-            ? 'All viewports within tolerance threshold'
-            : `${run.failed_viewports} viewport(s) exceeded diff threshold`}
+            ? 'Tất cả màn hình đều nằm trong ngưỡng cho phép'
+            : `Có ${run.failed_viewports} màn hình vượt ngưỡng sai số cho phép`}
         </div>
       </div>
 
       {/* 2. Viewport Matrix */}
       <div className="p-4 flex flex-col justify-between">
         <div className="flex items-center justify-between text-xs text-ink-muted font-medium uppercase tracking-wider">
-          <span>Viewport Matrix</span>
+          <span>Tỷ Lệ Màn Hình Đạt</span>
           <Layers className="w-4 h-4 text-ink-muted" aria-hidden="true" />
         </div>
         <div className="mt-2 flex items-baseline gap-1.5 font-mono tabular-nums">
           <span className="text-xl font-bold text-ink-primary">{run.passed_viewports}</span>
-          <span className="text-sm text-ink-muted">/ {run.total_viewports} passed</span>
+          <span className="text-sm text-ink-muted">/ {run.total_viewports} màn hình đạt</span>
         </div>
         <div className="mt-2 flex items-center gap-1.5 flex-wrap">
           {results.map((r) => {
@@ -85,12 +85,12 @@ export default function MetricsCard({ run }) {
       {/* 3. Mean SSIM Structural Index */}
       <div className="p-4 flex flex-col justify-between">
         <div className="flex items-center justify-between text-xs text-ink-muted font-medium uppercase tracking-wider">
-          <span>Mean SSIM Index</span>
+          <span>Điểm Cấu Trúc SSIM Trung Bình</span>
           <Activity className="w-4 h-4 text-ink-muted" aria-hidden="true" />
         </div>
         <div className="mt-2 flex items-baseline justify-between font-mono tabular-nums">
           <span className="text-xl font-bold text-ink-primary">{meanSsim.toFixed(4)}</span>
-          <span className="text-[11px] text-ink-muted">target &ge; 0.9500</span>
+          <span className="text-[11px] text-ink-muted">mục tiêu &ge; 0.9500</span>
         </div>
         <div className="mt-2.5 w-full h-1.5 bg-surface-elevated rounded-full overflow-hidden border border-line-subtle">
           <div
@@ -105,7 +105,7 @@ export default function MetricsCard({ run }) {
       {/* 4. Execution Telemetry */}
       <div className="p-4 flex flex-col justify-between">
         <div className="flex items-center justify-between text-xs text-ink-muted font-medium uppercase tracking-wider">
-          <span>Execution Telemetry</span>
+          <span>Thời Gian &amp; Mã Phiên</span>
           <Clock className="w-4 h-4 text-ink-muted" aria-hidden="true" />
         </div>
         <div className="mt-2 flex items-baseline gap-2 font-mono tabular-nums">
@@ -115,7 +115,7 @@ export default function MetricsCard({ run }) {
           </span>
         </div>
         <div className="mt-2 text-[11px] font-mono text-ink-muted truncate tabular-nums">
-          {run.started_at}
+          Lúc chạy: {run.started_at}
         </div>
       </div>
     </div>

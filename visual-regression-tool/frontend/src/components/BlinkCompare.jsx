@@ -4,12 +4,11 @@ import { Play, Pause, RefreshCw, Eye, Layers, Sliders, Info } from 'lucide-react
 export default function BlinkCompare({
   baselineSrc,
   currentSrc,
-  baselineLabel = 'Baseline (v1.0)',
-  currentLabel = 'Current (v2.0)',
+  baselineLabel = 'Ảnh Gốc (v1.0)',
+  currentLabel = 'Ảnh Hiện Tại (v2.0)',
 }) {
   const [subMode, setSubMode] = useState('blink'); // 'blink' | 'onion'
 
-  // Blink states (paused automatically if prefers-reduced-motion)
   const prefersReducedMotion =
     typeof window !== 'undefined' &&
     window.matchMedia &&
@@ -48,7 +47,7 @@ export default function BlinkCompare({
             }`}
           >
             <Eye className="w-3.5 h-3.5" aria-hidden="true" />
-            <span>Blink Alternator</span>
+            <span>Chớp Tắt Luân Phiên (Blink)</span>
           </button>
           <button
             type="button"
@@ -60,7 +59,7 @@ export default function BlinkCompare({
             }`}
           >
             <Layers className="w-3.5 h-3.5" aria-hidden="true" />
-            <span>Onion Skin Overlay</span>
+            <span>Hòa Trộn Lớp Mờ (Onion Skin)</span>
           </button>
         </div>
 
@@ -77,7 +76,7 @@ export default function BlinkCompare({
               ) : (
                 <Play className="w-3.5 h-3.5 text-emerald-500" aria-hidden="true" />
               )}
-              <span>{isPlaying ? 'Pause Strobe' : 'Auto Strobe'}</span>
+              <span>{isPlaying ? 'Tạm Dừng' : 'Tự Động Đảo'}</span>
             </button>
 
             <button
@@ -89,15 +88,15 @@ export default function BlinkCompare({
               className="flex items-center gap-1.5 px-2.5 py-1 bg-surface-panel hover:bg-surface-elevated text-ink-secondary hover:text-ink-primary border border-line-subtle rounded text-xs font-medium cursor-pointer transition-colors"
             >
               <RefreshCw className="w-3.5 h-3.5" aria-hidden="true" />
-              <span>Step Frame</span>
+              <span>Đổi Ảnh Thủ Công</span>
             </button>
 
             <div className="flex items-center gap-1 bg-surface-elevated border border-line-subtle px-2 py-0.5 rounded font-mono text-[11px]">
-              <span className="text-ink-muted mr-1">Cadence:</span>
+              <span className="text-ink-muted mr-1">Tốc độ:</span>
               {[
-                { label: '300ms', val: 300 },
-                { label: '600ms', val: 600 },
-                { label: '1000ms', val: 1000 },
+                { label: 'Nhanh (300ms)', val: 300 },
+                { label: 'Vừa (600ms)', val: 600 },
+                { label: 'Chậm (1s)', val: 1000 },
               ].map((s) => (
                 <button
                   key={s.val}
@@ -118,7 +117,7 @@ export default function BlinkCompare({
           <div className="flex flex-wrap items-center gap-3">
             <label className="text-ink-secondary flex items-center gap-1.5 text-xs font-mono tabular-nums">
               <Sliders className="w-3.5 h-3.5 text-blue-500" aria-hidden="true" />
-              <span>Alpha: {opacity}%</span>
+              <span>Độ mờ lớp mới: {opacity}%</span>
               <input
                 type="range"
                 min="0"
@@ -126,14 +125,14 @@ export default function BlinkCompare({
                 value={opacity}
                 onChange={(e) => setOpacity(Number(e.target.value))}
                 className="w-32 accent-blue-600 cursor-pointer ml-1"
-                aria-label="Current layer opacity percentage"
+                aria-label="Độ trong suốt của lớp ảnh hiện tại"
               />
             </label>
             <div className="flex gap-1 text-[11px] font-mono">
               {[
-                { label: '0% Base', val: 0 },
-                { label: '50% Blend', val: 50 },
-                { label: '100% Curr', val: 100 },
+                { label: '0% (Chỉ Gốc)', val: 0 },
+                { label: '50% (Trộn Đều)', val: 50 },
+                { label: '100% (Chỉ Mới)', val: 100 },
               ].map((preset) => (
                 <button
                   key={preset.val}
@@ -190,12 +189,12 @@ export default function BlinkCompare({
 
             <img
               src={baselineSrc}
-              alt="Baseline Layer"
+              alt="Lớp ảnh gốc Baseline"
               className="max-w-full h-auto object-contain"
             />
             <img
               src={currentSrc}
-              alt="Current Layer"
+              alt="Lớp ảnh hiện tại Current"
               className="absolute top-0 max-w-full h-auto object-contain pointer-events-none transition-opacity duration-75"
               style={{ opacity: opacity / 100 }}
             />
@@ -208,11 +207,11 @@ export default function BlinkCompare({
         <span className="flex items-center gap-1.5">
           <Info className="w-3.5 h-3.5 text-blue-500 shrink-0" aria-hidden="true" />
           <span>
-            Strobe alternation and 50% alpha blending isolate 1–2px sub-pixel layout shifts immediately.
+            Chế độ chớp tắt luân phiên hoặc trộn mờ 50% giúp mắt phát hiện ngay các phần tử bị xô lệch vị trí dù chỉ 1–2px.
           </span>
         </span>
         <span className="font-mono uppercase">
-          {subMode === 'blink' ? `FRAME: ${showingBaseline ? 'BASELINE' : 'CURRENT'}` : `ALPHA: ${opacity}%`}
+          {subMode === 'blink' ? `ĐANG HIỆN: ${showingBaseline ? 'ẢNH GỐC' : 'ẢNH MỚI'}` : `ĐỘ MỜ: ${opacity}%`}
         </span>
       </div>
     </div>

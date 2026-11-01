@@ -7,8 +7,6 @@ import {
   Tablet,
   Smartphone,
   ShieldCheck,
-  Terminal,
-  Sparkles,
 } from 'lucide-react';
 
 export default function TestRunnerForm({
@@ -36,12 +34,12 @@ export default function TestRunnerForm({
 
   const applyPreset = (presetType) => {
     if (presetType === 'regression') {
-      setName('SaaSify UI Regression Check (v1.0 vs v2.0)');
+      setName('Kiểm thử lỗi hồi quy SaaSify (v1.0 vs v2.0)');
       setBaselineUrl('http://localhost:8000/demo/v1_baseline/index.html');
       setUrl('http://localhost:8000/demo/v2_regression/index.html');
       setThreshold(0.05);
     } else if (presetType === 'zero-diff') {
-      setName('SaaSify Zero-Diff Verification (v1.0 vs v1.0)');
+      setName('Kiểm chứng chuẩn Zero-Diff (v1.0 vs v1.0)');
       setBaselineUrl('http://localhost:8000/demo/v1_baseline/index.html');
       setUrl('http://localhost:8000/demo/v1_baseline/index.html');
       setThreshold(0.05);
@@ -71,14 +69,14 @@ export default function TestRunnerForm({
   };
 
   const viewportOptions = [
-    { id: 'desktop', label: 'Desktop', dim: '1920×1080', icon: Monitor },
-    { id: 'tablet', label: 'Tablet', dim: '768×1024', icon: Tablet },
-    { id: 'mobile', label: 'Mobile', dim: '375×812', icon: Smartphone },
+    { id: 'desktop', label: 'Máy tính (Desktop)', dim: '1920×1080', icon: Monitor },
+    { id: 'tablet', label: 'Máy tính bảng (Tablet)', dim: '768×1024', icon: Tablet },
+    { id: 'mobile', label: 'Điện thoại (Mobile)', dim: '375×812', icon: Smartphone },
   ];
 
   return (
     <section
-      aria-label="Test Suite Configuration"
+      aria-label="Cấu hình kịch bản kiểm thử"
       className="bg-surface-panel border border-line-subtle rounded-lg mb-6 overflow-hidden"
     >
       {/* Top Bar */}
@@ -86,29 +84,29 @@ export default function TestRunnerForm({
         <div className="flex items-center gap-2.5">
           <Sliders className="w-4 h-4 text-blue-500" aria-hidden="true" />
           <h2 className="text-xs font-mono font-bold uppercase tracking-wider text-ink-primary">
-            Pipeline Configuration &amp; Execution Control
+            Cấu Hình Kịch Bản Kiểm Thử &amp; Điều Khiển Chạy
           </h2>
           <span className="text-[11px] font-mono text-ink-muted hidden sm:inline">
-            // Black-Box Perceptual Diff + SSIM Engine
+            // Kiểm định Hộp đen (Perceptual Diff + SSIM)
           </span>
         </div>
 
         {/* Scenario Presets */}
         <div className="flex items-center gap-1.5 text-[11px] font-mono">
-          <span className="text-ink-muted mr-1">Scenario Presets:</span>
+          <span className="text-ink-muted mr-1">Chọn nhanh kịch bản mẫu:</span>
           <button
             type="button"
             onClick={() => applyPreset('regression')}
             className="px-2 py-1 rounded bg-surface-panel hover:bg-surface-inset text-ink-secondary hover:text-ink-primary border border-line-subtle cursor-pointer transition-colors"
           >
-            v1.0 vs v2.0 (Regression Bug)
+            Mẫu 1: v1.0 vs v2.0 (Có lỗi giao diện)
           </button>
           <button
             type="button"
             onClick={() => applyPreset('zero-diff')}
             className="px-2 py-1 rounded bg-surface-panel hover:bg-surface-inset text-ink-secondary hover:text-ink-primary border border-line-subtle cursor-pointer transition-colors"
           >
-            v1.0 vs v1.0 (Zero-Diff Pass)
+            Mẫu 2: v1.0 vs v1.0 (Chuẩn 0% lỗi)
           </button>
         </div>
       </div>
@@ -121,7 +119,7 @@ export default function TestRunnerForm({
               htmlFor="suite-name-input"
               className="block text-[11px] font-mono font-semibold text-ink-secondary uppercase tracking-wider mb-1.5"
             >
-              01 / Suite Identifier
+              01 / Tên Kịch Bản Kiểm Thử
             </label>
             <input
               id="suite-name-input"
@@ -139,14 +137,14 @@ export default function TestRunnerForm({
                 htmlFor="baseline-url-input"
                 className="text-[11px] font-mono font-semibold text-ink-secondary uppercase tracking-wider"
               >
-                02 / Reference Baseline URL (v1.0)
+                02 / URL Bản Chuẩn Gốc (Baseline v1.0)
               </label>
               <button
                 type="button"
                 onClick={() => setBaselineUrl('http://localhost:8000/demo/v1_baseline/index.html')}
                 className="text-[11px] font-mono text-emerald-500 hover:underline cursor-pointer"
               >
-                Use Demo v1.0
+                Điền mẫu v1.0
               </button>
             </div>
             <input
@@ -154,7 +152,7 @@ export default function TestRunnerForm({
               type="text"
               value={baselineUrl}
               onChange={(e) => setBaselineUrl(e.target.value)}
-              placeholder="Optional if baseline already captured"
+              placeholder="Để trống nếu đã chụp sẵn ảnh gốc"
               className="w-full bg-surface-inset border border-line-subtle focus:border-blue-500 rounded-md px-3 py-2 text-xs font-mono text-ink-primary transition-colors"
             />
           </div>
@@ -165,14 +163,14 @@ export default function TestRunnerForm({
                 htmlFor="target-url-input"
                 className="text-[11px] font-mono font-semibold text-ink-secondary uppercase tracking-wider"
               >
-                03 / Target Candidate URL (v2.0)
+                03 / URL Bản Hiện Tại Cần Kiểm Thử (Current v2.0)
               </label>
               <button
                 type="button"
                 onClick={() => setUrl('http://localhost:8000/demo/v2_regression/index.html')}
                 className="text-[11px] font-mono text-blue-500 hover:underline cursor-pointer"
               >
-                Use Demo v2.0
+                Điền mẫu v2.0
               </button>
             </div>
             <input
@@ -192,7 +190,7 @@ export default function TestRunnerForm({
           {/* Viewport Matrix */}
           <div className="lg:col-span-5 pt-3">
             <span className="block text-[11px] font-mono font-semibold text-ink-secondary uppercase tracking-wider mb-1.5">
-              04 / Responsive Viewport Matrix
+              04 / Kích Thước Màn Hình Kiểm Thử (Viewports)
             </span>
             <div className="grid grid-cols-3 gap-2">
               {viewportOptions.map((item) => {
@@ -237,7 +235,7 @@ export default function TestRunnerForm({
               htmlFor="threshold-input"
               className="block text-[11px] font-mono font-semibold text-ink-secondary uppercase tracking-wider mb-1.5"
             >
-              05 / Failure Gate (Max Diff %)
+              05 / Ngưỡng Sai Lệch Tối Đa (%)
             </label>
             <div className="flex items-center gap-2">
               <input
@@ -255,7 +253,7 @@ export default function TestRunnerForm({
               </span>
             </div>
             <p className="text-[11px] text-ink-muted mt-1">
-              Default: <code className="font-mono text-ink-secondary">0.05%</code> pixel ratio
+              Mặc định: <code className="font-mono text-ink-secondary">0.05%</code> tổng số điểm ảnh
             </p>
           </div>
 
@@ -265,7 +263,7 @@ export default function TestRunnerForm({
               htmlFor="mask-selectors-input"
               className="block text-[11px] font-mono font-semibold text-ink-secondary uppercase tracking-wider mb-1.5"
             >
-              06 / Anti-Flakiness DOM Masks (CSS Selectors)
+              06 / Bộ Chọn CSS Che Vùng Động (Masking)
             </label>
             <input
               id="mask-selectors-input"
@@ -276,7 +274,7 @@ export default function TestRunnerForm({
               className="w-full bg-surface-inset border border-line-subtle focus:border-blue-500 rounded-md px-3 py-2 text-xs font-mono text-ink-primary transition-colors"
             />
             <p className="text-[11px] text-ink-muted mt-1">
-              Masked elements are blacked out prior to capture to prevent Type I False Positives.
+              Tự động che đen vùng đồng hồ/bộ đếm động trước khi chụp để chống báo động giả.
             </p>
           </div>
         </div>
@@ -286,7 +284,7 @@ export default function TestRunnerForm({
           <div className="flex items-center gap-2 text-xs text-ink-secondary">
             <ShieldCheck className="w-4 h-4 text-emerald-500 shrink-0" aria-hidden="true" />
             <span>
-              Anti-Flakiness Engine active: CSS transitions frozen &middot; WebFonts synced &middot; NetworkIdle awaited
+              Cơ chế khử nhiễu hoạt động: Đóng băng hiệu ứng động CSS &middot; Đợi tải xong phông chữ &middot; Chờ mạng ổn định
             </span>
           </div>
 
@@ -298,7 +296,7 @@ export default function TestRunnerForm({
               className="inline-flex items-center gap-2 px-4 py-2 bg-surface-elevated hover:bg-surface-inset text-ink-primary border border-line-strong rounded-md font-medium text-xs cursor-pointer transition-colors disabled:opacity-50"
             >
               <Camera className="w-3.5 h-3.5 text-emerald-500" aria-hidden="true" />
-              <span>{isCapturingBaseline ? 'Capturing Baseline...' : '1. Capture Baseline'}</span>
+              <span>{isCapturingBaseline ? 'Đang chụp ảnh gốc...' : '1. Chụp Ảnh Gốc (Baseline)'}</span>
             </button>
 
             <button
@@ -307,7 +305,7 @@ export default function TestRunnerForm({
               className="inline-flex items-center gap-2 px-5 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-md font-semibold text-xs shadow-sm cursor-pointer transition-colors disabled:opacity-50"
             >
               <Play className="w-3.5 h-3.5 fill-current" aria-hidden="true" />
-              <span>{isRunning ? 'Running Perceptual Diff...' : '2. Execute Visual Diff'}</span>
+              <span>{isRunning ? 'Đang chạy so khớp...' : '2. Chạy Kiểm Thử So Khớp'}</span>
             </button>
           </div>
         </div>
