@@ -5,6 +5,7 @@ import MetricsCard from './components/MetricsCard';
 import DiffViewer from './components/DiffViewer';
 import BaselineViewer from './components/BaselineViewer';
 import TrendChart from './components/TrendChart';
+import CiCdPanel from './components/CiCdPanel';
 import {
   Activity,
   History,
@@ -298,80 +299,12 @@ export default function App() {
 
         {/* TAB 03: CLI & CI/CD Gatekeeper View */}
         {activeWorkspaceTab === 'cicd' && (
-          <div className="bg-surface-panel border border-line-subtle rounded-lg overflow-hidden mb-8">
-            <div className="px-5 py-3.5 bg-surface-elevated border-b border-line-subtle flex flex-wrap items-center justify-between gap-2">
-              <div className="flex items-center gap-2.5">
-                <Terminal className="w-4 h-4 text-blue-500" aria-hidden="true" />
-                <h2 className="text-xs font-mono font-bold uppercase tracking-wider text-ink-primary">
-                  Công Cụ Dòng Lệnh (Headless CLI) &amp; Tích Hợp GitHub Actions CI/CD
-                </h2>
-              </div>
-              <span className="text-[11px] font-mono text-emerald-500 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/25">
-                .github/workflows/visual-regression.yml
-              </span>
-            </div>
-
-            <div className="p-5 grid grid-cols-1 lg:grid-cols-2 gap-4">
-              {[
-                {
-                  id: 'cmd-pass',
-                  title: '01 / Kiểm tra Chuẩn Zero-Diff (Trả về Exit Code 0 - ĐẠT)',
-                  desc: 'So sánh bản v1.0 Gốc với chính v1.0 trên 3 màn hình (Desktop, Tablet, Mobile) để kiểm chứng tỷ lệ báo động giả = 0.0000%.',
-                  cmd: 'python cli.py --mode pass --reset-baseline --output-html ci_reports/pass_report.html',
-                },
-                {
-                  id: 'cmd-reg',
-                  title: '02 / Phát hiện Lỗi Hồi quy Giao diện (Trả về Exit Code 1 - LỖI)',
-                  desc: 'So sánh bản v1.0 Gốc với bản v2.0 bị vỡ CSS, tự động xuất báo cáo HTML + JSON và chặn Pull Request trên CI/CD.',
-                  cmd: 'python cli.py --mode regression --reset-baseline --output-html ci_reports/regression_report.html --output-json ci_reports/result.json',
-                },
-                {
-                  id: 'cmd-base',
-                  title: '03 / Chụp Mới Bộ Ảnh Chuẩn Gốc (Capture Baseline)',
-                  desc: 'Mở trình duyệt ngầm chụp lại toàn bộ ảnh chuẩn gốc (v1.0) trên các độ phân giải và đóng băng hiệu ứng động CSS.',
-                  cmd: 'python cli.py --capture-baseline',
-                },
-                {
-                  id: 'cmd-approve',
-                  title: '04 / Duyệt Kết Quả Mới Nhất Làm Baseline Chuẩn',
-                  desc: 'Thăng cấp bộ ảnh của lần chạy gần nhất thành bộ ảnh gốc Baseline mới ngay từ cửa sổ dòng lệnh.',
-                  cmd: 'python cli.py --approve-latest',
-                },
-              ].map((item) => (
-                <div
-                  key={item.id}
-                  className="p-4 bg-surface-elevated border border-line-subtle rounded-lg flex flex-col justify-between"
-                >
-                  <div>
-                    <h3 className="text-xs font-mono font-bold text-ink-primary mb-1">
-                      {item.title}
-                    </h3>
-                    <p className="text-xs text-ink-secondary mb-3">{item.desc}</p>
-                  </div>
-                  <div className="flex items-center justify-between gap-2 bg-surface-inset border border-line-subtle rounded px-3 py-2 font-mono text-[11px] text-ink-primary">
-                    <code className="truncate">{item.cmd}</code>
-                    <button
-                      type="button"
-                      onClick={() => copyCommand(item.id, item.cmd)}
-                      className="inline-flex items-center gap-1 px-2 py-1 rounded bg-surface-panel hover:bg-surface-elevated text-ink-secondary hover:text-ink-primary border border-line-subtle shrink-0 cursor-pointer transition-colors"
-                    >
-                      {copiedCmd === item.id ? (
-                        <>
-                          <Check className="w-3 h-3 text-emerald-500" aria-hidden="true" />
-                          <span>Đã chép</span>
-                        </>
-                      ) : (
-                        <>
-                          <Copy className="w-3 h-3" aria-hidden="true" />
-                          <span>Sao chép</span>
-                        </>
-                      )}
-                    </button>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+          <CiCdPanel
+            onRunCreated={(newRun) => {
+              setActiveRun(newRun);
+              loadInitialData();
+            }}
+          />
         )}
 
         {/* TAB 01: Diff Workbench */}
