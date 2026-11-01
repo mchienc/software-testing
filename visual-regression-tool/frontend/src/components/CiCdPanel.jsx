@@ -29,8 +29,8 @@ function parseGitHubRepo(inputUrl = '') {
 }
 
 export default function CiCdPanel({ onRunRecorded, onOpenInWorkbench }) {
-  const [repoUrl, setRepoUrl] = useState('https://github.com/mchienc/Foundational_project');
-  const [repoSlug, setRepoSlug] = useState('mchienc/Foundational_project');
+  const [repoUrl, setRepoUrl] = useState('https://github.com/mchienc/software-testing.git');
+  const [repoSlug, setRepoSlug] = useState('mchienc/software-testing');
   const [repoMeta, setRepoMeta] = useState(null);
   const [ghRuns, setGhRuns] = useState([]);
   const [ghCommits, setGhCommits] = useState([]);
@@ -118,7 +118,7 @@ export default function CiCdPanel({ onRunRecorded, onOpenInWorkbench }) {
   };
 
   useEffect(() => {
-    fetchGitHubRepoData('https://github.com/mchienc/Foundational_project');
+    fetchGitHubRepoData('https://github.com/mchienc/software-testing.git');
   }, []);
 
   const handleRunTargetGitHubRepoTest = async () => {
@@ -227,7 +227,7 @@ export default function CiCdPanel({ onRunRecorded, onOpenInWorkbench }) {
                 01 / Nhập Link Kho Mã Nguồn GitHub Cần Kiểm Thử Giao Diện
               </h2>
               <p className="text-[11px] text-ink-secondary mt-0.5">
-                Nhập bất kỳ kho GitHub dự án web nào của bạn (ví dụ <code className="font-mono">Foundational_project</code>) để tải lịch sử Commit và chạy kịch bản kiểm thử giao diện trực tiếp bên dưới
+                Nhập đường dẫn kho GitHub của dự án để tải lịch sử Commit và chạy kịch bản kiểm thử giao diện trực tiếp bên dưới
               </p>
             </div>
           </div>
@@ -261,7 +261,7 @@ export default function CiCdPanel({ onRunRecorded, onOpenInWorkbench }) {
                 type="text"
                 value={repoUrl}
                 onChange={(e) => setRepoUrl(e.target.value)}
-                placeholder="https://github.com/mchienc/Foundational_project"
+                placeholder="https://github.com/mchienc/software-testing.git"
                 aria-label="Đường dẫn GitHub Repository"
                 className="w-full bg-surface-inset border border-line-subtle focus:border-blue-500 rounded-md pl-9 pr-3 py-2 text-xs font-mono text-ink-primary"
               />
@@ -279,66 +279,9 @@ export default function CiCdPanel({ onRunRecorded, onOpenInWorkbench }) {
             </button>
           </form>
 
-          {/* Quick-Select Repo Presets */}
-          <div className="flex flex-wrap items-center gap-2 text-xs font-mono">
-            <span className="text-ink-muted">Chọn nhanh dự án của bạn:</span>
-            <button
-              type="button"
-              onClick={() => {
-                const url = 'https://github.com/mchienc/Foundational_project';
-                setRepoUrl(url);
-                fetchGitHubRepoData(url);
-              }}
-              className={`px-2.5 py-1 rounded border cursor-pointer transition-colors ${
-                repoSlug.toLowerCase() === 'mchienc/foundational_project'
-                  ? 'bg-blue-500/15 text-blue-500 border-blue-500/40 font-semibold'
-                  : 'bg-surface-elevated text-ink-secondary border-line-subtle hover:text-ink-primary'
-              }`}
-            >
-              mchienc/Foundational_project
-            </button>
-            <button
-              type="button"
-              onClick={() => {
-                const url = 'https://github.com/mchienc/software-testing.git';
-                setRepoUrl(url);
-                fetchGitHubRepoData(url);
-              }}
-              className={`px-2.5 py-1 rounded border cursor-pointer transition-colors ${
-                repoSlug.toLowerCase() === 'mchienc/software-testing'
-                  ? 'bg-blue-500/15 text-blue-500 border-blue-500/40 font-semibold'
-                  : 'bg-surface-elevated text-ink-secondary border-line-subtle hover:text-ink-primary'
-              }`}
-            >
-              mchienc/software-testing (Có sẵn GitHub Actions)
-            </button>
-          </div>
-
           {ghError && (
             <div className="p-3 bg-rose-500/10 border border-rose-500/30 rounded text-xs text-rose-500">
               {ghError}
-            </div>
-          )}
-
-          {/* Repo Status Summary Strip */}
-          {repoMeta && (
-            <div className="p-3.5 bg-surface-elevated border border-line-subtle rounded-lg flex flex-wrap items-center justify-between gap-3 text-xs">
-              <div className="space-y-1">
-                <div className="flex items-center gap-2 font-mono">
-                  <span className="font-bold text-ink-primary">{repoMeta.full_name}</span>
-                  <span className="px-2 py-0.5 rounded bg-blue-500/10 text-blue-500 border border-blue-500/30 text-[10px]">
-                    Nhánh mặc định: {repoMeta.default_branch}
-                  </span>
-                  <span className="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-500 border border-emerald-500/30 text-[10px]">
-                    Đã tải {ghCommits.length} commit gần nhất
-                  </span>
-                </div>
-                <p className="text-ink-secondary">
-                  {ghRuns.length > 0
-                    ? `Kho này đã tích hợp GitHub Actions (${ghRuns.length} phiên chạy tự động trên đám mây).`
-                    : `Kho "${repoSlug}" chưa gắn file .github/workflows trên đám mây, nhưng hệ thống đã nạp xong toàn bộ lịch sử Commit để bạn chạy kiểm thử trực tiếp ở Mục 02 ngay bên dưới!`}
-                </p>
-              </div>
             </div>
           )}
 
