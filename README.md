@@ -169,3 +169,44 @@ Hệ thống hỗ trợ 2 nút bấm thao tác tách biệt hoàn toàn theo chu
    - Nếu sự thay đổi giao diện là do tính năng mới được thiết kế lại (intentional UI update), bấm nút **"Duyệt làm Baseline"** để thăng cấp ảnh mới thành Baseline cho các chu kỳ sau.
 
 ---
+
+
+## 5. HEADLESS CLI RUNNER & TÍCH HỢP GITHUB ACTIONS CI/CD
+
+Bên cạnh giao diện Web Dashboard, hệ thống cung cấp công cụ dòng lệnh **Headless CLI Gatekeeper** (`cli.py` / `visual-regression-tool/backend/app/cli.py`) và cấu hình **GitHub Actions CI/CD** (`.github/workflows/visual-regression.yml`) để tự động kiểm định giao diện trong quy trình DevOps doanh nghiệp.
+
+### 5.1. Các lệnh CLI thông dụng
+```bash
+# 1. Xem hướng dẫn tất cả tham số CLI
+python cli.py --help
+
+# 2. Liệt kê danh sách các bộ kịch bản kiểm thử (Test Suites)
+python cli.py --list-suites
+
+# 3. Chụp mới bộ ảnh gốc chuẩn (Capture Baseline -> trả về Exit Code 0)
+python cli.py --capture-baseline
+
+# 4. Chạy kiểm định Zero-Diff (v1.0 vs v1.0 -> PASSED -> trả về Exit Code 0)
+python cli.py --mode pass --reset-baseline --output-html ci_reports/pass_report.html
+
+# 5. Chạy phát hiện lỗi hồi quy (v1.0 vs v2.0 -> FAILED -> trả về Exit Code 1)
+python cli.py --mode regression --reset-baseline \
+  --output-html ci_reports/regression_report.html \
+  --output-json ci_reports/regression_report.json
+
+# 6. Duyệt kết quả chạy mới nhất làm Baseline chuẩn cho các lần chạy sau
+python cli.py --approve-latest
+```
+
+### 5.2. Cơ chế Exit Code chuẩn CI/CD
+- `Exit Code 0` (**PASSED**): Sai lệch điểm ảnh $\text{Diff Ratio} \le \text{Threshold}$ trên toàn bộ các độ phân giải — cho phép Merge Pull Request / Deploy.
+- `Exit Code 1` (**FAILED**): Phát hiện lỗi hồi quy giao diện ($\text{Diff Ratio} > \text{Threshold}$) — tự động chặn Pipeline và xuất báo cáo khoanh vùng lỗi.
+- `Exit Code 2` (**ERROR**): Lỗi cấu hình hoặc ngoại lệ kết nối mạng.
+
+### 5.3. GitHub Actions Workflow (`.github/workflows/visual-regression.yml`)
+Mỗi khi có sự kiện `push`, `pull_request` vào nhánh `main`, hoặc kích hoạt thủ công (`workflow_dispatch`):
+1. Khởi tạo máy ảo `ubuntu-latest`, cài đặt Python 3.11, OpenCV, scikit-image và trình duyệt **Playwright Headless Chromium**.
+2. Chạy kiểm thử đơn vị Core Engine (`test_engines.py`).
+3. **Gate 1 (Zero-Diff Anti-Flakiness Verification):** Chạy `cli.py --mode pass` để chứng minh cơ chế khử nhiễu CSS + Masking đạt `0.0000%` sai số giả (0% False Positives).
+4. **Gate 2 (Regression Defect Detection):** Chạy `cli.py --mode regression` để kiểm chứng khả năng bắt lỗi đổi màu nút bấm, dịch chuyển lề ($\Delta Y = +25\text{px}$) và xuất bảng **GitHub Actions Job Summary (`$GITHUB_STEP_SUMMARY`)** trực tiếp trên trang Pull Request.
+5. **Upload Artifacts:** Đóng gói báo cáo HTML độc lập (nhúng sẵn ảnh Base64) và toàn bộ thư mục ảnh `baselines/`, `currents/`, `diffs/` lên mục **Artifacts** của GitHub Actions.

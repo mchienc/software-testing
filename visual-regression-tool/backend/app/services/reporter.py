@@ -275,3 +275,21 @@ class ReportGenerator:
         output_file.write_text(html_content, encoding="utf-8")
         logger.info(f"HTML report successfully generated at: {output_file}")
         return output_file
+
+
+    @classmethod
+    def generate_json_report(
+        cls,
+        run_data: Dict[str, Any],
+        output_file: Path
+    ) -> Path:
+        """
+        Exports a structured JSON report for CI/CD pipelines and automated QA tools.
+        """
+        output_file.parent.mkdir(parents=True, exist_ok=True)
+        output_file.write_text(
+            json.dumps(run_data, indent=2, ensure_ascii=False),
+            encoding="utf-8"
+        )
+        logger.info(f"JSON report successfully generated at: {output_file}")
+        return output_file

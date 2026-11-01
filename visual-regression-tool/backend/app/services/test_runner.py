@@ -4,6 +4,7 @@ Coordinates browser capture, visual comparison, scoring, and report generation
 for test runs.
 """
 
+import socket
 import time
 import uuid
 from datetime import datetime
@@ -18,6 +19,45 @@ from app.services.browser_engine import BrowserEngine
 from app.services.diff_engine import DiffEngine
 from app.services.storage_manager import storage_manager
 from app.services.reporter import ReportGenerator
+
+
+def resolve_accessible_url(url: str) -> str:
+    """
+    Ensures demo URLs (e.g. http://localhost:8000/demo/...) work seamlessly
+    in standalone CLI or CI/CD headless environments even when the local
+    FastAPI server is not running on port 8000.
+    """
+    if not url:
+        return url
+
+    prefixes = [
+        "http://localhost:8000/demo/",
+        "http://127.0.0.1:8000/demo/",
+    ]
+    for prefix in prefixes:
+        if url.startswith(prefix):
+            # Check if localhost:8000 is actively listening
+            try:
+                with socket.create_connection(("127.0.0.1", 8000), timeout=0.25):
+                    return url
+            except OSError:
+                rel_path = url[len(prefix):]
+                local_file = (settings.DEMO_SITES_PATH / rel_path).resolve()
+                if local_file.exists():
+                    resolved_uri = local_file.as_uri()
+                    logger.info(f"Local server offline -> Resolved demo URL to file URI: {resolved_uri}")
+                    return resolved_uri
+
+    # Also support direct relative paths to demo sites or local HTML files
+    if not url.startswith(("http://", "https://", "file://")):
+        candidate = Path(url)
+        if candidate.exists():
+            return candidate.resolve().as_uri()
+        demo_candidate = settings.DEMO_SITES_PATH / url
+        if demo_candidate.exists():
+            return demo_candidate.resolve().as_uri()
+
+    return url
 
 
 async def execute_test_run(
@@ -35,7 +75,8 @@ async def execute_test_run(
     started_at = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     start_time = time.time()
 
-    target_url = trigger.override_url or suite["url"]
+    raw_target_url = trigger.override_url or suite["url"]
+    target_url = resolve_accessible_url(raw_target_url)
     viewports = suite.get("viewports", ["desktop", "tablet", "mobile"])
     mask_selectors = suite.get("mask_selectors", [])
     threshold = suite.get("threshold", 0.05)
@@ -64,7 +105,8 @@ async def execute_test_run(
 
         # Baseline capture source: baseline_url if defined, or target_url if initializing
         if not has_baseline or trigger.capture_as_baseline:
-            baseline_source_url = suite.get("baseline_url") or target_url
+            raw_baseline_url = suite.get("baseline_url") or raw_target_url
+            baseline_source_url = resolve_accessible_url(raw_baseline_url)
             logger.info(f"Capturing baseline images from: {baseline_source_url}")
             for vp in viewports:
                 b_path = suite_baseline_dir / f"baseline_{vp}.png"

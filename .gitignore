@@ -26,3 +26,5 @@ Thumbs.db
 visual-regression-tool/backend/storage/runs/
 visual-regression-tool/backend/storage/verification_run/
 visual-regression-tool/backend/*.db
+
+ci_reports/
