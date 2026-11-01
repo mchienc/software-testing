@@ -29,12 +29,14 @@ function parseGitHubRepo(inputUrl = '') {
 export default function CiCdPanel({ onRunCreated }) {
   const [repoUrl, setRepoUrl] = useState('https://github.com/mchienc/software-testing.git');
   const [repoSlug, setRepoSlug] = useState('mchienc/software-testing');
+  const [repoMeta, setRepoMeta] = useState(null);
   const [ghRuns, setGhRuns] = useState([]);
   const [selectedGhRun, setSelectedGhRun] = useState(null);
   const [ghJobs, setGhJobs] = useState([]);
   const [isLoadingGh, setIsLoadingGh] = useState(false);
   const [isLoadingJobs, setIsLoadingJobs] = useState(false);
   const [ghError, setGhError] = useState(null);
+  const [isTestingRepoSite, setIsTestingRepoSite] = useState(false);
 
   // Interactive Web CLI Gatekeeper Simulator
   const [simMode, setSimMode] = useState('regression'); // 'regression' | 'pass'
@@ -53,11 +55,19 @@ export default function CiCdPanel({ onRunCreated }) {
     setGhError(null);
 
     try {
-      const res = await fetch(`https://api.github.com/repos/${slug}/actions/runs?per_page=8`);
-      if (!res.ok) {
-        throw new Error(`Không tìm thấy dữ liệu GitHub Actions cho repo "${slug}" (HTTP ${res.status}).`);
+      const [metaRes, runsRes] = await Promise.all([
+        fetch(`https://api.github.com/repos/${slug}`),
+        fetch(`https://api.github.com/repos/${slug}/actions/runs?per_page=8`),
+      ]);
+
+      if (!metaRes.ok) {
+        throw new Error(`Không tìm thấy kho mã nguồn GitHub "${slug}" (HTTP ${metaRes.status}).`);
       }
-      const data = await res.json();
+
+      const metaData = await metaRes.json();
+      setRepoMeta(metaData);
+
+      const data = runsRes.ok ? await runsRes.json() : { workflow_runs: [] };
       const runsList = data.workflow_runs || [];
       setGhRuns(runsList);
       if (runsList.length > 0) {
@@ -70,6 +80,30 @@ export default function CiCdPanel({ onRunCreated }) {
       setGhError(err.message || 'Lỗi khi kết nối tới GitHub API.');
     } finally {
       setIsLoadingGh(false);
+    }
+  };
+
+  const handleTestDetectedWebsite = async (siteUrl) => {
+    if (!siteUrl) return;
+    setIsTestingRepoSite(true);
+    setGhError(null);
+    try {
+      const suite = await api.createSuite({
+        name: `GitHub Repo Live Site (${repoSlug})`,
+        baseline_url: siteUrl,
+        url: siteUrl,
+        viewports: ['desktop', 'tablet', 'mobile'],
+        threshold: 0.05,
+        color_threshold: 0.1,
+        mask_selectors: ['.timestamp'],
+      });
+      await api.captureBaseline(suite.id, { url_override: siteUrl });
+      const runRecord = await api.runSuite(suite.id);
+      if (onRunCreated) onRunCreated(runRecord);
+    } catch (err) {
+      setGhError(`Lỗi khi chụp trang web ${siteUrl}: ${err.message}`);
+    } finally {
+      setIsTestingRepoSite(false);
     }
   };
 
@@ -242,6 +276,66 @@ export default function CiCdPanel({ onRunCreated }) {
           {ghError && (
             <div className="p-3 bg-rose-500/10 border border-rose-500/30 rounded text-xs text-rose-500">
               {ghError}
+            </div>
+          )}
+
+          {/* Detected Live Website Banner if repo has homepage */}
+          {repoMeta && repoMeta.homepage && (
+            <div className="p-3.5 bg-blue-500/10 border border-blue-500/30 rounded-lg flex flex-wrap items-center justify-between gap-3">
+              <div className="text-xs">
+                <span className="font-mono font-bold text-blue-500 uppercase block mb-0.5">
+                  Phát Hiện Trang Web Triển Khai Của Repo ({repoSlug})
+                </span>
+                <span className="text-ink-secondary">
+                  Repo này đang liên kết với trang web thực tế tại:{' '}
+                  <a
+                    href={repoMeta.homepage}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-mono font-semibold text-ink-primary underline"
+                  >
+                    {repoMeta.homepage}
+                  </a>
+                </span>
+              </div>
+              <button
+                type="button"
+                disabled={isTestingRepoSite}
+                onClick={() => handleTestDetectedWebsite(repoMeta.homepage)}
+                className="inline-flex items-center gap-1.5 px-3.5 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-md text-xs font-mono font-semibold cursor-pointer transition-colors disabled:opacity-50"
+              >
+                {isTestingRepoSite ? (
+                  <Loader2 className="w-3.5 h-3.5 animate-spin" aria-hidden="true" />
+                ) : (
+                  <Play className="w-3.5 h-3.5 fill-current" aria-hidden="true" />
+                )}
+                <span>
+                  {isTestingRepoSite
+                    ? 'Đang chụp & kiểm thử trang web...'
+                    : 'Kiểm Thử Giao Diện Trang Web Này Ngay'}
+                </span>
+              </button>
+            </div>
+          )}
+
+          {/* Empty state when repo has 0 GitHub Actions runs */}
+          {!isLoadingGh && ghRuns.length === 0 && !ghError && (
+            <div className="p-4 bg-surface-elevated border border-line-subtle rounded-lg text-xs text-ink-secondary space-y-1.5">
+              <p className="font-mono font-bold text-amber-500">
+                Repo "{repoSlug}" hiện có 0 phiên chạy GitHub Actions tự động.
+              </p>
+              <p>
+                Lý do: Kho code <code className="font-mono">{repoSlug}</code> chưa gắn file cấu hình{' '}
+                <code className="font-mono">.github/workflows/visual-regression.yml</code> (khác với kho{' '}
+                <code className="font-mono">mchienc/software-testing</code> đã được cài sẵn).
+              </p>
+              {repoMeta?.homepage && (
+                <p className="text-ink-primary font-medium">
+                  Tuy nhiên, hệ thống đã phát hiện trang web của dự án này tại{' '}
+                  <code className="font-mono text-blue-500">{repoMeta.homepage}</code> — bạn có thể bấm nút{' '}
+                  <strong>"Kiểm Thử Giao Diện Trang Web Này Ngay"</strong> ở khung màu xanh phía trên để chụp ảnh và kiểm thử trực tiếp!
+                </p>
+              )}
             </div>
           )}
 

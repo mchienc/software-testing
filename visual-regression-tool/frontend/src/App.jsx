@@ -303,6 +303,8 @@ export default function App() {
             onRunCreated={(newRun) => {
               setActiveRun(newRun);
               loadInitialData();
+              setActiveWorkspaceTab('workbench');
+              window.scrollTo({ top: 260, behavior: 'smooth' });
             }}
           />
         )}
