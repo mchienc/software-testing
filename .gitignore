@@ -29,3 +29,8 @@ visual-regression-tool/backend/storage/repos_cache/
 visual-regression-tool/backend/*.db
 
 ci_reports/
+
+# Agents config
+.agents/
+Báo cáo ĐALN.docx
+visual-regression-tool/backend/storage/baselines/
